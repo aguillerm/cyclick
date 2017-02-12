@@ -1,0 +1,29 @@
+@import "@common/common.less";
+
+.customArrowColor() when (iscolor(@lightAltColor)) 				{ border-top-color: @lightAltColor; border-left-color: @lightAltColor; }
+.customArrowsColor() when (iscolor(@lightAltColor)) and (lightness(@lightAltColor) > 65%)
+{
+  background: rgba(0,0,0,0.3);
+  &:hover 		{ background: rgba(0,0,0,0.5); }
+  &.disabled 	{ background: transparent; color: rgba(0,0,0,0.3);
+				  -webkit-box-shadow: 0 0 0 2px rgba(0,0,0,0.3) inset;
+				  -moz-box-shadow: 0 0 0 2px rgba(0,0,0,0.3) inset;
+				  box-shadow: 0 0 0 2px rgba(0,0,0,0.3) inset; }
+}
+
+#@{el}-main {
+
+	.review-content				{ .ltoCustomColor(); }
+	.review-details .item i		{ .lnkCustomColor(); }
+	.review-content:after		{ .customArrowColor(); }
+
+	.entry-content p			{ .txtCustomColor(); }
+	.review-rating-overall		{ .txtCustomColor(); }
+
+	.navigation-arrows [class*="arrow"]		{ .customArrowsColor(); }
+
+}
+
+.@{el}{
+	clear:both;
+}

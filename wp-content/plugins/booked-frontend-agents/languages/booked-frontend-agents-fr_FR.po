@@ -1,0 +1,166 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Booked Front-end Agents\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-03 15:36+0000\n"
+"PO-Revision-Date: 2016-10-06 15:03+0000\n"
+"Last-Translator: cyclick <guillerm.arthur@gmail.com>\n"
+"Language-Team: French (France)\n"
+"Language: fr-FR\n"
+"Plural-Forms: nplurals=2; plural=n > 1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: booked-frontend-agents.php:59
+msgid "Are you sure you want to cancel this appointment?"
+msgstr "Etes vous sûr d'annuler ce rendez-vous ?"
+
+#: booked-frontend-agents.php:60
+msgid "Are you sure you want to approve this appointment?"
+msgstr "Etes vous sûr de valider ce rendez-vous ?"
+
+#: includes/ajax.php:35 includes/ajax.php:103 includes/shortcodes.php:119
+msgid "All day"
+msgstr "Toute la journée"
+
+#: includes/ajax.php:160 includes/ajax.php:212
+msgid "Appointment Information"
+msgstr "Informations du rendez-vous"
+
+#: includes/ajax.php:167 includes/ajax.php:180
+msgid "Contact Information"
+msgstr "Informations du contact"
+
+#: includes/ajax.php:168 includes/ajax.php:181
+msgid "Name"
+msgstr "Nom"
+
+#: includes/ajax.php:169 includes/ajax.php:182
+msgid "Email"
+msgstr "Email"
+
+#: includes/ajax.php:183
+msgid "Phone"
+msgstr "Téléphone"
+
+#: includes/ajax.php:209 includes/shortcodes.php:123
+msgid "to"
+msgstr "à "
+
+#: includes/ajax.php:214
+msgid "Date"
+msgstr "Date"
+
+#: includes/ajax.php:215
+msgid "Time"
+msgstr "Heure"
+
+#: includes/shortcodes.php:56
+msgid "%s Pending Appointment"
+msgid_plural "%s Pending Appointments"
+msgstr[0] "%s rendez-vous en attente"
+msgstr[1] "%s rendez-vous en attente"
+
+#: includes/shortcodes.php:81
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#: includes/shortcodes.php:123
+msgid "from"
+msgstr "de"
+
+#: includes/shortcodes.php:123
+msgid "at"
+msgstr "à"
+
+#: includes/shortcodes.php:127
+msgid "pending"
+msgstr "en attente"
+
+#: includes/shortcodes.php:127
+msgid "approved"
+msgstr "validé"
+
+#: includes/shortcodes.php:134
+msgid "Approve"
+msgstr "Valider"
+
+#: includes/shortcodes.php:182
+msgid "(this user no longer exists)"
+msgstr "(Cet utilisateur n'existe plus)"
+
+#: includes/shortcodes.php:191
+msgid "This appointment has passed."
+msgstr "Ce rendez-vous est passé."
+
+#: includes/shortcodes.php:197
+msgid "Additional information"
+msgstr "Informations additionnelles"
+
+#: includes/shortcodes.php:235
+msgid "Please log in to view your upcoming appointments."
+msgstr "Veuillez vous connecter pour voir vos rendez-vous à venir."
+
+#. Name of the plugin
+msgid "Booked Front-end Agents"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Adds the ability for Booking Agents to manage their appointments on the "
+"front-end."
+msgstr ""
+
+#. URI of the plugin
+msgid "http://booked.boxydemos.com"
+msgstr ""
+
+#. Author of the plugin
+msgid "Boxy Studio"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.boxystudio.com"
+msgstr ""
+
+#: includes/shortcodes.php:58
+msgid "No pending appointments."
+msgstr "Pas de Rendez-vous en attente "
+
+#: includes/shortcodes.php:62
+msgid "%s Past Appointment"
+msgid_plural "%s Past Appointments"
+msgstr[0] "%s  Rendez-vous passé"
+msgstr[1] "%s Rendez-vous passés"
+
+#: includes/shortcodes.php:64
+msgid "No past appointments."
+msgstr "Pas de Rendez vous passé(s)"
+
+#: includes/shortcodes.php:68
+msgid "%s Upcoming Appointment"
+msgid_plural "%s Upcoming Appointments"
+msgstr[0] "%s rendez-vous en attente"
+msgstr[1] "%s rendez-vous en attente"
+
+#: includes/shortcodes.php:70
+msgid "No upcoming appointments."
+msgstr "Pas de Rendez-vous à venir "
+
+#: booked-frontend-agents.php:70
+msgid "Upcoming Appointments"
+msgstr "Rendez-vous à venir"
+
+#: booked-frontend-agents.php:75
+msgid "Pending Appointments"
+msgstr "Rendez-vous en attente"
+
+#: booked-frontend-agents.php:80
+msgid "Appointment History"
+msgstr "Historique des rendez-vous"
+
+#: booked-frontend-agents.php:85
+msgid "Edit Profile"
+msgstr "Editer Profil"

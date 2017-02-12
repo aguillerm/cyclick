@@ -1,0 +1,21 @@
+@include: common.neon
+
+orderby:
+	label: Order By
+	type: select
+	selected: date
+	# see http://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters
+	default:
+		date: Creation Date
+		rating: Rating
+	help: 'Select order of reviews listed on page'
+
+order:
+	label: Order
+	type: select
+	selected: ASC
+	default:
+		ASC: Ascending
+		DESC: Descending
+	help: 'Select order of items listed on page'
+

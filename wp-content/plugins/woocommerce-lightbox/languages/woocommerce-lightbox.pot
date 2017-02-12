@@ -1,0 +1,44 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-27 11:06+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: inc/wpb_wl_hooks.php:13
+msgid "Quick View"
+msgstr ""
+
+#: inc/wpb_wl_hooks.php:45
+msgid "Placeholder"
+msgstr ""
+
+#. Name of the plugin
+msgid "Woocommerce LightBox"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Highly customizable product quick view lightbox plugin for Woocommerce Store."
+msgstr ""
+
+#. URI of the plugin
+msgid "http://wpbean.com/plugins/"
+msgstr ""
+
+#. Author of the plugin
+msgid "wpbean"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://wpbean.com"
+msgstr ""

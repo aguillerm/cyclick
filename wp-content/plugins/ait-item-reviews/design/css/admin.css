@@ -1,0 +1,53 @@
+/*
+ * AIT WordPress Theme
+ *
+ * Copyright (c) 2014, Affinity Information Technology, s.r.o. (http://ait-themes.club)
+ */
+
+
+/**************************************************/
+/*** && ADMIN REVIEWS                           ***/
+/**************************************************/
+
+.post-type-ait-review .review-rating:after							{ content: ""; display: block; clear: both; visibility: hidden; height: 0; overflow: hidden; }
+.post-type-ait-review .review-rating + .review-rating 				{ margin-top: 3px; }
+.post-type-ait-review .review-rating-stars 							{ float: right; color: #0074a2; font-size: 13px !important; }
+.post-type-ait-review .review-value .review-rating:last-child 		{ padding-top: 3px; border-top: 1px solid #e1e1e1; font-weight: bold; }
+.post-type-ait-review a.add-new-h2 									{ display: none !important; }
+/**************************************************/
+/*** && ADMIN REVIEWS RESPONSIVE                ***/
+/**************************************************/
+
+/******************************************************************************/
+/* ========================================================================== */
+/* = MAX WIDTH 782px                                                        = */
+/* ========================================================================== */
+/******************************************************************************/
+
+@media all and (max-width: 782px) {
+	/* && START 715 */
+
+	.post-type-ait-review .column-review-post-id,
+	.post-type-ait-review .column-content,
+	.post-type-ait-review .column-date								{ display: none; }
+
+	.post-type-ait-review .column-title 							{ width: 40%; }
+	.post-type-ait-review .column-review-value 						{ width: 30%; }
+
+	/* && END 715 */
+}
+
+/******************************************************************************/
+/* ========================================================================== */
+/* = MAX WIDTH 480px                                                        = */
+/* ========================================================================== */
+/******************************************************************************/
+
+@media all and (max-width: 480px) {
+	/* && START 715 */
+
+	.post-type-ait-review .column-title 							{ width: 60%; }
+	.post-type-ait-review .column-review-value						{ display: none; }
+
+	/* && END 715 */
+}

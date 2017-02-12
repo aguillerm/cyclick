@@ -1,0 +1,166 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Booked Front-end Agents\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-17 08:26-0400\n"
+"PO-Revision-Date: 2016-03-17 08:26-0400\n"
+"Last-Translator: Justin Scheetz <justin@boxystudio.com>\n"
+"Language-Team: Boxy Studio <justin@boxystudio.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ajax/fea-actions.php:21 ajax/fea-actions.php:88 includes/shortcodes.php:121
+#: includes/shortcodes.php:164
+msgid "All day"
+msgstr ""
+
+#: ajax/fea-loaders.php:8 ajax/fea-loaders.php:60
+msgid "Appointment Information"
+msgstr ""
+
+#: ajax/fea-loaders.php:15 ajax/fea-loaders.php:28
+msgid "Contact Information"
+msgstr ""
+
+#: ajax/fea-loaders.php:16 ajax/fea-loaders.php:29
+msgid "Name"
+msgstr ""
+
+#: ajax/fea-loaders.php:17 ajax/fea-loaders.php:30
+msgid "Email"
+msgstr ""
+
+#: ajax/fea-loaders.php:31
+msgid "Phone"
+msgstr ""
+
+#: ajax/fea-loaders.php:57 includes/shortcodes.php:125
+msgid "to"
+msgstr ""
+
+#: ajax/fea-loaders.php:62
+msgid "Date"
+msgstr ""
+
+#: ajax/fea-loaders.php:63
+msgid "Time"
+msgstr ""
+
+#: booked-frontend-agents.php:62
+msgid "Are you sure you want to cancel this appointment?"
+msgstr ""
+
+#: booked-frontend-agents.php:63
+msgid "Are you sure you want to approve this appointment?"
+msgstr ""
+
+#: booked-frontend-agents.php:73
+msgid "Upcoming Appointments"
+msgstr ""
+
+#: booked-frontend-agents.php:78
+msgid "Pending Appointments"
+msgstr ""
+
+#: booked-frontend-agents.php:83
+msgid "Appointment History"
+msgstr ""
+
+#: booked-frontend-agents.php:88
+msgid "Edit Profile"
+msgstr ""
+
+#: booked-frontend-agents.php:124
+#, php-format
+msgid "In order to use the %s plugin, you need to have %s installed and active."
+msgstr ""
+
+#: includes/shortcodes.php:58
+#, php-format
+msgid "%s Pending Appointment"
+msgid_plural "%s Pending Appointments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/shortcodes.php:60
+msgid "No pending appointments."
+msgstr ""
+
+#: includes/shortcodes.php:64
+#, php-format
+msgid "%s Past Appointment"
+msgid_plural "%s Past Appointments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/shortcodes.php:66
+msgid "No past appointments."
+msgstr ""
+
+#: includes/shortcodes.php:70
+#, php-format
+msgid "%s Upcoming Appointment"
+msgid_plural "%s Upcoming Appointments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/shortcodes.php:72
+msgid "No upcoming appointments."
+msgstr ""
+
+#: includes/shortcodes.php:83
+msgid "Today"
+msgstr ""
+
+#: includes/shortcodes.php:125
+msgid "from"
+msgstr ""
+
+#: includes/shortcodes.php:125
+msgid "at"
+msgstr ""
+
+#: includes/shortcodes.php:129
+msgid "pending"
+msgstr ""
+
+#: includes/shortcodes.php:129
+msgid "approved"
+msgstr ""
+
+#: includes/shortcodes.php:135
+msgid "Approve"
+msgstr ""
+
+#: includes/shortcodes.php:186
+msgid "(this user no longer exists)"
+msgstr ""
+
+#: includes/shortcodes.php:195
+msgid "This appointment has passed."
+msgstr ""
+
+#: includes/shortcodes.php:201
+msgid "Additional information"
+msgstr ""
+
+#: includes/shortcodes.php:205
+#, php-format
+msgid "Appointment with %s"
+msgstr ""
+
+#: includes/shortcodes.php:205
+msgid "Google Calendar"
+msgstr ""
+
+#: includes/shortcodes.php:222
+msgid "Please log in to view your upcoming appointments."
+msgstr ""

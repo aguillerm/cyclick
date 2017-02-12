@@ -1,0 +1,15 @@
+.go-calend
+{
+    position: inherit!important;
+    background: #47C285;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+    color: #fff!important;
+    font-size: 18px!important;
+    padding: 8px 10px;
+    border-radius: 3px!important;
+    font-weight: lighter;
+    
+}

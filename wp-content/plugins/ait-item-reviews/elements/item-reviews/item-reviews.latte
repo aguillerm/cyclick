@@ -1,0 +1,89 @@
+{include $element->common('header')}
+
+<div id="{$htmlId}" class="{$htmlClass}">
+
+{var $bufferSize = 10}
+{var $elOrder = $el->option('order')}
+{var $elOrderby = $el->option('orderby')}
+
+{* FIRST SERVER LOAD *}
+{* NEXT REVIEWS LOADED BY AJAX *}
+
+{var $args = array(
+	'post_type'      => 'ait-item',
+	'posts_per_page' => -1,
+	'post_status'     => 'publish',
+	'lang'           => AitLangs::getCurrentLanguageCode(),
+	'fields'        => 'ids',
+)}
+
+{var $query = new WpLatteWpQuery($args)}
+{var $itemIds = $query->posts}
+
+
+{var $orderby = array()}
+{var $metaQuery = array(
+	'relation' => 'AND',
+	'post_id_clause' => array(
+		'key'     => 'post_id',
+		'value'   => $itemIds,
+		'compare' => 'IN',
+	),
+)}
+
+
+{if $elOrderby == 'rating'}
+	{var $metaQuery['rating_clause'] = array(
+		'key' => 'rating_mean',
+	)}
+	{var $orderby['rating_clause'] = $elOrder}
+{elseif $elOrderby == 'date'}
+	{var $orderby['date'] = $elOrder}
+{else}
+	{var $orderby['rand'] = $elOrder}
+{/if}
+
+{var $args = array(
+	'post_type'      => 'ait-review',
+	'post_status'    => 'publish',
+	'posts_per_page' => $bufferSize,
+	'meta_query'     => $metaQuery,
+	'orderby'        => $orderby,
+)}
+
+{var $query = new WpLatteWpQuery($args)}
+
+
+
+{if $query->havePosts}
+	{var $reviews = array()}
+
+	<div class="ajax-container review-container">
+		{customLoop from $query as $post}
+			{var $itemId = get_post_meta($post->id, 'post_id', true)}
+			{var $item = get_post($itemId)}
+			{var $rating = get_post_meta($post->id, 'rating_mean', true)}
+
+			{var $html = AitItemReviews::renderLatteTemplate('review-container', array('post' => $post, 'item' => $item, 'rating' => $rating), false)}
+			{? array_push($reviews, $html)}
+		{/customLoop}
+		{!$reviews[0]}
+	</div>
+
+	<div class="navigation-arrows">
+		<div class="arrow-left"><i class="fa fa-chevron-left"></i></div>
+		<div class="arrow-right"><i class="fa fa-chevron-right"></i></div>
+	</div>
+
+	{var $elmData = (object)array(
+		'reviews' => $reviews,
+		'foundPosts' => $query->foundPosts,
+		'bufferSize' => $bufferSize,
+	)}
+	{var $javascript = $el->getPaths()->dir->root . "/javascript.php"}
+	{include $javascript, elmData => $elmData}
+
+{/if}
+
+</div>
+

@@ -1,0 +1,2423 @@
+# Copyright (C) 2016 AitThemes.Club
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: AIT Toolkit\n"
+"Report-Msgid-Bugs-To: https://system.ait-themes.club/support/\n"
+"POT-Creation-Date: 2016-01-28 12:37:42+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: cpts/ad-space/@ad-space.cpt.php:6
+msgctxt "post type general name"
+msgid "Advertisements"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:7
+msgctxt "post type singular name"
+msgid "Advertisement"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:8
+msgctxt "post type menu name"
+msgid "Advertisements"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:9
+msgctxt "Advertisement"
+msgid "Add New"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:10
+msgid "Add New Advertisement"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:11
+msgid "Edit Advertisement"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:12
+msgid "New Advertisement"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:13
+msgid "View Advertisement"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:14
+msgid "Search Advertisements"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:15
+msgid "No Advertisements found"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:16
+msgid "No Advertisements found in Trash"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:17
+msgid "All Advertisements"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:46
+msgctxt "taxonomy general name"
+msgid "Advertisements Categories"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:47 cpts/event/@event.cpt.php:54
+#: cpts/event-with-map/@event-with-map.cpt.php:40
+#: cpts/facility/@facility.cpt.php:49 cpts/faq/@faq.cpt.php:49
+#: cpts/infopanel/@infopanel.cpt.php:51 cpts/job-offer/@job-offer.cpt.php:56
+#: cpts/match/@match.cpt.php:51 cpts/member/@member.cpt.php:50
+#: cpts/partner/@partner.cpt.php:51 cpts/price-table/@price-table.cpt.php:48
+#: cpts/product-item/@product-item.cpt.php:49
+#: cpts/service-box/@service-box.cpt.php:48
+#: cpts/testimonial/@testimonial.cpt.php:50 cpts/toggle/@toggle.cpt.php:48
+#: cpts/tour/@tour.cpt.php:54
+msgctxt "taxonomy menu name"
+msgid "Categories"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:48 cpts/event/@event.cpt.php:55
+#: cpts/event-with-map/@event-with-map.cpt.php:41
+#: cpts/facility/@facility.cpt.php:50 cpts/faq/@faq.cpt.php:50
+#: cpts/infopanel/@infopanel.cpt.php:52 cpts/job-offer/@job-offer.cpt.php:57
+#: cpts/match/@match.cpt.php:52 cpts/member/@member.cpt.php:51
+#: cpts/partner/@partner.cpt.php:52 cpts/price-table/@price-table.cpt.php:49
+#: cpts/product-item/@product-item.cpt.php:50
+#: cpts/service-box/@service-box.cpt.php:49
+#: cpts/testimonial/@testimonial.cpt.php:51 cpts/toggle/@toggle.cpt.php:49
+#: cpts/tour/@tour.cpt.php:55
+msgctxt "taxonomy singular name"
+msgid "Category"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:49 cpts/event/@event.cpt.php:56
+#: cpts/event-with-map/@event-with-map.cpt.php:42
+#: cpts/facility/@facility.cpt.php:51 cpts/faq/@faq.cpt.php:51
+#: cpts/infopanel/@infopanel.cpt.php:53 cpts/item/@item.cpt.php:59
+#: cpts/item/@item.cpt.php:87 cpts/job-offer/@job-offer.cpt.php:58
+#: cpts/match/@match.cpt.php:53 cpts/member/@member.cpt.php:52
+#: cpts/partner/@partner.cpt.php:53 cpts/price-table/@price-table.cpt.php:50
+#: cpts/product-item/@product-item.cpt.php:51
+#: cpts/service-box/@service-box.cpt.php:50
+#: cpts/testimonial/@testimonial.cpt.php:52 cpts/toggle/@toggle.cpt.php:50
+#: cpts/tour/@tour.cpt.php:56
+msgid "Search Categories"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:50 cpts/event/@event.cpt.php:57
+#: cpts/event-with-map/@event-with-map.cpt.php:43
+#: cpts/facility/@facility.cpt.php:52 cpts/faq/@faq.cpt.php:52
+#: cpts/infopanel/@infopanel.cpt.php:54 cpts/item/@item.cpt.php:60
+#: cpts/item/@item.cpt.php:88 cpts/job-offer/@job-offer.cpt.php:59
+#: cpts/match/@match.cpt.php:54 cpts/member/@member.cpt.php:53
+#: cpts/partner/@partner.cpt.php:54 cpts/price-table/@price-table.cpt.php:51
+#: cpts/product-item/@product-item.cpt.php:52
+#: cpts/service-box/@service-box.cpt.php:51
+#: cpts/testimonial/@testimonial.cpt.php:53 cpts/toggle/@toggle.cpt.php:51
+#: cpts/tour/@tour.cpt.php:57
+msgid "All Categories"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:51 cpts/event/@event.cpt.php:58
+#: cpts/event-with-map/@event-with-map.cpt.php:44
+#: cpts/facility/@facility.cpt.php:53 cpts/faq/@faq.cpt.php:53
+#: cpts/infopanel/@infopanel.cpt.php:55 cpts/item/@item.cpt.php:61
+#: cpts/item/@item.cpt.php:89 cpts/job-offer/@job-offer.cpt.php:60
+#: cpts/match/@match.cpt.php:55 cpts/member/@member.cpt.php:54
+#: cpts/partner/@partner.cpt.php:55 cpts/price-table/@price-table.cpt.php:52
+#: cpts/product-item/@product-item.cpt.php:53
+#: cpts/service-box/@service-box.cpt.php:52
+#: cpts/testimonial/@testimonial.cpt.php:54 cpts/toggle/@toggle.cpt.php:52
+#: cpts/tour/@tour.cpt.php:58
+msgid "Parent Category"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:52 cpts/facility/@facility.cpt.php:54
+#: cpts/faq/@faq.cpt.php:54 cpts/infopanel/@infopanel.cpt.php:56
+#: cpts/item/@item.cpt.php:90 cpts/job-offer/@job-offer.cpt.php:61
+#: cpts/match/@match.cpt.php:56 cpts/member/@member.cpt.php:55
+#: cpts/partner/@partner.cpt.php:56
+#: cpts/portfolio-item/@portfolio-item.cpt.php:59
+#: cpts/price-table/@price-table.cpt.php:53
+#: cpts/product-item/@product-item.cpt.php:54
+#: cpts/service-box/@service-box.cpt.php:53
+#: cpts/testimonial/@testimonial.cpt.php:55 cpts/toggle/@toggle.cpt.php:53
+msgid "Parent Cateogry:"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:53 cpts/event/@event.cpt.php:60
+#: cpts/event-with-map/@event-with-map.cpt.php:46
+#: cpts/facility/@facility.cpt.php:55 cpts/faq/@faq.cpt.php:55
+#: cpts/infopanel/@infopanel.cpt.php:57 cpts/item/@item.cpt.php:63
+#: cpts/item/@item.cpt.php:91 cpts/job-offer/@job-offer.cpt.php:62
+#: cpts/match/@match.cpt.php:57 cpts/member/@member.cpt.php:56
+#: cpts/partner/@partner.cpt.php:57 cpts/price-table/@price-table.cpt.php:54
+#: cpts/product-item/@product-item.cpt.php:55
+#: cpts/service-box/@service-box.cpt.php:54
+#: cpts/testimonial/@testimonial.cpt.php:56 cpts/toggle/@toggle.cpt.php:54
+#: cpts/tour/@tour.cpt.php:60
+msgid "Edit Category"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:54 cpts/event/@event.cpt.php:61
+#: cpts/event-with-map/@event-with-map.cpt.php:47
+#: cpts/facility/@facility.cpt.php:56 cpts/faq/@faq.cpt.php:56
+#: cpts/infopanel/@infopanel.cpt.php:58 cpts/item/@item.cpt.php:64
+#: cpts/item/@item.cpt.php:92 cpts/job-offer/@job-offer.cpt.php:63
+#: cpts/match/@match.cpt.php:58 cpts/member/@member.cpt.php:57
+#: cpts/partner/@partner.cpt.php:58 cpts/price-table/@price-table.cpt.php:55
+#: cpts/product-item/@product-item.cpt.php:56
+#: cpts/service-box/@service-box.cpt.php:55
+#: cpts/testimonial/@testimonial.cpt.php:57 cpts/toggle/@toggle.cpt.php:55
+#: cpts/tour/@tour.cpt.php:61
+msgid "View Category"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:55 cpts/event/@event.cpt.php:62
+#: cpts/event-with-map/@event-with-map.cpt.php:48
+#: cpts/facility/@facility.cpt.php:57 cpts/faq/@faq.cpt.php:57
+#: cpts/infopanel/@infopanel.cpt.php:59 cpts/item/@item.cpt.php:65
+#: cpts/item/@item.cpt.php:93 cpts/job-offer/@job-offer.cpt.php:64
+#: cpts/match/@match.cpt.php:59 cpts/member/@member.cpt.php:58
+#: cpts/partner/@partner.cpt.php:59 cpts/price-table/@price-table.cpt.php:56
+#: cpts/product-item/@product-item.cpt.php:57
+#: cpts/service-box/@service-box.cpt.php:56
+#: cpts/testimonial/@testimonial.cpt.php:58 cpts/toggle/@toggle.cpt.php:56
+#: cpts/tour/@tour.cpt.php:62
+msgid "Update Category"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:56 cpts/event/@event.cpt.php:63
+#: cpts/event-with-map/@event-with-map.cpt.php:49
+#: cpts/facility/@facility.cpt.php:58 cpts/faq/@faq.cpt.php:58
+#: cpts/infopanel/@infopanel.cpt.php:60 cpts/item/@item.cpt.php:66
+#: cpts/item/@item.cpt.php:94 cpts/job-offer/@job-offer.cpt.php:65
+#: cpts/match/@match.cpt.php:60 cpts/member/@member.cpt.php:59
+#: cpts/partner/@partner.cpt.php:60 cpts/price-table/@price-table.cpt.php:57
+#: cpts/product-item/@product-item.cpt.php:58
+#: cpts/service-box/@service-box.cpt.php:57
+#: cpts/testimonial/@testimonial.cpt.php:59 cpts/toggle/@toggle.cpt.php:57
+#: cpts/tour/@tour.cpt.php:63
+msgid "Add New Category"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:57 cpts/event/@event.cpt.php:64
+#: cpts/event-with-map/@event-with-map.cpt.php:50
+#: cpts/facility/@facility.cpt.php:59 cpts/faq/@faq.cpt.php:59
+#: cpts/infopanel/@infopanel.cpt.php:61 cpts/item/@item.cpt.php:67
+#: cpts/item/@item.cpt.php:95 cpts/job-offer/@job-offer.cpt.php:66
+#: cpts/match/@match.cpt.php:61 cpts/member/@member.cpt.php:60
+#: cpts/partner/@partner.cpt.php:61 cpts/price-table/@price-table.cpt.php:58
+#: cpts/product-item/@product-item.cpt.php:59
+#: cpts/service-box/@service-box.cpt.php:58
+#: cpts/testimonial/@testimonial.cpt.php:60 cpts/toggle/@toggle.cpt.php:58
+#: cpts/tour/@tour.cpt.php:64
+msgid "New Category Name"
+msgstr ""
+
+#: cpts/ad-space/@ad-space.cpt.php:64
+msgctxt "custom metabox title"
+msgid "Advertisement Options"
+msgstr ""
+
+#: cpts/ad-space/space.metabox.php:5 cpts/item/AitItemCpt.php:206
+#: cpts/item/AitItemCpt.php:276 cpts/item/AitItemCpt.php:359
+#: cpts/item/AitItemCpt.php:412 cpts/item/item-data.metabox.php:18
+#: cpts/item/item-data.metabox.php:207 cpts/item/item-data.metabox.php:253
+#: cpts/member/member.metabox.php:29
+#: cpts/obituary/obituary-data.metabox.php:165
+#: cpts/portfolio-item/portfolio-item.metabox.php:103
+#: cpts/service-box/box-data.metabox.php:12
+msgid "Image"
+msgstr ""
+
+#: cpts/ad-space/space.metabox.php:8
+msgid "URL of image displayed in advertising space, use valid URL format with http://"
+msgstr ""
+
+#: cpts/ad-space/space.metabox.php:11
+#: cpts/facility/facility-data.metabox.php:15
+#: cpts/infopanel/infopanel-data.metabox.php:11
+#: cpts/item/item-data.metabox.php:288 cpts/match/match-data.metabox.php:25
+#: cpts/obituary/obituary-data.metabox.php:25
+#: cpts/obituary/obituary-data.metabox.php:118
+#: cpts/obituary/obituary-data.metabox.php:148
+#: cpts/portfolio-item/portfolio-item.metabox.php:84
+#: cpts/price-table/table-data.metabox.php:13
+#: cpts/product-item/product-item-options.metabox.php:5
+#: cpts/service-box/box-data.metabox.php:24
+msgid "Description"
+msgstr ""
+
+#: cpts/ad-space/space.metabox.php:15
+msgid "Text displayed in advertising space"
+msgstr ""
+
+#: cpts/ad-space/space.metabox.php:18 cpts/item/item-data.metabox.php:226
+#: cpts/match/match-data.metabox.php:44 cpts/member/member.metabox.php:34
+#: cpts/obituary/obituary-data.metabox.php:142
+#: cpts/partner/partner-options.metabox.php:5
+#: cpts/portfolio-item/portfolio-item.metabox.php:108
+#: cpts/service-box/box-data.metabox.php:36
+msgid "Link"
+msgstr ""
+
+#: cpts/ad-space/space.metabox.php:21
+msgid "Link used for image in advertising space"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:8 cpts/event-with-map/@event-with-map.cpt.php:9
+msgctxt "post type general name"
+msgid "Events"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:9 cpts/event-with-map/@event-with-map.cpt.php:10
+msgctxt "post type singular name"
+msgid "Event"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:10 cpts/event-with-map/@event-with-map.cpt.php:11
+msgctxt "post type menu name"
+msgid "Events"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:11 cpts/event-with-map/@event-with-map.cpt.php:12
+msgctxt "Event"
+msgid "Add New"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:12 cpts/event-with-map/@event-with-map.cpt.php:13
+msgid "Add New Event"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:13 cpts/event-with-map/@event-with-map.cpt.php:14
+msgid "Edit Event"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:14 cpts/event-with-map/@event-with-map.cpt.php:15
+msgid "New Event"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:15 cpts/event-with-map/@event-with-map.cpt.php:16
+msgid "View Event"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:16 cpts/event-with-map/@event-with-map.cpt.php:17
+msgid "Search Events"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:17 cpts/event-with-map/@event-with-map.cpt.php:18
+msgid "No Events found"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:18 cpts/event-with-map/@event-with-map.cpt.php:19
+msgid "No Events found in Trash"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:19 cpts/event-with-map/@event-with-map.cpt.php:20
+msgid "All Events"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:53 cpts/event-with-map/@event-with-map.cpt.php:39
+msgctxt "taxonomy general name"
+msgid "Events Categories"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:59 cpts/event-with-map/@event-with-map.cpt.php:45
+#: cpts/item/@item.cpt.php:62 cpts/tour/@tour.cpt.php:59
+msgid "Parent Category:"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:71 cpts/event-with-map/@event-with-map.cpt.php:62
+msgctxt "custom metabox title"
+msgid "Event Options"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:79 cpts/event-with-map/@event-with-map.cpt.php:70
+msgctxt "featured image metabox"
+msgid "Event Image"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:80 cpts/event-with-map/@event-with-map.cpt.php:71
+msgctxt "featured image metabox"
+msgid "Set Event Image"
+msgstr ""
+
+#: cpts/event/@event.cpt.php:81 cpts/event-with-map/@event-with-map.cpt.php:72
+msgctxt "featured image metabox"
+msgid "Remove Event Image"
+msgstr ""
+
+#: cpts/event/event-data.metabox.php:5
+#: cpts/event-with-map/event-with-map-data.metabox.php:5
+#: cpts/job-offer/offer-data.metabox.php:16
+#: cpts/obituary/obituary-data.metabox.php:72
+#: cpts/rating/rating-data.metabox.php:5 cpts/tour/tour-data.metabox.php:5
+msgid "Date From"
+msgstr ""
+
+#: cpts/event/event-data.metabox.php:8
+#: cpts/event-with-map/event-with-map-data.metabox.php:8
+#: cpts/rating/rating-data.metabox.php:8 cpts/tour/tour-data.metabox.php:8
+msgid "Starting date of event"
+msgstr ""
+
+#: cpts/event/event-data.metabox.php:11
+#: cpts/event-with-map/event-with-map-data.metabox.php:11
+#: cpts/job-offer/offer-data.metabox.php:23
+#: cpts/obituary/obituary-data.metabox.php:79
+#: cpts/rating/rating-data.metabox.php:11 cpts/tour/tour-data.metabox.php:11
+msgid "Date To"
+msgstr ""
+
+#: cpts/event/event-data.metabox.php:14
+#: cpts/event-with-map/event-with-map-data.metabox.php:14
+#: cpts/rating/rating-data.metabox.php:14 cpts/tour/tour-data.metabox.php:14
+msgid "Ending date of event"
+msgstr ""
+
+#: cpts/event/event-data.metabox.php:17
+#: cpts/event-with-map/event-with-map-data.metabox.php:17
+#: cpts/obituary/obituary-data.metabox.php:6
+#: cpts/rating/rating-data.metabox.php:17 cpts/tour/tour-data.metabox.php:17
+msgid "Location"
+msgstr ""
+
+#: cpts/event/event-data.metabox.php:19
+#: cpts/event-with-map/event-with-map-data.metabox.php:19
+#: cpts/rating/rating-data.metabox.php:19 cpts/tour/tour-data.metabox.php:19
+msgid "Location of event"
+msgstr ""
+
+#: cpts/event-with-map/@event-with-map.cpt.php:58
+msgctxt "custom metabox title"
+msgid "Relations"
+msgstr ""
+
+#: cpts/event-with-map/event-with-map-relations-data.metabox.php:5
+msgid "Item"
+msgstr ""
+
+#: cpts/event-with-map/event-with-map-relations-data.metabox.php:8
+msgid "Related Item"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:6
+msgctxt "post type general name"
+msgid "Facility"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:7
+msgctxt "post type singular name"
+msgid "Facility"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:8
+msgctxt "post type menu name"
+msgid "Facilities"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:9
+msgctxt "Facility"
+msgid "Add New"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:10
+msgid "Add New Facility"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:11
+msgid "Edit Facility"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:12
+msgid "New Facility"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:13
+msgid "View Facility"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:14
+msgid "Search Facilities"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:15
+msgid "No Facilities found"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:16
+msgid "No Facilities found in Trash"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:17
+msgid "All Facilities"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:18
+msgid "Enter descriptive title for this facility here"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:48
+msgctxt "taxonomy general name"
+msgid "Facility Categories"
+msgstr ""
+
+#: cpts/facility/@facility.cpt.php:67
+msgctxt "custom metabox title"
+msgid "Facility Options"
+msgstr ""
+
+#: cpts/facility/facility-data.metabox.php:5 cpts/item/AitItemCpt.php:70
+#: cpts/item/AitItemCpt.php:71 cpts/item/AitItemCpt.php:110
+#: cpts/item/AitItemCpt.php:111 cpts/item/AitItemCpt.php:181
+#: cpts/item/AitItemCpt.php:261 cpts/item/AitItemCpt.php:344
+#: cpts/item/AitItemCpt.php:403 cpts/item/item-data.metabox.php:213
+#: cpts/item/item-data.metabox.php:278
+msgid "Icon"
+msgstr ""
+
+#: cpts/facility/facility-data.metabox.php:10
+#: cpts/item/item-data.metabox.php:220
+msgid "Icon Color"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:6
+msgctxt "post type general name"
+msgid "Questions and Answers"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:7
+msgctxt "post type singular name"
+msgid "Question and Answer"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:8
+msgctxt "post type menu name"
+msgid "FAQ"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:9
+msgctxt "question and answer"
+msgid "Add New"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:10
+msgid "Add New Question and Answer"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:11
+msgid "Edit Question and Answer"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:12
+msgid "New Question and Answer"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:13
+msgid "View Question and Answer"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:14
+msgid "Search Questions and Answers"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:15
+msgid "No Questions and Answers found"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:16
+msgid "No Questions and Answers found in Trash"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:17
+msgid "All Questions and Answers"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:18
+msgid "Enter descriptive title for this question here"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:48
+msgctxt "taxonomy general name"
+msgid "FAQ Categories"
+msgstr ""
+
+#: cpts/faq/@faq.cpt.php:66
+msgctxt "custom metabox title"
+msgid "Question and Answer"
+msgstr ""
+
+#: cpts/faq/faq-data.metabox.php:5
+msgid "Question"
+msgstr ""
+
+#: cpts/faq/faq-data.metabox.php:8
+msgid "Text displayed as question"
+msgstr ""
+
+#: cpts/faq/faq-data.metabox.php:12
+msgid "Answer"
+msgstr ""
+
+#: cpts/faq/faq-data.metabox.php:15
+msgid "Text displayed as an answer to question"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:8
+msgctxt "post type general name"
+msgid "Infopanels"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:9
+msgctxt "post type singular name"
+msgid "Infopanel"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:10
+msgctxt "post type menu name"
+msgid "Infopanels"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:11
+msgctxt "Infopanel"
+msgid "Add New"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:12
+msgid "Add New Infopanel"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:13
+msgid "Edit Infopanel"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:14
+msgid "New Infopanel"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:15
+msgid "View Infopanel"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:16
+msgid "Search Infopanels"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:17
+msgid "No Infopanels found"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:18
+msgid "No Infopanels found in Trash"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:19
+msgid "All Infopanels"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:50
+msgctxt "taxonomy general name"
+msgid "Infopanel Categories"
+msgstr ""
+
+#: cpts/infopanel/@infopanel.cpt.php:68
+msgctxt "custom metabox title"
+msgid "Infopanel Options"
+msgstr ""
+
+#: cpts/infopanel/infopanel-data.metabox.php:5
+#: cpts/item/item-data.metabox.php:249 cpts/item/item-data.metabox.php:283
+#: cpts/match/match-data.metabox.php:56 cpts/member/member.metabox.php:24
+#: cpts/obituary/obituary-data.metabox.php:21
+#: cpts/obituary/obituary-data.metabox.php:110
+#: cpts/obituary/obituary-data.metabox.php:161
+#: cpts/portfolio-item/portfolio-item.metabox.php:79
+#: cpts/portfolio-item/portfolio-item.metabox.php:98
+#: cpts/price-table/table-data.metabox.php:6
+msgid "Title"
+msgstr ""
+
+#: cpts/infopanel/infopanel-data.metabox.php:16
+msgid "Data"
+msgstr ""
+
+#: cpts/infopanel/infopanel-data.metabox.php:22
+#: cpts/item/item-data.metabox.php:305
+msgid "Name"
+msgstr ""
+
+#: cpts/infopanel/infopanel-data.metabox.php:27
+#: cpts/item/item-data.metabox.php:311
+#: cpts/obituary/obituary-data.metabox.php:114
+msgid "Value"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:9
+msgctxt "post type general name"
+msgid "Items"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:10
+msgctxt "post type singular name"
+msgid "Item"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:11
+msgctxt "post type menu name"
+msgid "Items"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:12
+msgctxt "Item"
+msgid "Add New"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:13
+msgid "Add New Item"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:14
+msgid "Edit Item"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:15
+msgid "New Item"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:16
+msgid "View Item"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:17
+msgid "Search Items"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:18
+msgid "No Items found"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:19
+msgid "No Items found in Trash"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:20
+msgid "All Items"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:56
+msgctxt "taxonomy general name"
+msgid "Item Categories"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:57
+msgctxt "taxonomy menu name"
+msgid "Item Categories"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:58
+msgctxt "taxonomy singular name"
+msgid "Item Category"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:84
+msgctxt "taxonomy general name"
+msgid "Item Locations"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:85
+msgctxt "taxonomy menu name"
+msgid "Item Locations"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:86
+msgctxt "taxonomy singular name"
+msgid "Item Location"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:113
+msgctxt "custom metabox title"
+msgid "Item Options"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:118
+msgctxt "custom metabox title"
+msgid "Author Options"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:126
+msgctxt "featured image metabox"
+msgid "Item Image"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:127
+msgctxt "featured image metabox"
+msgid "Set Item Image"
+msgstr ""
+
+#: cpts/item/@item.cpt.php:128
+msgctxt "featured image metabox"
+msgid "Remove Item Image"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:66 cpts/item/AitItemCpt.php:67
+#: cpts/item/AitItemCpt.php:106 cpts/item/AitItemCpt.php:107
+#: cpts/item/AitItemCpt.php:172 cpts/item/AitItemCpt.php:256
+#: cpts/item/AitItemCpt.php:335 cpts/item/AitItemCpt.php:398
+msgid "Keywords"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:74 cpts/item/AitItemCpt.php:75
+msgid "Map Icon"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:78 cpts/item/AitItemCpt.php:79
+#: cpts/item/AitItemCpt.php:114 cpts/item/AitItemCpt.php:115
+#: cpts/item/AitItemCpt.php:201 cpts/item/AitItemCpt.php:273
+#: cpts/item/AitItemCpt.php:354 cpts/item/AitItemCpt.php:409
+msgid "Header Type"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:82 cpts/item/AitItemCpt.php:83
+#: cpts/item/AitItemCpt.php:118 cpts/item/AitItemCpt.php:119
+#: cpts/item/AitItemCpt.php:215 cpts/item/AitItemCpt.php:283
+#: cpts/item/AitItemCpt.php:368 cpts/item/AitItemCpt.php:419
+#: cpts/item/item-data.metabox.php:29
+msgid "Header Image"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:86 cpts/item/AitItemCpt.php:87
+#: cpts/item/AitItemCpt.php:122 cpts/item/AitItemCpt.php:123
+#: cpts/item/AitItemCpt.php:225 cpts/item/AitItemCpt.php:289
+#: cpts/item/AitItemCpt.php:378 cpts/item/AitItemCpt.php:425
+#: cpts/item/item-data.metabox.php:36
+msgid "Header Image Align"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:90 cpts/item/AitItemCpt.php:91
+msgid "Category Featured"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:185 cpts/item/AitItemCpt.php:195
+#: cpts/item/AitItemCpt.php:219 cpts/item/AitItemCpt.php:263
+#: cpts/item/AitItemCpt.php:269 cpts/item/AitItemCpt.php:285
+#: cpts/item/AitItemCpt.php:348 cpts/item/AitItemCpt.php:372
+#: cpts/item/AitItemCpt.php:405 cpts/item/AitItemCpt.php:421
+msgid "Insert Image"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:185 cpts/item/AitItemCpt.php:195
+#: cpts/item/AitItemCpt.php:263 cpts/item/AitItemCpt.php:269
+#: cpts/item/AitItemCpt.php:348 cpts/item/AitItemCpt.php:405
+msgid "Select Icon"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:191 cpts/item/AitItemCpt.php:267
+msgid "Icon in Map"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:205 cpts/item/AitItemCpt.php:275
+#: cpts/item/AitItemCpt.php:358 cpts/item/AitItemCpt.php:411
+#: cpts/item/item-data.metabox.php:17
+msgid "Map"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:207 cpts/item/AitItemCpt.php:277
+#: cpts/item/AitItemCpt.php:360 cpts/item/AitItemCpt.php:413
+#: cpts/portfolio-item/portfolio-item.metabox.php:12
+msgid "Video"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:208 cpts/item/AitItemCpt.php:278
+#: cpts/item/AitItemCpt.php:361 cpts/item/AitItemCpt.php:414
+msgid "None"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:219 cpts/item/AitItemCpt.php:285
+#: cpts/item/AitItemCpt.php:372 cpts/item/AitItemCpt.php:421
+msgid "Select Image"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:229 cpts/item/AitItemCpt.php:291
+#: cpts/item/AitItemCpt.php:382 cpts/item/AitItemCpt.php:427
+#: cpts/item/item-data.metabox.php:40
+msgid "Left"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:230 cpts/item/AitItemCpt.php:292
+#: cpts/item/AitItemCpt.php:383 cpts/item/AitItemCpt.php:428
+#: cpts/item/item-data.metabox.php:41
+#: cpts/obituary/obituary-data.metabox.php:46
+msgid "Center"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:231 cpts/item/AitItemCpt.php:293
+#: cpts/item/AitItemCpt.php:384 cpts/item/AitItemCpt.php:429
+#: cpts/item/item-data.metabox.php:42
+msgid "Right"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:238 cpts/item/AitItemCpt.php:298
+msgid "Featured Category"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:612
+msgid "There are no Revolution Slider element options for this '%s' page"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:615
+msgid "There are no SEO element options for this '%s' page"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:637
+msgid "Item Author"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:638 cpts/item/item-featured.metabox.php:5
+#: cpts/price-table/table-data.metabox.php:60
+msgid "Featured"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:660
+msgid "yes"
+msgstr ""
+
+#: cpts/item/AitItemCpt.php:660
+msgid "no"
+msgstr ""
+
+#: cpts/item/item-author.metabox.php:5
+#: cpts/testimonial/testimonial-options.metabox.php:5
+msgid "Author"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:5
+msgid "Item Featured"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:12
+msgid "Item Header"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:16
+msgid "No header"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:21
+msgid "Select type of header on page"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:25
+msgid "Image Options"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:32
+msgid "Image displayed in header"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:44
+msgid "Align of image in header"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:48
+msgid "General"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:52
+msgid "Address"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:61
+msgid "Specify address and position of item"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:65
+msgid "Telephone"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:68
+msgid "Telephone number related to item"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:72
+msgid "Additional telephone numbers"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:77
+msgid "Number"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:82
+msgid "Additional telephone numbers related to item"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:87
+msgid "Email"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:91
+msgid "Email address related to item"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:95
+msgid "Show Email"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:99
+msgid "Display or hide email address on page"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:103
+msgid "Contact owner button"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:107
+msgid "Create contact form on page"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:111
+msgid "Web"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:115
+msgid "Web address, use valid URL format with http://"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:118
+msgid "Web Link Label"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:122
+msgid "Text displayed instead of full web address"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:126
+msgid "Opening Hours"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:130 cpts/item/item-data.metabox.php:190
+#: cpts/item/item-data.metabox.php:239 cpts/item/item-data.metabox.php:266
+msgid "Show"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:134
+msgid "Display or hide Opening Hours section"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:138
+msgid "Monday"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:144
+msgid "Tuesday"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:150
+msgid "Wednesday"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:156
+msgid "Thursday"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:162
+msgid "Friday"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:168
+msgid "Saturday"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:174
+msgid "Sunday"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:180
+msgid "Note"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:186
+msgid "Social"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:193
+msgid "Display or hide Social Icons section"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:197
+msgid "Open links in new window"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:210
+msgid "Image displayed as social icon"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:217
+msgid "Select predefined social icon, Image will be ignored"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:223
+msgid "Optional color (in hex eg. #00FF00), leave this empty to use default icon color"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:235
+msgid "Gallery"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:258
+msgid "Display or hide Gallery section"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:262
+msgid "Features"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:269
+msgid "Display or hide Features section"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:280
+msgid "Icon image displayed with feature"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:285
+msgid "Feature main text"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:290
+msgid "Feature descriptive text"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:296
+msgid "Custom Fields"
+msgstr ""
+
+#: cpts/item/item-data.metabox.php:308
+msgid "Do not use system reserved names (post_id, rating_count, rating_max, rating_mean, rating_mean_rounded), they will be ignored"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:9
+msgctxt "post type general name"
+msgid "Job Offers"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:10
+msgctxt "post type singular name"
+msgid "Job Offer"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:11
+msgctxt "post type menu name"
+msgid "Job Offers"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:12
+msgctxt "job offer"
+msgid "Add New"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:13
+msgid "Add New Job Offer"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:14
+msgid "Edit Job Offer"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:15
+msgid "New Job Offer"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:16
+msgid "View Job Offer"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:17
+msgid "Search Job Offers"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:18
+msgid "No Job Offers found"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:19
+msgid "No Job Offers found in Trash"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:20
+msgid "All Job Offers"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:21
+msgid "Enter job offer title here"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:55
+msgctxt "taxonomy general name"
+msgid "Job Offers Categories"
+msgstr ""
+
+#: cpts/job-offer/@job-offer.cpt.php:74
+msgctxt "custom metabox title"
+msgid "Job Offer Options"
+msgstr ""
+
+#: cpts/job-offer/offer-data.metabox.php:6
+msgid "Skills"
+msgstr ""
+
+#: cpts/job-offer/offer-data.metabox.php:12
+msgid "Main text of offer"
+msgstr ""
+
+#: cpts/job-offer/offer-data.metabox.php:19
+msgid "Starting date of offer validity"
+msgstr ""
+
+#: cpts/job-offer/offer-data.metabox.php:26
+msgid "Ending date of offer validity"
+msgstr ""
+
+#: cpts/job-offer/offer-data.metabox.php:30
+msgid "Contact Person"
+msgstr ""
+
+#: cpts/job-offer/offer-data.metabox.php:33
+msgid "Text displayed as contact person"
+msgstr ""
+
+#: cpts/job-offer/offer-data.metabox.php:37
+msgid "Contact Email"
+msgstr ""
+
+#: cpts/job-offer/offer-data.metabox.php:40
+msgid "Text displayed as contact email"
+msgstr ""
+
+#: cpts/job-offer/offer-data.metabox.php:44
+msgid "Contact Phone"
+msgstr ""
+
+#: cpts/job-offer/offer-data.metabox.php:47
+msgid "Text displayed as contact phone"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:8
+msgctxt "post type general name"
+msgid "Matches"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:9
+msgctxt "post type singular name"
+msgid "Match"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:10
+msgctxt "post type menu name"
+msgid "Matches"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:11
+msgctxt "Match"
+msgid "Add New"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:12
+msgid "Add New Match"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:13
+msgid "Edit Match"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:14
+msgid "New Match"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:15
+msgid "View Match"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:16
+msgid "Search Matches"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:17
+msgid "No Matches found"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:18
+msgid "No Matches found in Trash"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:19
+msgid "All Matches"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:50
+msgctxt "taxonomy general name"
+msgid "Match Categories"
+msgstr ""
+
+#: cpts/match/@match.cpt.php:69
+msgctxt "custom metabox title"
+msgid "Match Options"
+msgstr ""
+
+#: cpts/match/match-data.metabox.php:6
+msgid "Team A"
+msgstr ""
+
+#: cpts/match/match-data.metabox.php:12
+msgid "Team B"
+msgstr ""
+
+#: cpts/match/match-data.metabox.php:18
+msgid "Date"
+msgstr ""
+
+#: cpts/match/match-data.metabox.php:32
+msgid "Final Score for Team A"
+msgstr ""
+
+#: cpts/match/match-data.metabox.php:38
+msgid "Final Score for Team B"
+msgstr ""
+
+#: cpts/match/match-data.metabox.php:50
+msgid "Scores"
+msgstr ""
+
+#: cpts/match/match-data.metabox.php:60
+msgid "Score A"
+msgstr ""
+
+#: cpts/match/match-data.metabox.php:64
+msgid "Score B"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:6
+msgctxt "post type general name"
+msgid "Members"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:7
+msgctxt "post type singular name"
+msgid "Member"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:8
+msgctxt "post type menu name"
+msgid "Members"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:9
+msgctxt "member"
+msgid "Add New"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:10
+msgid "Add New Member"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:11
+msgid "Edit Member"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:12
+msgid "New Member"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:13
+msgid "View Member"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:14
+msgid "Search Members"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:15
+msgid "No Members found"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:16
+msgid "No Members found in Trash"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:17
+msgid "All Members"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:18
+msgid "Enter member's name here"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:49
+msgctxt "taxonomy general name"
+msgid "Members Categories"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:67
+msgctxt "custom metabox title"
+msgid "Member's Additional Info"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:75
+msgctxt "featured image metabox"
+msgid "Member's Photo"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:76
+msgctxt "featured image metabox"
+msgid "Set Member's Photo"
+msgstr ""
+
+#: cpts/member/@member.cpt.php:77
+msgctxt "featured image metabox"
+msgid "Remove Member's Photo"
+msgstr ""
+
+#: cpts/member/member.metabox.php:5
+msgctxt "job position"
+msgid "Position"
+msgstr ""
+
+#: cpts/member/member.metabox.php:7
+msgid "Position of member in the company, community, etc"
+msgstr ""
+
+#: cpts/member/member.metabox.php:11
+msgid "About member"
+msgstr ""
+
+#: cpts/member/member.metabox.php:14
+msgid "Information about member"
+msgstr ""
+
+#: cpts/member/member.metabox.php:18
+msgid "Social Icons"
+msgstr ""
+
+#: cpts/member/member.metabox.php:26
+msgid "Social icon title"
+msgstr ""
+
+#: cpts/member/member.metabox.php:31
+msgid "Social icon image"
+msgstr ""
+
+#: cpts/member/member.metabox.php:36
+msgid "Social icon link, use valid URL format with http://"
+msgstr ""
+
+#: cpts/member/member.metabox.php:39
+msgid "Add new Social Icon by click on \"+ Add New Item\" link, or remove existing Social Icon by click on red cross. Click on \"Remove All Items\" link to remove all existing Social Icons."
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:8
+msgctxt "post type general name"
+msgid "Obituaries"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:9
+msgctxt "post type singular name"
+msgid "Obituary"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:10
+msgctxt "post type menu name"
+msgid "Obituaries"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:11
+msgctxt "Obituary"
+msgid "Add New"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:12
+msgid "Add New Obituary"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:13
+msgid "Edit Obituary"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:14
+msgid "New Obituary"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:15
+msgid "View Obituary"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:16
+msgid "Search Obituaries"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:17
+msgid "No Obituaries found"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:18
+msgid "No Obituaries found in Trash"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:19
+msgid "All Obituaries"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:53
+msgctxt "custom metabox title"
+msgid "Obituary Options"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:60
+msgctxt "featured image metabox"
+msgid "Obituary Image"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:61
+msgctxt "featured image metabox"
+msgid "Set Obituary Image"
+msgstr ""
+
+#: cpts/obituary/@obituary.cpt.php:62
+msgctxt "featured image metabox"
+msgid "Remove Obituary Image"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:15
+msgid "Checkpoints"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:37
+msgid "Checkpoint Icon"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:42
+msgid "Align"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:47
+msgid "Bottom"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:49
+msgid "Set alignment for icons (\"center\" for round symetric icons and \"bottom\" for pins or flags)"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:55
+msgid "Path Color"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:62
+msgid "Display All Checkpoints"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:65
+msgid "Checkpoints without Title and Description will not be displayed on the map"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:69
+msgid "Additional information"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:75
+msgid "Starting date for tour"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:82
+msgid "Ending date for tour"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:86
+msgid "Difficulty"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:92
+msgid "Set 0 to ignore this option"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:96
+msgid "Difficulty Title"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:98
+msgid "Difficulty for this tour"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:103
+msgid "Additional Information"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:106
+msgid "Add custom additional information"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:124
+msgid "Galleries"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:127
+msgid "Video Gallery"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:133
+#: cpts/portfolio-item/portfolio-item.metabox.php:6
+msgid "Type"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:135
+msgid "Select video source"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:145
+msgid "URL of video displayed on page, use valid URL format with http://"
+msgstr ""
+
+#: cpts/obituary/obituary-data.metabox.php:156
+msgid "Picture Gallery"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:8
+msgctxt "post type general name"
+msgid "Partners"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:9
+msgctxt "post type singular name"
+msgid "Partner"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:10
+msgctxt "post type menu name"
+msgid "Partners"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:11
+msgctxt "partner"
+msgid "Add New"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:12
+msgid "Add New Partner"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:13
+msgid "Edit Partner"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:14
+msgid "New Partner"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:15
+msgid "View Partner"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:16
+msgid "Search Partners"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:17
+msgid "No Partners found"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:18
+msgid "No Partners found in Trash"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:19
+msgid "All Partners"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:50
+msgctxt "taxonomy general name"
+msgid "Partners Categories"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:68
+msgctxt "custom metabox title"
+msgid "Partner Options"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:75
+msgctxt "featured image metabox"
+msgid "Partner Logo"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:76
+msgctxt "featured image metabox"
+msgid "Set Partner Logo"
+msgstr ""
+
+#: cpts/partner/@partner.cpt.php:77
+msgctxt "featured image metabox"
+msgid "Remove Partner Image"
+msgstr ""
+
+#: cpts/partner/partner-options.metabox.php:8
+msgid "URL of image link, use valid URL format with http://"
+msgstr ""
+
+#: cpts/partner/partner-options.metabox.php:11
+#: cpts/portfolio-item/portfolio-item.metabox.php:43
+msgid "Open In New Window"
+msgstr ""
+
+#: cpts/partner/partner-options.metabox.php:14
+#: cpts/portfolio-item/portfolio-item.metabox.php:46
+msgid "Open links in new window or tab"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:8
+msgctxt "post type general name"
+msgid "Portfolio Items"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:9
+msgctxt "post type singular name"
+msgid "Portfolio Item"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:10
+msgctxt "post type menu name"
+msgid "Portfolio"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:11
+msgctxt "portfolio item"
+msgid "Add New"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:12
+msgid "Add New Portfolio Item"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:13
+msgid "Edit Portfolio Item"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:14
+msgid "New Portfolio Item"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:15
+msgid "View Portfolio Item"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:16
+msgid "Search Portfolio Items"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:17
+msgid "No Portfolio Items found"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:18
+msgid "No Portfolio Items found in Trash"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:19
+msgid "All Portfolio Items"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:53
+msgctxt "taxonomy general name"
+msgid "Portfolios"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:54
+msgctxt "taxonomy menu name"
+msgid "Portfolios"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:55
+msgctxt "taxonomy singular name"
+msgid "Portfolio"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:56
+msgid "Search Portfolios"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:57
+msgid "All Portfolios"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:58
+msgid "Parent Portfolio"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:60
+msgid "Edit Portfolio"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:61
+msgid "View Portfolio"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:62
+msgid "Update Portfolio"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:63
+msgid "Add New Portfolio"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:64
+msgid "New Portfolio Name"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:72
+msgctxt "custom metabox title"
+msgid "Portfolio Item Options"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:80
+msgctxt "featured image metabox"
+msgid "Large Image"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:81
+msgctxt "featured image metabox"
+msgid "Select Large Image"
+msgstr ""
+
+#: cpts/portfolio-item/@portfolio-item.cpt.php:82
+msgctxt "featured image metabox"
+msgid "Remove Large Image"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:10
+msgid "Large Image"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:11
+msgid "Website"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:14
+msgid "Select type of item"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:18
+msgid "Crop From Position"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:22
+msgid "top left"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:23
+msgid "top center"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:24
+msgid "top right"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:25
+msgid "center center"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:26
+msgid "bottom left"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:27
+msgid "bottom center"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:28
+msgid "bottom right"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:30
+msgid "Anchor point of the source image, used when cropping image"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:37
+msgid "Link To Website"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:39
+msgid "Link to website used with Website type, use valid URL format with http://"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:54
+msgid "Link To Video"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:56
+msgid "Link to video used with Video type, use valid URL format with http://"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:60
+msgid "Video Format"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:69
+msgid "Select format of video"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:73
+msgid "Information"
+msgstr ""
+
+#: cpts/portfolio-item/portfolio-item.metabox.php:93
+msgid "Item gallery"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:7
+msgctxt "post type general name"
+msgid "Price Tables"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:8
+msgctxt "post type singular name"
+msgid "Price Table"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:9
+msgctxt "post type menu name"
+msgid "Price Tables"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:10
+#: cpts/service-box/@service-box.cpt.php:10
+msgctxt "service"
+msgid "Add New"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:11
+msgid "Add New Price Table"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:12
+msgid "Edit Price Table"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:13
+msgid "New Price Table"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:14
+msgid "View Price Table"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:15
+msgid "Search Price Tables"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:16
+msgid "No Price Tables found"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:17
+msgid "No Price Tables found in Trash"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:18
+msgid "All Price Tables"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:47
+msgctxt "taxonomy general name"
+msgid "Price Tables Categories"
+msgstr ""
+
+#: cpts/price-table/@price-table.cpt.php:66
+msgctxt "custom metabox title"
+msgid "Table Options"
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:9
+msgid "Text displayed as title in header of table"
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:16
+msgid "Text displayed below title in header of table"
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:20
+#: cpts/product-item/product-item-options.metabox.php:11
+msgid "Price"
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:23
+msgid "Text displayed as price in header of table"
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:27
+msgid "Table Rows"
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:30
+msgid "Add new Row by click on \"+ Add New Item\" link, or remove existing Row by click on red cross. Click on \"Remove All Items\" link to remove all existing Rows."
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:33
+msgid "Row Text"
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:35
+msgid "Text displayed in row"
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:46
+msgid "Button Text"
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:49
+msgid "Title of button in footer of table"
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:53
+msgid "Button Link"
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:56
+msgid "Link used for button, use valid URL format with http://"
+msgstr ""
+
+#: cpts/price-table/table-data.metabox.php:63
+msgid "Highlight table as featured"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:6
+msgctxt "post type general name"
+msgid "Products"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:7
+msgctxt "post type singular name"
+msgid "Product"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:8
+msgctxt "post type menu name"
+msgid "Products"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:9
+msgctxt "Product"
+msgid "Add New"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:10
+msgid "Add New Product"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:11
+msgid "Edit Product"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:12
+msgid "New Product"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:13
+msgid "View Product"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:14
+msgid "Search Products"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:15
+msgid "No Products found"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:16
+msgid "No products found in Trash"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:17
+msgid "All Products"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:48
+msgctxt "taxonomy general name"
+msgid "Product Categories"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:66
+msgctxt "custom metabox title"
+msgid "Product Options"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:73
+msgctxt "featured image metabox"
+msgid "Product Image"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:74
+msgctxt "featured image metabox"
+msgid "Set Product Image"
+msgstr ""
+
+#: cpts/product-item/@product-item.cpt.php:75
+msgctxt "featured image metabox"
+msgid "Remove Product Image"
+msgstr ""
+
+#: cpts/product-item/product-item-options.metabox.php:17
+msgid "Featured Item"
+msgstr ""
+
+#: cpts/rating/@rating.cpt.php:9
+msgctxt "post type general name"
+msgid "Ratings"
+msgstr ""
+
+#: cpts/rating/@rating.cpt.php:10
+msgctxt "post type singular name"
+msgid "Rating"
+msgstr ""
+
+#: cpts/rating/@rating.cpt.php:11
+msgctxt "post type menu name"
+msgid "Ratings"
+msgstr ""
+
+#: cpts/rating/@rating.cpt.php:24
+msgctxt "custom metabox title"
+msgid "Rating Options"
+msgstr ""
+
+#: cpts/rating/AitRatingCpt.php:38 cpts/rating/AitRatingCpt.php:53
+msgid "Rating "
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:7
+msgctxt "post type general name"
+msgid "Services"
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:8
+msgctxt "post type singular name"
+msgid "Service"
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:9
+msgctxt "post type menu name"
+msgid "Services"
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:11
+msgid "Add New Service"
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:12
+msgid "Edit Service"
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:13
+msgid "New Service"
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:14
+msgid "View Service"
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:15
+msgid "Search Services"
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:16
+msgid "No Services found"
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:17
+msgid "No Services found in Trash"
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:18
+msgid "All Services"
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:47
+msgctxt "taxonomy general name"
+msgid "Services Categories"
+msgstr ""
+
+#: cpts/service-box/@service-box.cpt.php:66
+msgctxt "custom metabox title"
+msgid "Service Options"
+msgstr ""
+
+#: cpts/service-box/box-data.metabox.php:6
+msgid "Subtitle"
+msgstr ""
+
+#: cpts/service-box/box-data.metabox.php:9
+msgid "Text displayed with main title of service box"
+msgstr ""
+
+#: cpts/service-box/box-data.metabox.php:15
+msgid "URL of image displayed in service box"
+msgstr ""
+
+#: cpts/service-box/box-data.metabox.php:18
+msgid "Hover Image"
+msgstr ""
+
+#: cpts/service-box/box-data.metabox.php:21
+msgid "URL of image displayed in service box on hover event"
+msgstr ""
+
+#: cpts/service-box/box-data.metabox.php:27
+msgid "Main text displayed in service box"
+msgstr ""
+
+#: cpts/service-box/box-data.metabox.php:30
+msgid "\"Read more\" text"
+msgstr ""
+
+#: cpts/service-box/box-data.metabox.php:33
+msgid "Text for \"Read more\" link"
+msgstr ""
+
+#: cpts/service-box/box-data.metabox.php:39
+msgid "URL of \"Read more\" link, use valid URL format with http://"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:7
+msgctxt "post type general name"
+msgid "Testimonials"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:8
+msgctxt "post type singular name"
+msgid "Testimonial"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:9
+msgctxt "post type menu name"
+msgid "Testimonials"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:10
+msgctxt "testimonial"
+msgid "Add New"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:11
+msgid "Add New Testimonial"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:12
+msgid "Edit Testimonial"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:13
+msgid "New Testimonial"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:14
+msgid "View Testimonial"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:15
+msgid "Search Testimonials"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:16
+msgid "No Testimonials found"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:17
+msgid "No Testimonials found in Trash"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:18
+msgid "All Testimonials"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:49
+msgctxt "taxonomy general name"
+msgid "Testimonials Categories"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:68
+msgctxt "custom metabox title"
+msgid "Testimonial Options"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:75
+msgctxt "featured image metabox"
+msgid "Testimonial Icon"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:76
+msgctxt "featured image metabox"
+msgid "Set Testimonial Icon"
+msgstr ""
+
+#: cpts/testimonial/@testimonial.cpt.php:77
+msgctxt "featured image metabox"
+msgid "Remove Testimonial Icon"
+msgstr ""
+
+#: cpts/testimonial/testimonial-options.metabox.php:8
+msgid "Text displayed as author name"
+msgstr ""
+
+#: cpts/testimonial/testimonial-options.metabox.php:12
+msgid "Rating"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:6
+msgctxt "post type general name"
+msgid "Toggles"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:7
+msgctxt "post type singular name"
+msgid "Toggle"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:8
+msgctxt "post type menu name"
+msgid "Toggles"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:9
+msgctxt "toggle"
+msgid "Add New"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:10
+msgid "Add New Toggle"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:11
+msgid "Edit Toggle"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:12
+msgid "New Toggle"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:13
+msgid "View Toggle"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:14
+msgid "Search Toggles"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:15
+msgid "No Toggles found"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:16
+msgid "No Toggles found in Trash"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:17
+msgid "All Toggles"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:47
+msgctxt "taxonomy general name"
+msgid "Toggles Categories"
+msgstr ""
+
+#: cpts/toggle/@toggle.cpt.php:65
+msgctxt "custom metabox title"
+msgid "Toggle Options"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:8
+msgctxt "post type general name"
+msgid "Tours"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:9
+msgctxt "post type singular name"
+msgid "Tour"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:10
+msgctxt "post type menu name"
+msgid "Tours"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:11
+msgctxt "Tour"
+msgid "Add New"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:12
+msgid "Add New Tour"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:13
+msgid "Edit Tour"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:14
+msgid "New Tour"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:15
+msgid "View Tour"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:16
+msgid "Search Tours"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:17
+msgid "No Tours found"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:18
+msgid "No Tours found in Trash"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:19
+msgid "All Tours"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:53
+msgctxt "taxonomy general name"
+msgid "Tours Categories"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:72
+msgctxt "custom metabox title"
+msgid "Tour Options"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:79
+msgctxt "featured image metabox"
+msgid "Tour Image"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:80
+msgctxt "featured image metabox"
+msgid "Set Tour Image"
+msgstr ""
+
+#: cpts/tour/@tour.cpt.php:81
+msgctxt "featured image metabox"
+msgid "Remove Tour Image"
+msgstr ""
+
+#: lib/AitSimpleMetaBox.php:80
+msgid "Custom Meta Box"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Adds custom post types for AIT themes"
+msgstr ""

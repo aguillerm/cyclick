@@ -1,0 +1,319 @@
+# Copyright (C) 2016 AitThemes.Club
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: AIT Item Reviews\n"
+"Report-Msgid-Bugs-To: https://system.ait-themes.club/support/\n"
+"POT-Creation-Date: 2016-05-03 10:23:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: ait-item-reviews.php:163
+msgid "Item author approve Reviews "
+msgstr ""
+
+#: ait-item-reviews.php:203 ait-item-reviews.php:208
+#: elements/item-reviews/item-reviews.options.neon
+msgid "Rating"
+msgstr ""
+
+#: ait-item-reviews.php:229
+msgctxt "post type general name"
+msgid "Reviews"
+msgstr ""
+
+#: ait-item-reviews.php:230
+msgctxt "post type singular name"
+msgid "Review"
+msgstr ""
+
+#: ait-item-reviews.php:231
+msgctxt "admin menu"
+msgid "Item Reviews"
+msgstr ""
+
+#: ait-item-reviews.php:232
+msgctxt "add new on admin bar"
+msgid "Review"
+msgstr ""
+
+#: ait-item-reviews.php:233
+msgctxt "review"
+msgid "Add New"
+msgstr ""
+
+#: ait-item-reviews.php:234
+msgid "Add New Review"
+msgstr ""
+
+#: ait-item-reviews.php:235
+msgid "New Review"
+msgstr ""
+
+#: ait-item-reviews.php:236
+msgid "Edit Review"
+msgstr ""
+
+#: ait-item-reviews.php:237
+msgid "View Review"
+msgstr ""
+
+#: ait-item-reviews.php:238
+msgid "All Reviews"
+msgstr ""
+
+#: ait-item-reviews.php:239
+msgid "Search Reviews"
+msgstr ""
+
+#: ait-item-reviews.php:240
+msgid "Parent Reviews:"
+msgstr ""
+
+#: ait-item-reviews.php:241
+msgid "No reviews found."
+msgstr ""
+
+#: ait-item-reviews.php:242
+msgid "No reviews found in Trash."
+msgstr ""
+
+#: ait-item-reviews.php:291
+msgctxt "taxonomy general name"
+msgid "Review Categories"
+msgstr ""
+
+#: ait-item-reviews.php:292
+msgctxt "taxonomy singular name"
+msgid "Category"
+msgstr ""
+
+#: ait-item-reviews.php:293
+msgid "Search Categories"
+msgstr ""
+
+#: ait-item-reviews.php:294
+msgid "All Categories"
+msgstr ""
+
+#: ait-item-reviews.php:295
+msgid "Parent Category"
+msgstr ""
+
+#: ait-item-reviews.php:296
+msgid "Parent Category:"
+msgstr ""
+
+#: ait-item-reviews.php:297
+msgid "Edit Category"
+msgstr ""
+
+#: ait-item-reviews.php:298
+msgid "Update Category"
+msgstr ""
+
+#: ait-item-reviews.php:299
+msgid "Add New Category"
+msgstr ""
+
+#: ait-item-reviews.php:300
+msgid "New Category Name"
+msgstr ""
+
+#: ait-item-reviews.php:301
+msgid "Category"
+msgstr ""
+
+#: ait-item-reviews.php:407 ait-item-reviews.php:417
+msgid "Name"
+msgstr ""
+
+#: ait-item-reviews.php:408 ait-item-reviews.php:418
+msgid "Review for"
+msgstr ""
+
+#: ait-item-reviews.php:409 ait-item-reviews.php:419
+msgid "Review"
+msgstr ""
+
+#: ait-item-reviews.php:410 ait-item-reviews.php:420
+msgid "Message"
+msgstr ""
+
+#: ait-item-reviews.php:411 ait-item-reviews.php:421
+msgid "Date"
+msgstr ""
+
+#: ait-item-reviews.php:412 ait-item-reviews.php:422
+msgid "Status"
+msgstr ""
+
+#: ait-item-reviews.php:451
+msgid "Average"
+msgstr ""
+
+#: ait-item-reviews.php:462
+msgid "Approved"
+msgstr ""
+
+#: ait-item-reviews.php:466
+msgid "Approve"
+msgstr ""
+
+#: ait-item-reviews.php:468
+msgid "Pending Approval"
+msgstr ""
+
+#: ait-item-reviews.php:584
+msgid "New rating for <a href=\"%s\">%s</a> has been approved by administrator"
+msgstr ""
+
+#: ait-item-reviews.php:585
+msgid "New Rating"
+msgstr ""
+
+#: ait-item-reviews.php:613 ait-item-reviews.php:641
+#: config/theme-options-businessfinder2.php:29
+#: config/theme-options-directory2.php:29 config/theme-options.php:14
+msgid "Question 1"
+msgstr ""
+
+#: ait-item-reviews.php:617 ait-item-reviews.php:649
+#: config/theme-options-businessfinder2.php:34
+#: config/theme-options-directory2.php:34 config/theme-options.php:19
+msgid "Question 2"
+msgstr ""
+
+#: ait-item-reviews.php:621 ait-item-reviews.php:657
+#: config/theme-options-businessfinder2.php:39
+#: config/theme-options-directory2.php:39 config/theme-options.php:24
+msgid "Question 3"
+msgstr ""
+
+#: ait-item-reviews.php:625 ait-item-reviews.php:665
+#: config/theme-options-businessfinder2.php:44
+#: config/theme-options-directory2.php:44 config/theme-options.php:29
+msgid "Question 4"
+msgstr ""
+
+#: ait-item-reviews.php:629 ait-item-reviews.php:673
+#: config/theme-options-businessfinder2.php:49
+#: config/theme-options-directory2.php:49 config/theme-options.php:34
+msgid "Question 5"
+msgstr ""
+
+#: ait-item-reviews.php:850
+msgctxt "ait-item-reviews"
+msgid "Item Reviews"
+msgstr ""
+
+#: ait-item-reviews.php:1024
+msgid "Review <a href=\"%s\">#%d</a> for item <a href=\"%s\">%s</a> is waiting for your moderation"
+msgstr ""
+
+#: ait-item-reviews.php:1025
+msgid "Review pending moderation"
+msgstr ""
+
+#: config/ait-item-review-options.metabox.neon
+#: config/ait-item-review-options.metabox.php:5
+msgid "Review Category"
+msgstr ""
+
+#: config/theme-options-businessfinder2.php:6
+#: config/theme-options-directory2.php:6 config/theme-options.php:6
+msgid "Item Reviews"
+msgstr ""
+
+#: config/theme-options-businessfinder2.php:9
+#: config/theme-options-directory2.php:9 config/theme-options.php:9
+msgid "Email notifications"
+msgstr ""
+
+#: config/theme-options-businessfinder2.php:15
+#: config/theme-options-directory2.php:15
+msgid "Maximum shown reviews"
+msgstr ""
+
+#: config/theme-options-businessfinder2.php:24
+#: config/theme-options-directory2.php:24
+msgid "All"
+msgstr ""
+
+#: elements/item-reviews/item-reviews.options.neon
+msgid "Order By"
+msgstr ""
+
+#: elements/item-reviews/item-reviews.options.neon
+msgid "Select order of reviews listed on page"
+msgstr ""
+
+#: elements/item-reviews/item-reviews.options.neon
+msgid "Creation Date"
+msgstr ""
+
+#: elements/item-reviews/item-reviews.options.neon
+msgid "Order"
+msgstr ""
+
+#: elements/item-reviews/item-reviews.options.neon
+msgid "Select order of items listed on page"
+msgstr ""
+
+#: elements/item-reviews/item-reviews.options.neon
+msgid "Ascending"
+msgstr ""
+
+#: elements/item-reviews/item-reviews.options.neon
+msgid "Descending"
+msgstr ""
+
+#: elements/item-reviews/item-reviews.php:3
+msgctxt "name of element"
+msgid "Item Reviews"
+msgstr ""
+
+#: templates/carousel-reviews-stars.php:12
+msgid "Rate now"
+msgstr ""
+
+#: templates/single-item-reviews-form.php:10
+msgid "Your Name"
+msgstr ""
+
+#: templates/single-item-reviews-form.php:13
+msgid "Description"
+msgstr ""
+
+#: templates/single-item-reviews-form.php:91
+msgid "Send Rating"
+msgstr ""
+
+#: templates/single-item-reviews-form.php:94
+msgid "Publishing ..."
+msgstr ""
+
+#: templates/single-item-reviews-form.php:95
+msgid "Your rating has been successfully sent"
+msgstr ""
+
+#: templates/single-item-reviews-form.php:96
+msgid "Please fill out all fields"
+msgstr ""
+
+#: templates/single-item-reviews-stars.php:15
+#: templates/single-item-reviews-stars.php:19
+msgid "Submit your rating"
+msgstr ""
+
+#: templates/single-item-reviews.php:2
+msgid "Leave a Review"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Adds rating and reviews functionality for City Guide Wordpress Theme"
+msgstr ""

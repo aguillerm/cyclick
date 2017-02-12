@@ -1,0 +1,8 @@
+reviewCategory:
+	label: 'Review Category'
+	type: categories
+	taxonomy: 'ait-reviews'
+	args:
+		hide_empty: false
+		show_count: false
+	default: 0

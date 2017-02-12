@@ -1,0 +1,200 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Booked Front-end Agents\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-17 08:26-0400\n"
+"PO-Revision-Date: 2016-03-17 08:26-0400\n"
+"Last-Translator: Sveriges Spa och Massage <spakatalogen@gmail.com>\n"
+"Language-Team: Boxy Studio <justin@boxystudio.com>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
+"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
+"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
+"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Loco-Target-Locale: sv_SE\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ajax/fea-actions.php:21 ajax/fea-actions.php:88 includes/shortcodes.php:121
+#: includes/shortcodes.php:164
+msgid "All day"
+msgstr "Hela dagen"
+
+#: ajax/fea-loaders.php:8 ajax/fea-loaders.php:60
+msgid "Appointment Information"
+msgstr "Boknings information"
+
+#: ajax/fea-loaders.php:15 ajax/fea-loaders.php:28
+msgid "Contact Information"
+msgstr "Kontakt information"
+
+#: ajax/fea-loaders.php:16 ajax/fea-loaders.php:29
+msgid "Name"
+msgstr "Namn"
+
+#: ajax/fea-loaders.php:17 ajax/fea-loaders.php:30
+msgid "Email"
+msgstr "Epost"
+
+#: ajax/fea-loaders.php:31
+msgid "Phone"
+msgstr "Telefon"
+
+#: ajax/fea-loaders.php:57 includes/shortcodes.php:125
+msgid "to"
+msgstr "till"
+
+#: ajax/fea-loaders.php:62
+msgid "Date"
+msgstr "Datum"
+
+#: ajax/fea-loaders.php:63
+msgid "Time"
+msgstr "Tid"
+
+#: booked-frontend-agents.php:62
+msgid "Are you sure you want to cancel this appointment?"
+msgstr "Är du säker på att du vill avboka denna tid?"
+
+#: booked-frontend-agents.php:63
+msgid "Are you sure you want to approve this appointment?"
+msgstr "Är du säker du vill godkänna den här bokningen?"
+
+#: booked-frontend-agents.php:73
+msgid "Upcoming Appointments"
+msgstr "Kommande bokningar"
+
+#: booked-frontend-agents.php:78
+msgid "Pending Appointments"
+msgstr "Väntande bokningar"
+
+#: booked-frontend-agents.php:83
+msgid "Appointment History"
+msgstr "Bokningshistorik "
+
+#: booked-frontend-agents.php:88
+msgid "Edit Profile"
+msgstr "Redigera Profil"
+
+#: booked-frontend-agents.php:124
+#, php-format
+msgid ""
+"In order to use the %s plugin, you need to have %s installed and active."
+msgstr "För att kunna använda%s plugin, måste du ha%s installerade och aktiva."
+
+#: includes/shortcodes.php:58
+#, php-format
+msgid "%s Pending Appointment"
+msgid_plural "%s Pending Appointments"
+msgstr[0] "%s i avvaktan på avtalad tid"
+msgstr[1] "%s i avvaktan på avtalad tid"
+
+#: includes/shortcodes.php:60
+msgid "No pending appointments."
+msgstr "Nej väntan på avtalade tider."
+
+#: includes/shortcodes.php:64
+#, php-format
+msgid "%s Past Appointment"
+msgid_plural "%s Past Appointments"
+msgstr[0] "%s bokning"
+msgstr[1] "%s bokning"
+
+#: includes/shortcodes.php:66
+msgid "No past appointments."
+msgstr "Ingen tidigare utnämningar."
+
+#: includes/shortcodes.php:70
+#, php-format
+msgid "%s Upcoming Appointment"
+msgid_plural "%s Upcoming Appointments"
+msgstr[0] "%s kommande möte"
+msgstr[1] "%s kommande möte"
+
+#: includes/shortcodes.php:72
+msgid "No upcoming appointments."
+msgstr "Inga kommande avtalade tider."
+
+#: includes/shortcodes.php:83
+msgid "Today"
+msgstr "Idag"
+
+#: includes/shortcodes.php:125
+msgid "from"
+msgstr "från"
+
+#: includes/shortcodes.php:125
+msgid "at"
+msgstr "vid"
+
+#: includes/shortcodes.php:129
+msgid "pending"
+msgstr "väntande"
+
+#: includes/shortcodes.php:129
+msgid "approved"
+msgstr "﻿godkänd"
+
+#: includes/shortcodes.php:135
+msgid "Approve"
+msgstr "Godkänn"
+
+#: includes/shortcodes.php:186
+msgid "(this user no longer exists)"
+msgstr "(denna användare finns inte längre)"
+
+#: includes/shortcodes.php:195
+msgid "This appointment has passed."
+msgstr "Den avtalade tiden har passerat."
+
+#: includes/shortcodes.php:201
+msgid "Additional information"
+msgstr "Mer information"
+
+#: includes/shortcodes.php:205
+#, php-format
+msgid "Appointment with %s"
+msgstr "Möte med %s"
+
+#: includes/shortcodes.php:205
+msgid "Google Calendar"
+msgstr "Google Kalender"
+
+#: includes/shortcodes.php:222
+msgid "Please log in to view your upcoming appointments."
+msgstr "Logga in för att se dina uppkommande bokningar."
+
+#~ msgid "Pending Appointment"
+#~ msgid_plural "Pending Appointments"
+#~ msgstr[0] "Väntande bokning"
+#~ msgstr[1] "Väntande bokningar"
+
+#~ msgid "Past Appointment"
+#~ msgid_plural "Past Appointments"
+#~ msgstr[0] "Tidigare bokning"
+#~ msgstr[1] "Tidigare bokningar"
+
+#~ msgid "Upcoming Appointment"
+#~ msgid_plural "Upcoming Appointments"
+#~ msgstr[0] "Kommande bokning"
+#~ msgstr[1] "Kommande bokningar"
+
+#~ msgid "Pending Appointments<div class=\"counter\"></div>"
+#~ msgstr "Väntande bokningar <div class=\"counter\"></div>"
+
+#~ msgid ""
+#~ "An Unexpected HTTP Error occurred during the API request.</p> <p><a href="
+#~ "\"?\" onclick=\"document.location.reload(); return false;\">Try again</a>"
+#~ msgstr ""
+#~ "Ett oväntat HTTP-fel inträffade under API-förfrågan.</p> <p><a href=\"?\" "
+#~ "onclick=\"document.location.reload(); return false;\">Försök igen</a>"
+
+#~ msgid "An unknown error occurred"
+#~ msgstr "Ett okänt fel uppstod"

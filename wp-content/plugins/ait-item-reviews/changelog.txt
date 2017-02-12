@@ -1,0 +1,136 @@
+v1.29, 16.06.2016
+-----------------
+- Added: Added item owner notification when owner can manage reviews
+
+v1.28, 02.06.2016
+-----------------
+- Fixed: Prevention of less errors
+
+v1.27, 24.05.2016
+-----------------
+- Fixed: Fixed admin notices
+
+v1.26, 19.05.2016
+-----------------
+- Fixed: No ratings shown in carousels
+
+v1.25, 17.05.2016
+-----------------
+- Updated: Enabled to add review without rating
+
+v1.24, 11.05.2016
+-----------------
+- Fixed: Added missing paremeters for item review metabox
+- Updated: Modified display for reviews taxonomy table not showing posts count
+
+v1.23, 03.05.2016
+-----------------
+- Fixed: Fixed errors when no questions are defined in the admin
+- Fixed: Some translations on Item's edit page
+
+v1.22, 27.04.2016
+-----------------
+- Added: Added "Default OrderBy" option for Category and Location options to theme config on plugin activation
+- Added: Option to enable review management for package user
+
+v1.21, 26.11.2015
+-----------------
+- Added: Added new new rich snippets
+
+v1.20, 24.11.2015
+-----------------
+- Update: Updated rich snippets
+
+v1.19, 10.11.2015
+-----------------
+- Update: Updated pot translation files
+
+v1.18, 03.11.2015
+-----------------
+- Fixed: Fixed review bulk delete action
+- Fixed: Division by zero error on review trashed
+
+v1.17, 27.10.2015
+-----------------
+- Fixed: Admin review moderation
+
+v1.16, 20.10.2015
+-----------------
+- Fix: Condition when question is not in use, matching empty review rating will not be displayed
+
+
+v1.15, 29.09.2015
+-----------------
+- Added: Check if reviews rating tooltip is off-screen
+
+
+v1.14, 08.09.2015
+-----------------
+- Update: Updated admin stylesheets
+
+v1.13, 07.07.2015
+-----------------
+- Added: Missing textdomains
+- Update: Updated pot translation files
+
+v1.12, 02.07.2015
+-----------------
+- Updated: Admin styles
+
+v1.11, 01.07.2015
+-----------------
+- Fixed: User capabilities error
+- Added: Ajax support
+- Update: All translations are now handled by AIT Languages plugin
+
+v1.10, 19.05.2015
+-----------------
+- Updated: Internal conditions
+
+v1.9, 12.05.2015
+----------------
+- Updated: Notification before review is send
+
+v1.8, 05.05.2015
+----------------
+- Updated: Structured data validation
+
+v1.7, 28.04.2015
+----------------
+- Added: Enable / Disable email notifications
+- Added: New language - Turkish (tr_TR)
+- Updated: All other languages were updated
+
+
+v1.6, 21.04.2015
+----------------
+- Fixed: Escaped non-unicode encoded strings
+
+v1.5, 14.04.2015
+----------------
+- Fixed: Template loading
+- Fixed: Error on edit rating form
+
+v1.4, 17.03.2015
+----------------
+- Added: Multilingual notifications for administrator on new rating
+- Added: Multilingual notifications for item owner on approved rating
+
+v1.3, 10.03.2015
+----------------
+- Fixed: rating total on rating remove
+- Fixed: rating aprroval process
+
+v1.2, 9.2.2015
+--------------
+- Added: Rich Snippets support
+
+v1.1, 16.01.2015
+----------------
+- Fixed: dates of reviews
+- Fixed: wrong text domains for translation functions
+- Updated: replaced latte macros to pure wordpress translation functions
+
+v1.0, 09.12.2014
+----------------
+- Plugin release
