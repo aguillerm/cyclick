@@ -137,6 +137,7 @@ class Booked_WC_Cart_Hooks {
 		if ( !isset($cart_item[$app_id_key]) ) {
 			return $product_title;
 		}
+                
 
 		$appt_id = intval($cart_item[$app_id_key]);
 
