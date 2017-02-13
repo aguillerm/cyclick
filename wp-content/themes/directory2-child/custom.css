@@ -192,7 +192,7 @@ font-weight:700;
 body #booked-profile-page .booked-user h1 strong, h2 strong, h3 strong, h4 strong, h5 strong, h6 strong , h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     color : white!important;
 }
-/* Onelt RÃ©seaux sociaux */
+/* Onelt Réseaux sociaux */
 .page-title-social
 {
     display: none!important;
@@ -225,7 +225,7 @@ body #booked-profile-page .booked-user h1 strong, h2 strong, h3 strong, h4 stron
 #onglets li
 {
     float : left;
-    height : 27px; /* Ã  modifier suivant la taille de la police pour centrer le texte dans l'onglet */
+    height : 27px; /* à modifier suivant la taille de la police pour centrer le texte dans l'onglet */
     background-color: #5784b0;
     font-size:80%;
     letter-spacing:1px;
@@ -341,7 +341,7 @@ button.new-appt {
 	background-color: white;
 }
 }
-/* On n'affiche pas les infos relatives Ã  gmaps*/
+/* On n'affiche pas les infos relatives à gmaps*/
 .gmnoprint a, .gmnoprint span {
     display:none !important;;
 }
@@ -355,6 +355,7 @@ div#fondateur p
     color : white!important;
 }
 
+/* Couleur texte page fondateur */
 h3#title-marker
 {
     white-space: normal;
@@ -365,3 +366,12 @@ h3#title-marker:hover
     position: static;
 }
 
+/*Unir la couleur de fond du search form*/
+.main-search-form .inputs-container div.search-shadow
+{
+    background: rgba(0,0,0,0) !important;
+}
+
+#elm-text-_e191dd864-main {
+    background-size: cover;
+}

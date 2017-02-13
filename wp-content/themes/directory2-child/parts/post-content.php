@@ -35,12 +35,16 @@
 
 				{var $dbFeatured = get_post_meta($post->id, '_ait-item_item-featured', true)}
 				{var $isFeatured = $dbFeatured != "" ? filter_var($dbFeatured, FILTER_VALIDATE_BOOLEAN) : false}
-
+                                {if $post->title == "Tyrone Husseini" || $post->title == 'Arthur Guillerm'}
+                                    {var $link = $post->permalink}
+                                {else}
+                                    {var $link = '/rejoignez-nous'}
+                                {/if}
 				<div n:class='item-container, $isFeatured ? item-featured, defined("AIT_REVIEWS_ENABLED") ? reviews-enabled'>
 						<div class="content">
 
 							<div class="item-image">
-								<a class="main-link" href="{$post->permalink}">
+								<a class="main-link" href="{$link}">
 									<span>{__ 'View Detail'}</span>
 									{if $post->image}
 										<img src="{imageUrl $post->imageUrl, width => 200, height => 240, crop => 1}" alt="Featured">
@@ -56,9 +60,16 @@
 								<div class="item-header">
 									<div class="item-title-wrap">
 										<div class="item-title">
-											<a href="{$post->permalink}">
+                                                                                    {if $post->title == "Tyrone Husseini" || $post->title == 'Arthur Guillerm'}
+											<a href="{$link}">
 												<h3>{!$post->title}</h3>
 											</a>
+                                                                                    {else}
+                                                                                        <a href="{$link}">
+												<h3>Devenez le prochain {!$post->title}</h3>
+											</a>
+                                                                                    {/if}
+                                                                                    
 										</div>
 										<span class="subtitle">{AitLangs::getCurrentLocaleText($meta->subtitle)}</span>
 									</div>
