@@ -419,7 +419,7 @@ class BookedShortcodes {
 								echo do_shortcode(wpautop($custom_login_form_message));	
 							endif; ?>
 							
-							<?php echo wp_login_form( array( 'echo' => false, 'redirect' => get_the_permalink($login_redirect), 'label_username' => esc_html__( 'Email or Username','booked' ) ) ); ?>
+							<?php echo wp_login_form( array( 'echo' => false, 'redirect' => '/mon-compte', 'label_username' => esc_html__( 'Email or Username','booked' ) ) ); ?>
 						</div>
 					</div>
 
