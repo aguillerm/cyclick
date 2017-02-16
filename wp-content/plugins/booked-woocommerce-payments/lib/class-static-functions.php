@@ -505,7 +505,6 @@ class Booked_WC_Functions {
 	
 			if ( $booked_wc_product ) {
 				remove_action( 'booked_confirmation_email', 'booked_mailer', 10 );
-				remove_action( 'booked_admin_confirmation_email', 'booked_mailer', 10 );
 			} else {
 				return;
 			}
