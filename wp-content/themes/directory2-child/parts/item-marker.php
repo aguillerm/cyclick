@@ -8,14 +8,14 @@
 {var $imageUrl = $item->hasImage ? $item->imageUrl : $options->theme->item->noFeatured}
 {var $test = ""}
 {var $title = $item->title}
-{if $title != 'Tyrone Husseini' && $title != 'Arthur Guillerm'}
+{if $title != 'Tyrone Husseini' && $title != 'Arthur Guillerm' && $title != 'Guillaume Soudais' && $title != 'Jacques Gaudefroy'}
 	{var $test = "Devenez le prochain"}
 {/if}
 <div class="item-data">
 	<h3 id="title-marker">{$test} {$title}</h3>
 	<h2 id="subtitle-marker">{$meta->subtitle}</h2>
 	{* <span class="item-address">{!$meta->map[address]}</span> *}
-	{if $title != 'Tyrone Husseini' && $title != 'Arthur Guillerm'}
+	{if $title != 'Tyrone Husseini' && $title != 'Arthur Guillerm' && $title != 'Guillaume Soudais' && $title != 'Jacques Gaudefroy'}
 	<a href="/rejoignez-nous">
 		<span class="item-button">{__ 'REJOIGNEZ NOUS'}</span>
 	</a>

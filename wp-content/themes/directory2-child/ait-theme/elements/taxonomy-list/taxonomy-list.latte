@@ -84,7 +84,7 @@
 				{if $enableCarousel and $iterator->isFirst($numOfRows)}
 					<div n:class="item-box, $enableCarousel ? carousel-item">
 				{/if}
-				{if $title != 'Ostéopathes' && $title != 'Informaticiens'}
+				{if $title != 'Ostéopathes' && $title != 'Informaticiens' && $title != 'Bricoleurs' && $title != 'Coachs sportifs'}
 					{var $link = "/rejoignez-nous"}
 				{/if}
 				<div n:class='item, "item{$iterator->counter}", $enableCarousel ? carousel-item, $iterator->isFirst($numOfColumns) ? item-first, $iterator->isLast($numOfColumns) ? item-last, $image != "" ? image-present, $boxAlign ? $boxAlign' data-id="{$iterator->counter}">
