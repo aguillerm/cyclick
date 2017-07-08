@@ -220,7 +220,7 @@ a.booked-logout-button , #booked-profile-page h3 strong {
 #onglets li
 {
     float : left;
-    height : 27px; /* à modifier suivant la taille de la police pour centrer le texte dans l'onglet */
+    height : 27px; /* ï¿½ modifier suivant la taille de la police pour centrer le texte dans l'onglet */
     background-color: #5784b0;
     font-size:80%;
     letter-spacing:1px;
@@ -336,7 +336,7 @@ button.new-appt {
 	background-color: white;
 }
 }
-/* On n'affiche pas les infos relatives à gmaps*/
+/* On n'affiche pas les infos relatives ï¿½ gmaps*/
 .gmnoprint a, .gmnoprint span {
     display:none !important;;
 }
@@ -373,4 +373,11 @@ h3#title-marker:hover
 
 .elm-members-main .layout-box .item-title {
     letter-spacing: 2px;
+}
+
+.grey
+{
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
 }
