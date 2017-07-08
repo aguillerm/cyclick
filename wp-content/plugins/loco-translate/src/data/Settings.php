@@ -26,10 +26,14 @@ class Loco_data_Settings extends Loco_data_Serializable {
         'num_backups' => 1,
         // alternative names for POT files in priority order
         'pot_alias' => array( 'default.po', 'en_US.po', 'en.po' ),
+        // alternative file extensions for PHP files
+        'php_alias' => array( 'php' ),
         // whether to remember file system credentials in session
         'fs_persist' => false,
         // skip PHP source files this size or larger
         'max_php_size' => '100K',
+        // whether to prepend PO and POT files with UTF-8 byte order mark
+        'po_utf8_bom' => false,
         /*/ Legacy options from 1.x branch:
         // whether to use external msgfmt command (1), or internal (default)
         'use_msgfmt' => false,
@@ -108,7 +112,7 @@ class Loco_data_Settings extends Loco_data_Serializable {
         else if( is_array($default) ){
             if( ! is_array($value) ){
                 // TODO use a standard CSV split for array values?
-                $value = preg_split( '/\s+/', trim($value), -1, PREG_SPLIT_NO_EMPTY );
+                $value = preg_split( '/[\s,]+/', trim($value), -1, PREG_SPLIT_NO_EMPTY );
             }
         }
         else {
@@ -196,13 +200,14 @@ class Loco_data_Settings extends Loco_data_Serializable {
                 
             }
         }
+        // enforce missing values that must have default
+        foreach( array('php_alias','max_php_size') as $prop ){
+            if( isset($data[$prop]) && '' === $data[$prop] ){
+                parent::offsetSet( $prop, self::$defaults[$prop] );
+            }
+        }
+
         return $this;
     }
 
 }
-
-
-
-
-
-

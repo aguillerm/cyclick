@@ -2,7 +2,7 @@
 Contributors: wpbean
 Tags: WooCommerce LightBox, wp lightbox plugin, lightbox plugin, plugin lightbox, quick-view, WooCommerce Products Quick View, fancybox, modal, product lightbox, product modal, quick buy, quickbuy, quickview, woo, ecommerce, popup, product popup, product slideshow, product view, woocommerce, woocommerce popup, woocommerce quick view, woocommerce quickview, woocommerce view
 Requires at least: 3.6
-Tested up to: 4.7
+Tested up to: 4.8
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -53,7 +53,7 @@ https://www.youtube.com/watch?v=3g2pcfRgi5Q
 
 ### You may also like our some other WooCommerce plugins
 
->[WPB WooCommerce Products Slider](https://wordpress.org/plugins/wpb-woocommerce-product-slider/)  |  [WPB WooCommerce Related Products Slider](https://wordpress.org/plugins/wpb-woocommerce-related-products-slider/)  |  [Woocommerce Image Zoom](https://wordpress.org/plugins/woocommerce-image-zoom/)  |  [WooCommerce Custom Tab Manager](https://wordpress.org/plugins/wpb-woocommerce-custom-tab-manager/)
+>[WPB WooCommerce Products Slider](https://wordpress.org/plugins/wpb-woocommerce-product-slider/)  |  [WPB WooCommerce Related Products Slider](https://wordpress.org/plugins/wpb-woocommerce-related-products-slider/)  |  [Woocommerce Image Zoom](https://wordpress.org/plugins/woocommerce-image-zoom/)  |  [WooCommerce Custom Tab Manager](https://wordpress.org/plugins/wpb-woocommerce-custom-tab-manager/) |  [WooCommerce Category Slider](https://wordpress.org/plugins/wpb-woocommerce-category-slider/)
 
 
 == Installation ==
@@ -95,6 +95,9 @@ Install it as a regular plugin, then hover any product, you will see a button ca
 
 = version 1.05 =
 * Added WordPress 4.7 and WooCommerce 2.6.8 support
+
+= version 1.06 =
+* WooCommerce  3.8.1 support added
 
 
 == Upgrade notice ==

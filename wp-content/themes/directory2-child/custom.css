@@ -189,13 +189,8 @@ font-weight:700;
 
 /* MON COMPTE */
 /* Couleur des titres et des liens */
-body #booked-profile-page .booked-user h1 strong, h2 strong, h3 strong, h4 strong, h5 strong, h6 strong , h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+a.booked-logout-button , #booked-profile-page h3 strong {
     color : white!important;
-}
-/* Onelt Réseaux sociaux */
-.page-title-social
-{
-    display: none!important;
 }
 /*
 .nav-menu-main > ul > li.current_page_item > a:after {
@@ -374,4 +369,8 @@ h3#title-marker:hover
 
 #elm-text-_e191dd864-main {
     background-size: cover;
+}
+
+.elm-members-main .layout-box .item-title {
+    letter-spacing: 2px;
 }

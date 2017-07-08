@@ -7,28 +7,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-01-27 11:19+0000\n"
+"PO-Revision-Date: 2017-04-19 18:42+0000\n"
 "Language-Team: French (France)\n"
-"Last-Translator: cyclick <guillerm.arthur@gmail.com>\n"
+"Last-Translator: cyclick <contact@cyclick.fr>\n"
 "Language: fr-FR\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
 "X-Generator: Loco - https://localise.biz/"
 
 #: ait-theme/@framework/AitWpLatte.php:113
 msgid "Page %s"
-msgstr ""
-
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:50
-msgid "You are here:"
-msgstr ""
-
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:53
-msgid "Home"
-msgstr ""
-
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:416
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:418
-msgid "Author:"
 msgstr ""
 
 #: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:425
@@ -47,26 +34,11 @@ msgstr ""
 msgid "g a"
 msgstr ""
 
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:442
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:452
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:461
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:472
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:474
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:677
-msgid "Y"
-msgstr ""
-
 #: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:443
 #: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:464
 #: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:466
 #: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:681
 msgid "F"
-msgstr ""
-
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:446
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:448
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:685
-msgid "d"
 msgstr ""
 
 #: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:455
@@ -84,46 +56,9 @@ msgstr ""
 msgid "Search results for &quot;%1$s&quot;"
 msgstr ""
 
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:490
-msgid "404 Not Found"
-msgstr ""
-
 #: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:495
 #: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:497
 msgid "Page %d"
-msgstr ""
-
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:543
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:576
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:591
-#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:619 /comments.php:11
-#: comments.php:28 /parts/page-title.php:5 /parts/page-title.php:299
-#: parts/page-title.php:372 /parts/page-title.php:428 parts/page-title.php:461
-#: parts/post-content.php:85 parts/page-title.php:9 parts/post-content.php:92
-#: comments.php:12 comments.php:29 parts/page-title.php:58
-#: parts/page-title.php:106 parts/page-title.php:164 parts/page-title.php:205
-#: parts/post-content.php:52 parts/page-title.php:46 parts/page-title.php:88
-#: parts/page-title.php:162 parts/page-title.php:196 parts/post-content.php:61
-#: parts/page-title.php:6 parts/page-title.php:288 parts/page-title.php:363
-#: parts/page-title.php:419 /parts/page-title.php:452 parts/post-content.php:72
-#: parts/page-title.php:290 parts/page-title.php:365 parts/page-title.php:421
-#: parts/page-title.php:454 parts/post-content.php:91 parts/page-title.php:296
-#: parts/page-title.php:369 parts/page-title.php:425 parts/page-title.php:458
-#: parts/post-content.php:64 parts/post-content.php:97 comments.php:38
-#: parts/page-title.php:103 parts/page-title.php:144 parts/page-title.php:177
-#: parts/post-content.php:80 comments.php:30 parts/page-title.php:44
-#: parts/page-title.php:157 parts/page-title.php:229 parts/post-content.php:66
-#: comments.php:53 parts/post-content.php:73 parts/post-content.php:176
-#: comments.php:33 parts/post-content.php:58 parts/page-title.php:7
-#: comments.php:14 comments.php:44 parts/page-title.php:93
-#: parts/page-title.php:132 parts/page-title.php:165 parts/page-title.php:303
-#: parts/page-title.php:376 parts/page-title.php:432 parts/page-title.php:465
-#: parts/post-content.php:62 parts/post-content.php:56
-#: parts/post-content.php:244 /comments.php:22 comments.php:40
-#: parts/post-content.php:212 /parts/post-content.php:125
-#: parts/post-content.php:11 /parts/post-content.php:132
-#: parts/post-content.php:184 /comments.php:32
-msgid "Edit"
 msgstr ""
 
 #: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:568
@@ -140,10 +75,6 @@ msgstr ""
 
 #: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:685
 msgid "F j, Y"
-msgstr ""
-
-#: ait-theme/@framework/libs/wplatte/Entities/Post.php:206
-msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
 #: ait-theme/@framework/libs/wplatte/Entities/Post.php:733
@@ -187,16 +118,6 @@ msgstr ""
 msgid " ago"
 msgstr ""
 
-#: ait-theme/widgets/AitPostsWidget.php:81 /parts/post-content.php:25
-#: parts/post-content.php:104 /parts/post-content.php:107
-#: parts/post-content.php:112 /parts/post-content.php:200
-#: parts/post-content.php:203 ait-theme/widgets/AitPosts2Widget.php:89
-#: parts/post-content.php:192 /parts/post-content.php:227
-#: parts/post-content.php:276 /parts/post-content.php:176
-#: parts/post-content.php:258
-msgid "read more"
-msgstr ""
-
 #: ait-theme/widgets/AitPostsWidget.php:91
 #: ait-theme/widgets/AitPosts2Widget.php:97
 #: ait-theme/widgets/AitPosts2Widget.php:99
@@ -206,77 +127,6 @@ msgstr ""
 #: 404.php:7
 msgid ""
 "It seems we can't find what you're looking for. Perhaps searching can help."
-msgstr ""
-
-#: ait-theme/elements/advertising-spaces/advertising-spaces.latte:15
-#: ait-theme/elements/easy-slider/easy-slider.latte:5
-#: ait-theme/elements/events-with-map/events-with-map.latte:36
-#: ait-theme/elements/events/events.latte:34
-#: ait-theme/elements/job-offers/job-offers.latte:43
-#: ait-theme/elements/members/members.latte:34
-#: ait-theme/elements/portfolio/portfolio.latte:13
-#: ait-theme/elements/posts/posts.latte:36
-#: ait-theme/elements/revolution-slider/revolution-slider.latte:4
-#: ait-theme/elements/services/services.latte:34
-#: ait-theme/elements/testimonials/testimonials.latte:34
-#: single-portfolio-item.php:15 /single-portfolio-item.php:138
-#: ait-theme/elements/asset/asset.latte:39
-#: ait-theme/elements/assistances/assistances.latte:39
-#: ait-theme/elements/members/members.latte:37
-#: ait-theme/elements/plugin-gallery/plugin-gallery.latte:36
-#: ait-theme/elements/plugin/plugin.latte:40
-#: ait-theme/elements/services/services.latte:37
-#: ait-theme/elements/testimonials/testimonials.latte:104
-#: ait-theme/elements/testimonials2/testimonials2.latte:34
-#: ait-theme/elements/theme-gallery/theme-gallery.latte:36
-#: ait-theme/elements/themes/themes.latte:40
-#: ait-theme/elements/job-offers/job-offers.latte:44
-#: ait-theme/elements/events/events.latte:35
-#: ait-theme/elements/members/members.latte:35
-#: ait-theme/elements/portfolio/portfolio.latte:14
-#: ait-theme/elements/posts/posts.latte:35
-#: ait-theme/elements/services/services.latte:35 single-portfolio-item.php:139
-#: ait-theme/elements/events/events.latte:36
-#: ait-theme/elements/job-offers/job-offers.latte:45
-#: ait-theme/elements/revolution-slider/revolution-slider.latte:23
-#: ait-theme/elements/posts/posts.latte:34
-#: ait-theme/elements/job-offers/job-offers.latte:46
-#: ait-theme/elements/events-pro/events-pro.latte:92
-#: ait-theme/elements/featured-items/featured-items.latte:32
-#: ait-theme/elements/items/items.latte:170
-#: portal/parts/single-item-events.php:21
-#: portal/parts/single-item-gallery.php:7
-#: portal/parts/single-item-gallery.php:56 /single-portfolio-item.php:148
-#: ait-theme/elements/services/services.latte:39
-#: ait-theme/elements/portfolio/portfolio.latte:37
-#: ait-theme/elements/testimonials/testimonials.latte:29
-#: ait-theme/elements/authors/authors.latte:51
-#: ait-theme/elements/posts/posts.latte:63
-#: ait-theme/elements/tour-slider/tour-slider.latte:7
-#: ait-theme/elements/tours/tours.latte:50
-#: ait-theme/elements/events-pro/events-pro.latte:90
-#: ait-theme/elements/events/events.latte:40
-#: ait-theme/elements/items/items.latte:101
-#: ait-theme/elements/job-offers/job-offers.latte:47
-#: ait-theme/elements/members/members.latte:38
-#: ait-theme/elements/posts/posts.latte:37
-#: ait-theme/elements/taxonomy-list/taxonomy-list.latte:59
-#: portal/parts/single-event-thumbnail.php:13
-#: portal/parts/single-item-gallery.php:20
-#: portal/parts/single-item-gallery.php:73
-#: ait-theme/elements/items/items.latte:110
-#: ait-theme/elements/static-sidebar/modules/advertisements.php:22
-#: portal/parts/single-item-events.php:73
-#: portal/parts/single-item-gallery.php:6
-#: portal/parts/single-item-gallery.php:71
-#: ait-theme/elements/portfolio/portfolio.latte:72
-#: ait-theme/elements/header-slider/header-slider.latte:38
-#: ait-theme/elements/members/members.latte:41
-#: ait-theme/elements/portfolio/portfolio.latte:70
-#: ait-theme/elements/posts/posts.latte:43
-#: ait-theme/elements/services/services.latte:36
-#: ait-theme/elements/items/items.latte:109
-msgid "Loading&hellip;"
 msgstr ""
 
 #: ait-theme/elements/advertising-spaces/advertising-spaces.latte:39
@@ -1103,18 +953,8 @@ msgstr ""
 msgid "No posts to display"
 msgstr ""
 
-#: parts/none.php:7 /parts/none.php:16
-msgid "Nothing Found"
-msgstr ""
-
 #: parts/none.php:16 /parts/none.php:25
 msgid "Ready to publish your first post? <a href=\"%s\">Get started here</a>."
-msgstr ""
-
-#: parts/none.php:20 /parts/none.php:29
-msgid ""
-"Sorry, but nothing matched your search criteria. Please try again with some "
-"different keywords."
 msgstr ""
 
 #: parts/none.php:24 /parts/none.php:33 /parts/none.php:50
@@ -1130,17 +970,6 @@ msgstr ""
 #: parts/page-title.php:35 /parts/page-title.php:274 parts/page-title.php:36
 #: parts/page-title.php:45 /parts/page-title.php:64
 msgid "This is somewhat embarrassing, isn't it?"
-msgstr ""
-
-#: parts/page-title.php:36 /parts/page-title.php:271 parts/page-title.php:118
-#: parts/page-title.php:17 /parts/page-title.php:16 parts/page-title.php:35
-#: parts/page-title.php:260 /parts/page-title.php:34 parts/page-title.php:262
-#: parts/page-title.php:268 parts/page-title.php:37 /parts/page-title.php:18
-#: parts/page-title.php:54 parts/page-title.php:62 /parts/page-title.php:38
-#: parts/page-title.php:275 parts/page-title.php:39 /parts/page-title.php:70
-#: parts/page-title.php:50 parts/page-title.php:58 /parts/page-title.php:81
-#: parts/page-title.php:89
-msgid "Search Results for: %s"
 msgstr ""
 
 #: parts/page-title.php:111 /parts/page-title.php:123 parts/page-title.php:488
@@ -1275,13 +1104,6 @@ msgstr ""
 msgid "&larr; Previous"
 msgstr ""
 
-#: parts/page-title.php:435 /parts/page-title.php:172 parts/page-title.php:169
-#: parts/page-title.php:426 parts/page-title.php:428 parts/page-title.php:432
-#: parts/page-title.php:151 parts/page-title.php:203 parts/page-title.php:139
-#: parts/page-title.php:439
-msgid "Next &rarr;"
-msgstr ""
-
 #: parts/page-title.php:490 /parts/page-title.php:231 parts/page-title.php:228
 #: parts/page-title.php:481 parts/page-title.php:483 parts/page-title.php:487
 #: parts/page-title.php:206 parts/page-title.php:258 parts/page-title.php:194
@@ -1292,11 +1114,6 @@ msgstr ""
 #: parts/pagination.php:5
 msgctxt "previous"
 msgid "%s Previous"
-msgstr ""
-
-#: parts/pagination.php:6 /parts/pagination.php:10
-msgctxt "next"
-msgid "Next %s"
 msgstr ""
 
 #: parts/post-content.php:32 /parts/post-content.php:97
@@ -1326,21 +1143,6 @@ msgstr ""
 #: parts/post-content.php:98 /parts/post-content.php:146
 #: parts/post-content.php:112 /parts/post-content.php:148
 msgid "Tags: "
-msgstr ""
-
-#: parts/search-form.php:4 /parts/search-form.php:5
-msgctxt "label"
-msgid "Search for:"
-msgstr ""
-
-#: parts/search-form.php:5
-msgctxt "placeholder"
-msgid "Search &hellip;"
-msgstr ""
-
-#: parts/search-form.php:7
-msgctxt "submit button"
-msgid "Search"
 msgstr ""
 
 #: parts/woocommerce-cart.php:17 /parts/woocommerce-cart.php:16
@@ -1383,11 +1185,6 @@ msgstr ""
 
 #: ait-theme/ajax/AitSubscriptionAjax.php:26
 msgid "Thank you for your subscription"
-msgstr ""
-
-#: ait-theme/widgets/AitDocumentationSearchWidget.php:39
-#: ait-theme/elements/documentation-search/documentation-search.latte:6
-msgid "Search Documentations"
 msgstr ""
 
 #: ait-theme/elements/asset/asset.latte:107
@@ -1591,7 +1388,7 @@ msgstr ""
 #: header.php:183 /parts/header-share.php:80 /parts/page-share.php:97
 #: parts/page-share.php:105 /portal/parts/single-item-social.php:18
 msgid "Share"
-msgstr ""
+msgstr "Partager"
 
 #: parts/entry-author.php:8
 msgid "Author: %s"
@@ -1714,15 +1511,6 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: parts/pagination.php:45
-msgid ""
-"<span class=\"meta-nav\"><!-- --></span><span class=\"nav-text\">Next</span>"
-msgstr ""
-
-#: parts/pagination.php:49
-msgid "Next"
-msgstr ""
-
 #: parts/pagination.php:60 /parts/pagination.php:73 /parts/pagination.php:62
 msgid "%s Newer posts"
 msgstr ""
@@ -1809,10 +1597,6 @@ msgstr ""
 msgid "Latest Match"
 msgstr ""
 
-#: ait-theme/elements/matches/matches.latte:96
-msgid "Next Match"
-msgstr ""
-
 #: ait-theme/elements/matches/matches.latte:122
 #: ait-theme/elements/matches/matches.latte:181
 msgctxt "name of element"
@@ -1890,10 +1674,6 @@ msgstr ""
 
 #: parts/pagination.php:39 /parts/pagination.php:42
 msgid "&laquo; Previous"
-msgstr ""
-
-#: parts/pagination.php:49 /parts/pagination.php:52
-msgid "Next &raquo;"
 msgstr ""
 
 #: parts/post-content.php:92
@@ -2129,15 +1909,6 @@ msgstr ""
 msgid "Reviews"
 msgstr ""
 
-#: ait-theme/elements/search-form/search-form.latte:13
-#: ait-theme/elements/search-form/search-form.latte:15
-#: ait-theme/elements/search-form/search-form.latte:204
-#: ait-theme/elements/search-form/search-form.latte:206
-#: ait-theme/elements/search-form/search-form.latte:17
-#: portal/parts/header-search.php:15
-msgid "Search keyword"
-msgstr ""
-
 #: ait-theme/elements/search-form/search-form.latte:47
 #: ait-theme/elements/search-form/search-form.latte:54
 #: ait-theme/elements/search-form/search-form.latte:64
@@ -2171,11 +1942,6 @@ msgstr ""
 
 #: parts/event-recurring-dates.php:26 /parts/event-recurring-dates.php:27
 msgid "Scheduled Dates"
-msgstr ""
-
-#: parts/page-title.php:56 /parts/page-title.php:64 /parts/page-title.php:52
-#: parts/page-title.php:83
-msgid "Search Results: %s"
 msgstr ""
 
 #: portal/parts/header-resources.php:11 /portal/parts/header-resources.php:14
@@ -2350,14 +2116,6 @@ msgstr ""
 msgid "previous"
 msgstr ""
 
-#: ait-theme/elements/authors/authors.latte:55
-#: ait-theme/elements/authors/authors.latte:134
-#: ait-theme/elements/posts/posts.latte:67
-#: ait-theme/elements/posts/posts.latte:145
-#: ait-theme/elements/tours/tours.latte:63
-msgid "next"
-msgstr ""
-
 #: ait-theme/elements/authors/authors.latte:85
 #: ait-theme/elements/authors/authors.latte:95
 #: ait-theme/elements/authors/authors.latte:165
@@ -2487,11 +2245,6 @@ msgctxt "previous"
 msgid "Previous"
 msgstr ""
 
-#: parts/_pagination.php:6
-msgctxt "next"
-msgid "Next"
-msgstr ""
-
 #: parts/author-bio.php:15
 msgid "View all tours by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
@@ -2573,7 +2326,7 @@ msgstr ""
 #: parts/page-share.php:117
 msgid ""
 "<span class=\"title\">Share</span> <span class=\"subtitle\">this page</span>"
-msgstr ""
+msgstr "Partager"
 
 #: parts/page-title.php:119
 msgid "Expired: "
@@ -2666,7 +2419,7 @@ msgstr ""
 
 #: parts/page-share.php:110
 msgid "share us"
-msgstr ""
+msgstr "Partagez nous"
 
 #: portal/parts/search-filters.php:24
 msgid "Upcoming Events"
@@ -2750,10 +2503,6 @@ msgstr ""
 msgid "Previous Page"
 msgstr ""
 
-#: parts/pagination.php:6
-msgid "Next Page"
-msgstr ""
-
 #: parts/woocommerce-cart.php:9
 msgid "Shopping Cart"
 msgstr ""
@@ -2816,6 +2565,259 @@ msgstr ""
 #: portal/parts/user-panel.php:30
 msgid "My Menu"
 msgstr ""
+
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:50
+msgid "You are here:"
+msgstr "Vous êtes ici:"
+
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:53
+msgid "Home"
+msgstr "Accueil"
+
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:416
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:418
+msgid "Author:"
+msgstr "Auteur:"
+
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:442
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:452
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:461
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:472
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:474
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:677
+msgid "Y"
+msgstr "A"
+
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:446
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:448
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:685
+msgid "d"
+msgstr "j"
+
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:490
+msgid "404 Not Found"
+msgstr "Page non trouvée"
+
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:543
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:576
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:591
+#: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:619 /comments.php:11
+#: comments.php:28 /parts/page-title.php:5 /parts/page-title.php:299
+#: parts/page-title.php:372 /parts/page-title.php:428 parts/page-title.php:461
+#: parts/post-content.php:85 parts/page-title.php:9 parts/post-content.php:92
+#: comments.php:12 comments.php:29 parts/page-title.php:58
+#: parts/page-title.php:106 parts/page-title.php:164 parts/page-title.php:205
+#: parts/post-content.php:52 parts/page-title.php:46 parts/page-title.php:88
+#: parts/page-title.php:162 parts/page-title.php:196 parts/post-content.php:61
+#: parts/page-title.php:6 parts/page-title.php:288 parts/page-title.php:363
+#: parts/page-title.php:419 /parts/page-title.php:452 parts/post-content.php:72
+#: parts/page-title.php:290 parts/page-title.php:365 parts/page-title.php:421
+#: parts/page-title.php:454 parts/post-content.php:91 parts/page-title.php:296
+#: parts/page-title.php:369 parts/page-title.php:425 parts/page-title.php:458
+#: parts/post-content.php:64 parts/post-content.php:97 comments.php:38
+#: parts/page-title.php:103 parts/page-title.php:144 parts/page-title.php:177
+#: parts/post-content.php:80 comments.php:30 parts/page-title.php:44
+#: parts/page-title.php:157 parts/page-title.php:229 parts/post-content.php:66
+#: comments.php:53 parts/post-content.php:73 parts/post-content.php:176
+#: comments.php:33 parts/post-content.php:58 parts/page-title.php:7
+#: comments.php:14 comments.php:44 parts/page-title.php:93
+#: parts/page-title.php:132 parts/page-title.php:165 parts/page-title.php:303
+#: parts/page-title.php:376 parts/page-title.php:432 parts/page-title.php:465
+#: parts/post-content.php:62 parts/post-content.php:56
+#: parts/post-content.php:244 /comments.php:22 comments.php:40
+#: parts/post-content.php:212 /parts/post-content.php:125
+#: parts/post-content.php:11 /parts/post-content.php:132
+#: parts/post-content.php:184 /comments.php:32
+msgid "Edit"
+msgstr "Editer"
+
+#: ait-theme/@framework/libs/wplatte/Entities/Post.php:206
+msgid "There is no excerpt because this is a protected post."
+msgstr "Il n'y a pas de résumé car c'est un post protégé."
+
+#: ait-theme/widgets/AitPostsWidget.php:81 /parts/post-content.php:25
+#: parts/post-content.php:104 /parts/post-content.php:107
+#: parts/post-content.php:112 /parts/post-content.php:200
+#: parts/post-content.php:203 ait-theme/widgets/AitPosts2Widget.php:89
+#: parts/post-content.php:192 /parts/post-content.php:227
+#: parts/post-content.php:276 /parts/post-content.php:176
+#: parts/post-content.php:258
+msgid "read more"
+msgstr "Voir plus"
+
+#: ait-theme/elements/advertising-spaces/advertising-spaces.latte:15
+#: ait-theme/elements/easy-slider/easy-slider.latte:5
+#: ait-theme/elements/events-with-map/events-with-map.latte:36
+#: ait-theme/elements/events/events.latte:34
+#: ait-theme/elements/job-offers/job-offers.latte:43
+#: ait-theme/elements/members/members.latte:34
+#: ait-theme/elements/portfolio/portfolio.latte:13
+#: ait-theme/elements/posts/posts.latte:36
+#: ait-theme/elements/revolution-slider/revolution-slider.latte:4
+#: ait-theme/elements/services/services.latte:34
+#: ait-theme/elements/testimonials/testimonials.latte:34
+#: single-portfolio-item.php:15 /single-portfolio-item.php:138
+#: ait-theme/elements/asset/asset.latte:39
+#: ait-theme/elements/assistances/assistances.latte:39
+#: ait-theme/elements/members/members.latte:37
+#: ait-theme/elements/plugin-gallery/plugin-gallery.latte:36
+#: ait-theme/elements/plugin/plugin.latte:40
+#: ait-theme/elements/services/services.latte:37
+#: ait-theme/elements/testimonials/testimonials.latte:104
+#: ait-theme/elements/testimonials2/testimonials2.latte:34
+#: ait-theme/elements/theme-gallery/theme-gallery.latte:36
+#: ait-theme/elements/themes/themes.latte:40
+#: ait-theme/elements/job-offers/job-offers.latte:44
+#: ait-theme/elements/events/events.latte:35
+#: ait-theme/elements/members/members.latte:35
+#: ait-theme/elements/portfolio/portfolio.latte:14
+#: ait-theme/elements/posts/posts.latte:35
+#: ait-theme/elements/services/services.latte:35 single-portfolio-item.php:139
+#: ait-theme/elements/events/events.latte:36
+#: ait-theme/elements/job-offers/job-offers.latte:45
+#: ait-theme/elements/revolution-slider/revolution-slider.latte:23
+#: ait-theme/elements/posts/posts.latte:34
+#: ait-theme/elements/job-offers/job-offers.latte:46
+#: ait-theme/elements/events-pro/events-pro.latte:92
+#: ait-theme/elements/featured-items/featured-items.latte:32
+#: ait-theme/elements/items/items.latte:170
+#: portal/parts/single-item-events.php:21
+#: portal/parts/single-item-gallery.php:7
+#: portal/parts/single-item-gallery.php:56 /single-portfolio-item.php:148
+#: ait-theme/elements/services/services.latte:39
+#: ait-theme/elements/portfolio/portfolio.latte:37
+#: ait-theme/elements/testimonials/testimonials.latte:29
+#: ait-theme/elements/authors/authors.latte:51
+#: ait-theme/elements/posts/posts.latte:63
+#: ait-theme/elements/tour-slider/tour-slider.latte:7
+#: ait-theme/elements/tours/tours.latte:50
+#: ait-theme/elements/events-pro/events-pro.latte:90
+#: ait-theme/elements/events/events.latte:40
+#: ait-theme/elements/items/items.latte:101
+#: ait-theme/elements/job-offers/job-offers.latte:47
+#: ait-theme/elements/members/members.latte:38
+#: ait-theme/elements/posts/posts.latte:37
+#: ait-theme/elements/taxonomy-list/taxonomy-list.latte:59
+#: portal/parts/single-event-thumbnail.php:13
+#: portal/parts/single-item-gallery.php:20
+#: portal/parts/single-item-gallery.php:73
+#: ait-theme/elements/items/items.latte:110
+#: ait-theme/elements/static-sidebar/modules/advertisements.php:22
+#: portal/parts/single-item-events.php:73
+#: portal/parts/single-item-gallery.php:6
+#: portal/parts/single-item-gallery.php:71
+#: ait-theme/elements/portfolio/portfolio.latte:72
+#: ait-theme/elements/header-slider/header-slider.latte:38
+#: ait-theme/elements/members/members.latte:41
+#: ait-theme/elements/portfolio/portfolio.latte:70
+#: ait-theme/elements/posts/posts.latte:43
+#: ait-theme/elements/services/services.latte:36
+#: ait-theme/elements/items/items.latte:109
+msgid "Loading&hellip;"
+msgstr "Chargement..."
+
+#: parts/none.php:7 /parts/none.php:16
+msgid "Nothing Found"
+msgstr "Aucun résultat"
+
+#: parts/none.php:20 /parts/none.php:29
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+"Désolé, aucun résultat ne correspond à vos critères de recherche. De "
+"nouveaux prestataires seront bientôt disponibles."
+
+#: parts/page-title.php:36 /parts/page-title.php:271 parts/page-title.php:118
+#: parts/page-title.php:17 /parts/page-title.php:16 parts/page-title.php:35
+#: parts/page-title.php:260 /parts/page-title.php:34 parts/page-title.php:262
+#: parts/page-title.php:268 parts/page-title.php:37 /parts/page-title.php:18
+#: parts/page-title.php:54 parts/page-title.php:62 /parts/page-title.php:38
+#: parts/page-title.php:275 parts/page-title.php:39 /parts/page-title.php:70
+#: parts/page-title.php:50 parts/page-title.php:58 /parts/page-title.php:81
+#: parts/page-title.php:89
+msgid "Search Results for: %s"
+msgstr "Résultats de la recherche pour: %s"
+
+#: parts/page-title.php:435 /parts/page-title.php:172 parts/page-title.php:169
+#: parts/page-title.php:426 parts/page-title.php:428 parts/page-title.php:432
+#: parts/page-title.php:151 parts/page-title.php:203 parts/page-title.php:139
+#: parts/page-title.php:439
+msgid "Next &rarr;"
+msgstr "Suivant &rarr;"
+
+#: parts/pagination.php:6 /parts/pagination.php:10
+msgctxt "next"
+msgid "Next %s"
+msgstr "Suivant %s"
+
+#: parts/search-form.php:4 /parts/search-form.php:5
+msgctxt "label"
+msgid "Search for:"
+msgstr "Recherche pour: "
+
+#: parts/search-form.php:5
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Recherche &hellip;"
+
+#: parts/search-form.php:7
+msgctxt "submit button"
+msgid "Search"
+msgstr "Recherche"
+
+#: ait-theme/widgets/AitDocumentationSearchWidget.php:39
+#: ait-theme/elements/documentation-search/documentation-search.latte:6
+msgid "Search Documentations"
+msgstr "Recherche de documentation"
+
+#: parts/pagination.php:45
+msgid ""
+"<span class=\"meta-nav\"><!-- --></span><span class=\"nav-text\">Next</span>"
+msgstr "Suivant"
+
+#: parts/pagination.php:49
+msgid "Next"
+msgstr "Suivant"
+
+#: ait-theme/elements/matches/matches.latte:96
+msgid "Next Match"
+msgstr "Correspondance suivant"
+
+#: parts/pagination.php:49 /parts/pagination.php:52
+msgid "Next &raquo;"
+msgstr "Suivant >>"
+
+#: ait-theme/elements/search-form/search-form.latte:13
+#: ait-theme/elements/search-form/search-form.latte:15
+#: ait-theme/elements/search-form/search-form.latte:204
+#: ait-theme/elements/search-form/search-form.latte:206
+#: ait-theme/elements/search-form/search-form.latte:17
+#: portal/parts/header-search.php:15
+msgid "Search keyword"
+msgstr "Recherche par mot-clés"
+
+#: parts/page-title.php:56 /parts/page-title.php:64 /parts/page-title.php:52
+#: parts/page-title.php:83
+msgid "Search Results: %s"
+msgstr "Résultats de recherche: %s"
+
+#: ait-theme/elements/authors/authors.latte:55
+#: ait-theme/elements/authors/authors.latte:134
+#: ait-theme/elements/posts/posts.latte:67
+#: ait-theme/elements/posts/posts.latte:145
+#: ait-theme/elements/tours/tours.latte:63
+msgid "next"
+msgstr "suivnat"
+
+#: parts/_pagination.php:6
+msgctxt "next"
+msgid "Next"
+msgstr "Suivant"
+
+#: parts/pagination.php:6
+msgid "Next Page"
+msgstr "Page suivante"
 
 #: ait-theme/widgets/AitLoginWidget.php:188
 #: ait-theme/widgets/AitLoginWidget.php:156
@@ -2899,7 +2901,7 @@ msgstr ""
 #: ait-theme/elements/search-form/search-form.latte:30
 #: portal/parts/header-search.php:24
 msgid "Category"
-msgstr "Profession"
+msgstr "Professions"
 
 #: ait-theme/elements/search-form/search-form.latte:37
 #: ait-theme/elements/search-form/search-form.latte:52

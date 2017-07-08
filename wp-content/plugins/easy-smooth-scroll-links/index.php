@@ -2,29 +2,19 @@
 /*
 Plugin Name: Easy Smooth Scroll Links
 Plugin URI: http://www.jeriffcheng.com/wordpress-plugins/easy-smooth-scroll-links
-Description: Create anchors and add up to to 30 scrolling animation effects to links that link to page anchors. You can set scroll speed and offset value. 
-Version: 2.1
+Description: ESSL Wordpress plugin adds interesting scroll animation effects to page anchors, smooth scroll and more.
+Version: 2.1.1
 Author: Jeriff Cheng
 Author URI: http://www.jeriffcheng.com/
+Text Domain: easy-smooth-scroll-links
+Domain Path: /languages
+License: GPLv2 or later
 */
 
-/*
-Copyright 2014  Jeriff Cheng ( Email:hschengyongtao@gmail.com )
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-    
-*/
+function essl_text_domain() {
+	load_plugin_textdomain('easy-smooth-scroll-links', false, basename( dirname( __FILE__ ) ) . '/languages' );
+}
+add_action( 'init', 'essl_text_domain' );
 
 //Anchor Button to TinyMCE Editor
 global $wp_version;
@@ -69,7 +59,7 @@ if(!class_exists('ESSLPluginOptions')) :
 // DEFINE PLUGIN ID
 define('ESSLPluginOptions_ID', 'essl-plugin-options');
 // DEFINE PLUGIN NICK
-define('ESSLPluginOptions_NICK', 'ESSL Settings');
+define('ESSLPluginOptions_NICK', 'ESSL');
 
     class ESSLPluginOptions
     {
@@ -136,7 +126,7 @@ define('ESSLPluginOptions_NICK', 'ESSL Settings');
 	
 	// Add settings link on plugin page
 	function essl_plugin_action_links($links) { 
-	  $settings_link = '<a href="options-general.php?page=essl-plugin-options_options">Settings</a>'; 
+	  $settings_link = '<a href="options-general.php?page=essl-plugin-options_options">'.__('Settings', 'easy-smooth-scroll-links' ).'</a>'; 
 	  array_unshift($links, $settings_link); 
 	  return $links; 
 	}
@@ -160,10 +150,10 @@ define('ESSLPluginOptions_NICK', 'ESSL Settings');
 		
 		
 		function essl_enqueue_jquery() {
-			wp_deregister_script( 'jquery-easing' );
-			wp_register_script( 'jquery-easing', '//cdn.jsdelivr.net/jquery.easing/1.3/jquery.easing.1.3.js',array( 'jquery' ) );
-			wp_enqueue_script( 'jquery' );
-			wp_enqueue_script('jquery-easing');		
+			wp_deregister_script('jquery-easing');
+			wp_register_script('jquery-easing','//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js');
+			wp_enqueue_script('jquery');
+			wp_enqueue_script('jquery-easing',array('jquery'));		
 		}		
 
 		function essl_script() {			

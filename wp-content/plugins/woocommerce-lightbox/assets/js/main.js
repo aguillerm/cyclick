@@ -1,6 +1,11 @@
-jQuery(function(){
+(function($) { 
+	'use strict';
 
-	jQuery('.product').magnificPopup({
+	/**
+	 * Product Quick View
+	 */
+	
+	$('.product').magnificPopup({
 		type:'inline',
 		midClick: true,
 		gallery:{
@@ -16,5 +21,10 @@ jQuery(function(){
 	  	closeOnContentClick: false,
 	});
 
+	/**
+	 * product image lightbox
+	 */
 
-});
+	$("[data-fancybox]").fancybox();
+
+})(jQuery);  

@@ -137,6 +137,12 @@
 			{includePart portal/parts/single-item-map}
 			{* MAP SECTION *}
 
+			{* SOCIAL SECTION *}
+			{includePart portal/parts/single-item-social}
+
+			{*includePart portal/parts/single-item-social-icons*}
+			{* SOCIAL SECTION *}
+
 			{* FEATURES SECTION *}
 			{includePart portal/parts/single-item-features}
 			{* FEATURES SECTION *}

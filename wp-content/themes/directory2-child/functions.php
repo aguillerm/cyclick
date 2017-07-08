@@ -80,8 +80,20 @@ function my_wpb_wl_hook_quickview_content(){
 	</div>
 	<?php
 }
+// Function to change email address
 
+function wpb_sender_email( $original_email_address ) {
+    return 'contact@cyclick.fr';
+}
 
+// Function to change sender name
+function wpb_sender_name( $original_email_from ) {
+	return 'CYCLICK';
+}
+
+// Hooking up our functions to WordPress filters 
+add_filter( 'wp_mail_from', 'wpb_sender_email' );
+add_filter( 'wp_mail_from_name', 'wpb_sender_name' );
 //wp_enqueue_script('fondateur' , get_stylesheet_directory_uri() . '/fondateur.js');
 
 //On supprime le hook et on ajoute avec notre fonction
