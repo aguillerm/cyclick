@@ -88,7 +88,7 @@
 				{if $title != 'Ostéopathes' && $title != 'Informaticiens' && $title != 'Bricoleurs' && $title != 'Coachs sportifs'}
 					{var $link = "/rejoignez-nous"}
                                         {var $enable = "grey"}
-				{/if}d
+				{/if}
 				<div n:class='item, "item{$iterator->counter}", $enableCarousel ? carousel-item, $iterator->isFirst($numOfColumns) ? item-first, $enable,  $iterator->isLast($numOfColumns) ? item-last, $image != "" ? image-present, $boxAlign ? $boxAlign' data-id="{$iterator->counter}">
 					<a href="{$link}">
 						{if $image}
