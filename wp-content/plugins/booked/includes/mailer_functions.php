@@ -65,14 +65,11 @@ function booked_token_replacement( $content, $replacements, $type = 'appointment
 
 function booked_get_appointment_tokens( $appt_id ){
 
-	// ID
-	// $appt_id
-
 	// Name & Email
 	// $customer_name
 	// $email
 	if ( $first_name = get_post_meta( $appt_id, '_appointment_guest_name', true ) ):
-		$last_name = ( $last_name = get_post_meta( $appt_id, '_appointment_guest_surname', true ) ? $last_name : false );
+		$last_name = get_post_meta( $appt_id, '_appointment_guest_surname', true );
 		$customer_name = ( $last_name ? $first_name . ' ' . $last_name : $first_name );
 		$customer_email = get_post_meta( $appt_id, '_appointment_guest_email', true );
 	else:

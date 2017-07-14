@@ -223,8 +223,6 @@ function booked_create_demo_appts($month = false,$year = false){
 			update_post_meta($post_id, '_appointment_timeslot', $appt['timeslot']);
 			update_post_meta($post_id, '_appointment_user', $appt['user_id']);
 
-			do_action('booked_new_appointment_created', $post_id);
-
 			if ($appt['calendar']):
 
 				$calendar_id = $appt['calendar'];
@@ -234,6 +232,8 @@ function booked_create_demo_appts($month = false,$year = false){
 				wp_set_object_terms($post_id,$calendar_id,'booked_custom_calendars');
 
 			endif;
+
+			do_action('booked_new_appointment_created', $post_id);
 
 			$total_appts++;
 

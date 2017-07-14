@@ -8,6 +8,11 @@ Powerful appointment booking made simple.
 
 == Changelog ==
 
+= 2.0.3 =
+* *FIX* Fixed an issue with encoding on the Custom Time Slot titles.
+* *FIX* Fixed an issue with emails not sending in some cases with the WooCommerce add-on.
+* *FIX* Fixed an issue with the last name not showing up in emails for guest bookings.
+
 = 2.0.2 =
 * *FIX* Fixed an email notification (content) issue when cancelling appointments.
 

@@ -115,8 +115,6 @@ if ($customer_type == 'guest'):
 		if (apply_filters('booked_update_appointment_calendar', true)) {
 			if (isset($calendar_id) && $calendar_id): wp_set_object_terms($post_id,$calendar_id,'booked_custom_calendars'); endif;
 		}
-	
-		do_action('booked_new_appointment_created', $post_id);
 
 		$email_content = get_option('booked_approval_email_content');
 		$email_subject = get_option('booked_approval_email_subject');
@@ -132,6 +130,8 @@ if ($customer_type == 'guest'):
 		endif;
 
 		echo $date;
+
+		do_action('booked_new_appointment_created', $post_id);
 
 	else:
 	
@@ -169,8 +169,6 @@ elseif ($customer_type == 'current'):
 		if (isset($calendar_id) && $calendar_id): wp_set_object_terms($post_id,$calendar_id,'booked_custom_calendars'); endif;
 	}
 
-	do_action('booked_new_appointment_created', $post_id);
-
 	// Send an email to the User?
 	$email_content = get_option('booked_approval_email_content');
 	$email_subject = get_option('booked_approval_email_subject');
@@ -185,6 +183,8 @@ elseif ($customer_type == 'current'):
 	endif;
 
 	echo $date;
+
+	do_action('booked_new_appointment_created', $post_id);
 
 else:
 
@@ -252,8 +252,6 @@ else:
 			if (isset($calendar_id) && $calendar_id): wp_set_object_terms($post_id,$calendar_id,'booked_custom_calendars'); endif;
 		}
 
-		do_action('booked_new_appointment_created', $post_id);
-
 		// Send an email to the user?
 		$email_content = get_option('booked_approval_email_content');
 		$email_subject = get_option('booked_approval_email_subject');
@@ -269,6 +267,9 @@ else:
 		endif;
 
 		echo 'success###'.$date;
+
+		do_action('booked_new_appointment_created', $post_id);
+
 	else :
 		echo 'error###'.implode('
 ',$errors);

@@ -256,7 +256,7 @@ body .booked-calendar-wrap.small .booked-appt-list .timeslot { border-top:0; mar
 body .booked-calendar-wrap.small .booked-appt-list .timeslot .timeslot-time,
 body .booked-calendar-wrap.small .booked-appt-list .timeslot .timeslot-count { display:none; }
 body .booked-calendar-wrap.small .booked-appt-list .timeslot .timeslot-people { width:100%; padding:0; height:auto; }
-body .booked-calendar-wrap.small .booked-appt-list .timeslot .timeslot-people button { float:none; margin:0; width:100%; height:auto; padding:7px 0; line-height:1.5; text-align:center; }
+body .booked-calendar-wrap.small .booked-appt-list .timeslot .timeslot-people button { white-space:normal; float:none; margin:0; width:100%; height:auto; padding:7px 0; line-height:1.5; text-align:center; }
 
 body .booked-calendar-wrap.small .booked-appt-list .timeslot .timeslot-people button .button-timeslot { display:block; font-weight:600; font-size:13px; }
 body .booked-calendar-wrap.small .booked-appt-list .timeslot .timeslot-people button .button-text { display:none; }

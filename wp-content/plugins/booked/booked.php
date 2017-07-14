@@ -4,13 +4,13 @@
 Plugin Name: Booked
 Plugin URI: https://getbooked.io
 Description: Powerful appointment booking made simple.
-Version: 2.0.2
+Version: 2.0.3
 Author: Boxy Studio
 Author URI: https://boxystudio.com
 Text Domain: booked
 */
 
-define( 'BOOKED_VERSION', '2.0.2' );
+define( 'BOOKED_VERSION', '2.0.3' );
 define( 'BOOKED_WELCOME_SCREEN', get_option('booked_welcome_screen',true) );
 define( 'BOOKED_DEMO_MODE', get_option('booked_demo_mode',false) );
 define( 'BOOKED_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );

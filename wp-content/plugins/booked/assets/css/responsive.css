@@ -59,7 +59,7 @@
 	body .booked-calendar-wrap table.booked-calendar .booked-appt-list .timeslot .timeslot-mobile-title { display:block; }
 	body table.booked-calendar .booked-appt-list .timeslot .timeslot-people, body table.booked-calendar .booked-appt-list .timeslot .timeslot-people:hover,
 	body table.booked-calendar .booked-appt-list .timeslot.timeslot-count-hidden .timeslot-people, body table.booked-calendar .booked-appt-list .timeslot.timeslot-count-hidden .timeslot-people:hover { width:100%; padding:0; height:auto; }
-	body table.booked-calendar .booked-appt-list .timeslot .timeslot-people button { float:none; margin:0; width:100%; text-align:center; padding:7px 0; line-height:1.5; }
+	body table.booked-calendar .booked-appt-list .timeslot .timeslot-people button { white-space:normal; float:none; margin:0; width:100%; text-align:center; padding:7px 0; line-height:1.5; }
 	body table.booked-calendar .booked-appt-list .timeslot .timeslot-people button .button-timeslot { display:block; font-weight:600; font-size:13px; }
 	body table.booked-calendar .booked-appt-list .timeslot .timeslot-people button .button-text { display:none; }
 	

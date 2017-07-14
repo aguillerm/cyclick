@@ -256,10 +256,10 @@ if ($appt_is_available):
 			do_action( 'booked_admin_confirmation_email', $admin_email, $email_subject, $email_content, $token_replacements['email'], $token_replacements['name'] );
 
 		endif;
+
+		$_SESSION['appt_requested'] = 1;
 		
 		do_action('booked_new_appointment_created', $post_id);
-		
-		$_SESSION['appt_requested'] = 1;
 	
 		echo 'success###'.$date;
 	
@@ -335,8 +335,6 @@ if ($appt_is_available):
 				if (apply_filters('booked_update_appointment_calendar', true)) {
 					if (!empty($calendar_id)): wp_set_object_terms($post_id,$calendar_id,'booked_custom_calendars'); endif;
 				}
-		
-				do_action('booked_new_appointment_created', $post_id);
 				
 				if (apply_filters('booked_update_appointment_calendar', true)) {
 					if (!empty($calendar_id)): $calendar_term = get_term_by('id',$calendar_id[0],'booked_custom_calendars'); $calendar_name = $calendar_term->name; wp_set_object_terms($post_id,$calendar_id,'booked_custom_calendars'); else: $calendar_name = false; endif;
@@ -394,6 +392,8 @@ if ($appt_is_available):
 		
 				$_SESSION['appt_requested'] = 1;
 				$_SESSION['new_account'] = 1;
+
+				do_action('booked_new_appointment_created', $post_id);
 		
 		        echo 'success###'.$date;
 		
@@ -476,10 +476,10 @@ elseif ( $is_new_registration ):
 				
 			endif;
 	
-			do_action('booked_new_appointment_created', $post_id);
-	
 			$_SESSION['appt_requested'] = 1;
 			$_SESSION['new_account'] = 1;
+
+			do_action('booked_new_appointment_created', $post_id);
 	
 	        echo 'success###' . esc_html__('Registration has been successful.','booked');
 	

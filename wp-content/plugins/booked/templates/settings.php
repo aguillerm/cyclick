@@ -1296,15 +1296,15 @@ Time: %time%
 															<input type="text" placeholder="<?php esc_html_e("Optional End date","booked"); ?>..." class="booked_custom_end_date" name="booked_custom_end_date" value="<?php echo ( $this_timeslot['booked_custom_end_date'] ? date_i18n( 'Y-m-d', strtotime( $this_timeslot['booked_custom_end_date'] ) ) : '' ); ?>">
 					
 															<?php if (isset($this_timeslot['booked_this_custom_timelots']) && is_array($this_timeslot['booked_this_custom_timelots'])): ?>
-																<input type="hidden" name="booked_this_custom_timelots" value="<?php echo htmlentities(stripslashes(json_encode($this_timeslot['booked_this_custom_timelots']))); ?>">
+																<input type="text" name="booked_this_custom_timelots" value="<?php echo esc_attr(json_encode($this_timeslot['booked_this_custom_timelots'])); ?>">
 															<?php else : ?>
-																<input type="hidden" name="booked_this_custom_timelots" value="<?php echo htmlentities(stripslashes($this_timeslot['booked_this_custom_timelots'])); ?>">
+																<input type="text" name="booked_this_custom_timelots" value="<?php echo esc_attr($this_timeslot['booked_this_custom_timelots']); ?>">
 															<?php endif; ?>
 
 															<?php if (isset($this_timeslot['booked_this_custom_timelots_details']) && is_array($this_timeslot['booked_this_custom_timelots_details'])): ?>
-																<input type="hidden" name="booked_this_custom_timelots_details" value="<?php echo htmlentities(stripslashes(json_encode($this_timeslot['booked_this_custom_timelots_details']))); ?>">
+																<input type="text" name="booked_this_custom_timelots_details" value="<?php echo esc_attr(json_encode($this_timeslot['booked_this_custom_timelots_details'])); ?>">
 															<?php else : ?>
-																<input type="hidden" name="booked_this_custom_timelots_details" value="<?php echo htmlentities(stripslashes($this_timeslot['booked_this_custom_timelots_details'])); ?>">
+																<input type="text" name="booked_this_custom_timelots_details" value="<?php echo esc_attr($this_timeslot['booked_this_custom_timelots_details']); ?>">
 															<?php endif; ?>
 					
 															<input id="vacationDayCheckbox" name="vacationDayCheckbox" type="checkbox" value="1"<?php if ($this_timeslot['vacationDayCheckbox']): echo ' checked="checked"'; endif; ?>>
@@ -1388,7 +1388,7 @@ Time: %time%
 					
 									</form>
 					
-									<input type="hidden" style="width:100%;" id="custom_timeslots_encoded" name="custom_timeslots_encoded" value="<?php echo htmlentities(stripslashes(stripslashes($booked_custom_timeslots_encoded))); ?>">
+									<input type="hidden" style="width:100%;" id="custom_timeslots_encoded" name="custom_timeslots_encoded" value="<?php echo esc_attr($booked_custom_timeslots_encoded); ?>">
 					
 									<div style="border:1px solid #FFBA00;" class="booked-customTimeslotTemplate">
 					

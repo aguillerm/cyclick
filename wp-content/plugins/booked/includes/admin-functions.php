@@ -7,6 +7,95 @@ function booked_new_tag($show_new_tags){
 	return false;
 }
 
+function booked_timeslots_select( $appt_id = false, $year, $month, $day = false ){
+
+	if ( !$appt_id )
+		return;
+
+	// Caledar ID
+	$calendars = get_the_terms( $appt_id, 'booked_custom_calendars' );
+	if ( !empty($calendars) ):
+		foreach( $calendars as $calendar ):
+			$calendar_id = $calendar->term_id;
+		endforeach;
+	else:
+		$calendar_id = false;
+	endif;
+
+	// Timeslot Information
+	$time_format = get_option('time_format');
+
+	$timeslot = get_post_meta($appt_id, '_appointment_timeslot',true);
+	$timeslots = explode('-',$timeslot);
+	$time_start = date_i18n($time_format,strtotime($timeslots[0]));
+	$time_end = date_i18n($time_format,strtotime($timeslots[1]));
+
+	if ($timeslots[0] == '0000' && $timeslots[1] == '2400'):
+		$timeslotText = esc_html__('All day','booked');
+	else :
+		$timeslotText = $time_start.' '.esc_html__('to','booked').' '.$time_end;
+	endif;
+
+	$time_format = get_option('time_format');
+	$full_date = $year . '-' . $month . ( $day ? '-' . $day : '' );
+	$available_timeslots_array = booked_appointments_available( $year, $month, $day, $calendar_id, true, true );
+	$available_timeslots_array = ( isset( $available_timeslots_array[$full_date] ) ? $available_timeslots_array[$full_date] : array() );
+	echo '<select class="large textfield booked_appt_timeslot" name="appt_timeslot">';
+
+		if ( !empty($available_timeslots_array) ):
+			foreach( $available_timeslots_array as $_timeslot => $_available ):
+
+				if ( $timeslot == $_timeslot ):
+					$_available = '';
+				elseif ( $_available > 0 ):
+					$_available = ' (' . sprintf( _n( '%d Space Available', '%d Spaces Available', $_available, 'booked'), $_available ) . ')';
+				else:
+					$_available = ' [' . esc_html__('Full','booked') . ']';
+				endif;
+
+				$_timeslots = explode('-',$_timeslot);
+				$_time_start = date_i18n($time_format,strtotime($_timeslots[0]));
+				$_time_end = date_i18n($time_format,strtotime($_timeslots[1]));
+
+				if ($_timeslots[0] == '0000' && $_timeslots[1] == '2400'):
+					$_timeslotText = esc_html__('All day','booked');
+				else :
+					$_timeslotText = sprintf( esc_html__('%s to %s','booked'), $_time_start, $_time_end );
+				endif;
+
+				echo '<option value="' . $_timeslot . '"' . ($timeslot == $_timeslot ? ' selected="selected"' : '' ) . '>' . $_timeslotText . $_available . '</option>';
+
+			endforeach;
+		else:
+			echo '<option value="' . $timeslot . '">' . $timeslotText . ' [' . esc_html__('Full','booked') . ']</option>';
+		endif;
+		
+	echo '</select>';
+
+}
+
+function booked_parse_readme_changelog(){
+
+	$readme = file_get_contents( BOOKED_PLUGIN_DIR . '/readme.txt');
+	$readme = make_clickable(esc_html($readme));
+	$readme = preg_replace('/`(.*?)`/', '<code>\\1</code>', $readme);
+	$readme = preg_replace( '/[\040]\*\*\NEW\*\*/', '<strong class="new">' . esc_html__( 'New', 'booked' ) . '</strong>', $readme);
+	$readme = preg_replace( '/[\040]\*\FIX\*/', '<em class="fix">' . esc_html__( 'Fixed', 'booked' ) . '</em>', $readme);
+	$readme = preg_replace( '/[\040]\*\*(.*?)\*\*/', '<strong>\\1</strong>', $readme);
+	$readme = preg_replace( '/[\040]\*(.*?)\*/', '<em>\\1</em>', $readme);
+	$readme = explode( '== Changelog ==', $readme );
+	$readme = explode( '== Upgrade Notice ==', $readme[1] );
+	$readme = $readme[0];
+	$whats_new_title = '<h3>'. esc_html__( "What's new in this update?", "booked" ) . '</h3>';
+	$readme = preg_replace('/= (.*?) =/', $whats_new_title, $readme);
+	$readme = preg_replace("/\*+(.*)?/i","<ul class='booked-whatsnew-list'><li>$1</li></ul>",$readme);
+	$readme = preg_replace("/(\<\/ul\>\n(.*)\<ul class=\'booked-whatsnew-list\'\>*)+/","",$readme);
+	$readme = explode( $whats_new_title, $readme );
+	$readme = $whats_new_title . $readme[1];
+	return $readme;
+
+}
+
 function booked_render_single_timeslot_form($timeslot_intervals,$type = false){
 
 	ob_start();
@@ -139,45 +228,12 @@ function booked_render_timeslots($calendar_id = false){
 			</td>
 			<?php endforeach; ?>
 		</tr>
-	</table>
-	
-	<?php /*foreach($day_loop as $key => $day): ?>
-	<table class="booked-timeslots"<?php echo ($calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : ''); ?>>
-		<thead>
-			<tr>
-				<?php foreach($day_loop as $key => $day):
-					echo '<th data-day="'.$day_loop_english_array[$key].'">'.$day.'<a href="#" class="booked-add-timeslot button">'.esc_html__('Add','booked').'...</a></th>';
-				endforeach; ?>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<?php foreach($day_loop_english_array as $day): ?>
-					<td data-day="<?php echo $day; ?>" class="addTimeslot"></td>
-				<?php endforeach; ?>
-			</tr>
-			<tr>
-				<?php foreach($day_loop_english_array as $day):
-
-					echo '<td class="dayTimeslots" data-day="'.$day.'">';
-						if (!empty($booked_defaults[$day])):
-							ksort($booked_defaults[$day]);
-							foreach($booked_defaults[$day] as $time => $count):
-								echo booked_render_timeslot_info($time_format,$time,$count);
-							endforeach;
-						else :
-							echo '<p><small>'.esc_html__('No time slots.','booked').'</small></p>';
-						endif;
-					echo '</td>';
-
-				endforeach; ?>
-			</tr>
-		</tbody>
-	</table><?php */
+	</table><?php
 
 }
 
 function booked_render_timeslot_info($time_format,$day,$time,$count,$calendar_id,$booked_defaults=array()){
+
 	$title = isset($booked_defaults[$day.'-details'][$time]['title']) ? $booked_defaults[$day.'-details'][$time]['title'] : '';
 
 	ob_start();
@@ -188,21 +244,21 @@ function booked_render_timeslot_info($time_format,$day,$time,$count,$calendar_id
 		do_action( 'booked_single_timeslot_start', $day, $time, $calendar_id );
 
 		if ($time[0] == '0000' && $time[1] == '2400'):
-			$timeslotText = '<span class="start">' . strtoupper(esc_html__('All day','booked')) . '</span>';
+			$timeslotText = '<span class="start">' . strtoupper( esc_html__( 'All day', 'booked') ) . '</span>';
 		else :
-			$timeslotText = '<span class="start">'.date_i18n($time_format,strtotime('2014-01-01 '.$time[0])).'</span> &ndash; <span class="end">'.date_i18n($time_format,strtotime('2014-01-01 '.$time[1])).'</span>';
+			$timeslotText = '<span class="start">' . date_i18n( $time_format, strtotime( '2014-01-01 ' . $time[0] ) ) . '</span> &ndash; <span class="end">'.date_i18n($time_format,strtotime('2014-01-01 '.$time[1])).'</span>';
 		endif;
 
 		echo $timeslotText;
 		echo '<span class="slotsBlock">';
-			echo '<span class="changeCount minus" data-count="-1"><i class="fa fa-minus-circle"></i></span>';
+			echo '<span class="changeCount minus" data-count="-1"><i class="booked-icon booked-icon-minus-circle"></i></span>';
 			echo '<span class="count"><em>'.$count.'</em> '._n('Space Available','Spaces Available',$count,'booked').'</span>';
-			echo '<span class="changeCount add" data-count="1"><i class="fa fa-plus-circle"></i></span>';
+			echo '<span class="changeCount add" data-count="1"><i class="booked-icon booked-icon-plus-circle"></i></span>';
 		echo '</span>';
 		if ( $title ) {
 			echo '<span class="booked_slot_title">'.esc_html($title).'</span>';
 		}
-		echo '<span class="delete"><i class="fa fa-remove"></i></span>';
+		echo '<span class="delete"><i class="booked-icon booked-icon-close"></i></span>';
 
 		do_action( 'booked_single_timeslot_end', $day, $time, $calendar_id );
 
@@ -213,6 +269,9 @@ function booked_render_timeslot_info($time_format,$day,$time,$count,$calendar_id
 }
 
 function booked_render_interval_select($select_name,$placeholder){
+
+	ob_start();
+
 	echo '<select name="'.$select_name.'">'; ?>
 	<option value="60" selected><?php esc_html_e('Every 1 hour','booked'); ?></option>
 	<option value="90"><?php esc_html_e('Every 1 hour, 30 minutes','booked'); ?></option>
@@ -224,9 +283,15 @@ function booked_render_interval_select($select_name,$placeholder){
 	<option value="10"><?php esc_html_e('Every 10 minutes','booked'); ?></option>
 	<option value="5"><?php esc_html_e('Every 5 minutes','booked'); ?></option>
 	<?php echo '</select>';
+
+	echo apply_filters( 'booked_interval_select_field', ob_get_clean(), $select_name );
+
 }
 
 function booked_render_time_between_select($select_name,$placeholder){
+	
+	ob_start();
+
 	echo '<select name="'.$select_name.'">'; ?>
 	<option value="0" selected><?php echo $placeholder; ?></option>
 	<option value="5"><?php esc_html_e('5 minutes','booked'); ?></option>
@@ -237,6 +302,9 @@ function booked_render_time_between_select($select_name,$placeholder){
 	<option value="45"><?php esc_html_e('45 minutes','booked'); ?></option>
 	<option value="60"><?php esc_html_e('1 hour','booked'); ?></option>
 	<?php echo '</select>';
+
+	echo apply_filters( 'booked_time_between_select_field', ob_get_clean(), $select_name, $placeholder );
+
 }
 
 function booked_render_count_select($select_name,$placeholder){
@@ -309,7 +377,7 @@ function booked_admin_calendar($year = false,$month = false,$calendar_id = false
 			$appointments_array[$day][$post->ID]['timestamp'] = $timestamp;
 			$appointments_array[$day][$post->ID]['status'] = $post->post_status;
 		endwhile;
-		$appointments_array = apply_filters('booked_appointments_array', $appointments_array);
+		$appointments_array = apply_filters('booked_appointments_day_array', $appointments_array);
 	endif;
 
 	// Appointments Array
@@ -328,20 +396,20 @@ function booked_admin_calendar($year = false,$month = false,$calendar_id = false
 		<thead>
 			<tr>
 				<th colspan="<?php if (!$hide_weekends): ?>7<?php else: ?>5<?php endif; ?>">
-					<a href="#" data-goto="<?php echo date_i18n('Y-m-01', strtotime("-1 month", strtotime($year.'-'.$month.'-01'))); ?>" class="page-left"><i class="fa fa-angle-left"></i></a>
+					<a href="#" data-goto="<?php echo date_i18n('Y-m-01', strtotime("-1 month", strtotime($year.'-'.$month.'-01'))); ?>" class="page-left"><i class="booked-icon booked-icon-angle-left"></i></a>
 					<span class="calendarSavingState">
-						<i class="fa fa-refresh fa-spin"></i>
+						<i class="booked-icon booked-icon-spinner-clock booked-icon-spin"></i>
 					</span>
 					<span class="monthName">
 						<?php if ($monthShown != $currentMonth): ?>
-							<a href="#" class="backToMonth" data-goto="<?php echo $currentMonth; ?>"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;<?php esc_html_e('Back to','booked'); ?> <?php echo date_i18n('F',strtotime($currentMonth)); ?></a>
+							<a href="#" class="backToMonth" data-goto="<?php echo $currentMonth; ?>"><i class="booked-icon booked-icon-arrow-left"></i>&nbsp;&nbsp;&nbsp;<?php esc_html_e('Back to','booked'); ?> <?php echo date_i18n('F',strtotime($currentMonth)); ?></a>
 						<?php endif; ?>
 						<?php echo date_i18n("F Y", strtotime($year.'-'.$month.'-01')); ?>
 						<?php if ($calendar_name): ?>
-							<span class="calendarName"><i class="fa fa-calendar"></i>&nbsp;&nbsp;&nbsp;<?php echo $calendar_name; ?></span>
+							<span class="calendarName"><i class="booked-icon booked-icon-calendar"></i>&nbsp;&nbsp;&nbsp;<?php echo $calendar_name; ?></span>
 						<?php endif; ?>
 					</span>
-					<a href="#" data-goto="<?php echo date_i18n('Y-m-01', strtotime("+1 month", strtotime($year.'-'.$month.'-01'))); ?>" class="page-right"><i class="fa fa-angle-right"></i></a>
+					<a href="#" data-goto="<?php echo date_i18n('Y-m-01', strtotime("+1 month", strtotime($year.'-'.$month.'-01'))); ?>" class="page-right"><i class="booked-icon booked-icon-angle-right"></i></a>
 				</th>
 			</tr>
 			<tr class="days">
@@ -498,31 +566,37 @@ function booked_admin_calendar_date_content($date,$calendar_id = false){
 
 			?><ul id="bookedAppointmentTabs" class="bookedClearFix">
 				<?php // Show the Default calendar to admins, not booking agents
-				if (current_user_can('manage_booked_options')):
+				$is_first_tab = true;
+				if ( !get_option('booked_hide_default_calendar') && current_user_can('manage_booked_options') ):
 					$calendars = get_terms('booked_custom_calendars','orderby=slug&hide_empty=0');
 					$appointments_in_tab = booked_get_admin_appointments($date,$time_format,$date_format,'default',false,$calendars);
 					$total_appointments = (!empty($appointments_in_tab) ? count($appointments_in_tab) : 0);
 					?><li<?php if (!$calendar_id): ?> class="active"<?php endif; ?>><a href="#calendar-default"><?php esc_html_e('Default Calendar','booked'); ?><?php echo ($total_appointments ? '<span>'.$total_appointments.'</span>' : ''); ?></a></li><?php
+					$is_first_tab = false;
 				endif;
 				foreach($calendars as $calendar):
 					$appointments_in_tab = booked_get_admin_appointments($date,$time_format,$date_format,$calendar->term_id);
 					$total_appointments = (!empty($appointments_in_tab) ? count($appointments_in_tab) : 0);
-					?><li<?php if ($calendar_id == $calendar->term_id): ?> class="active"<?php endif; ?>><a href="#calendar-<?php echo $calendar->term_id; ?>"><?php echo $calendar->name; ?><?php echo ($total_appointments ? '<span>'.$total_appointments.'</span>' : ''); ?></a></li><?php
+					?><li<?php if ( $calendar_id == $calendar->term_id || !$calendar_id && $is_first_tab ): ?> class="active"<?php endif; ?>><a href="#calendar-<?php echo $calendar->term_id; ?>"><?php echo $calendar->name; ?><?php echo ($total_appointments ? '<span>'.$total_appointments.'</span>' : ''); ?></a></li><?php
+					$is_first_tab = false;
 				endforeach;
 			?></ul><?php
 
 			$tab_title = esc_html__('Appointments for','booked');
-			if (current_user_can('manage_booked_options')):
+			$is_first_tab = true;
+			if ( !get_option('booked_hide_default_calendar') && current_user_can('manage_booked_options') ):
 				?><div id="bookedCalendarAppointmentsTab-default" class="bookedAppointmentTab<?php if (!$calendar_id): ?> active<?php endif; ?>"><?php
 					booked_admin_calendar_date_loop($date,$time_format,$date_format,false,$tab_title,$tabbed,$calendars);
 				?></div><?php
+				$is_first_tab = false;
 			endif;
 			foreach($calendars as $calendar):
-				?><div id="bookedCalendarAppointmentsTab-<?php echo $calendar->term_id; ?>" class="bookedAppointmentTab<?php if ($calendar_id == $calendar->term_id): ?> active<?php endif; ?>"><?php
+				?><div id="bookedCalendarAppointmentsTab-<?php echo $calendar->term_id; ?>" class="bookedAppointmentTab<?php if ( $calendar_id == $calendar->term_id || !$calendar_id && $is_first_tab): ?> active<?php endif; ?>"><?php
 					$display_calendar_id = $calendar->term_id;
 					$tab_title = sprintf(esc_html__('%s Appointments for','booked'),'<strong>'.$calendar->name.'</strong>');
 					booked_admin_calendar_date_loop($date,$time_format,$date_format,$display_calendar_id,$tab_title,$tabbed,$calendars);
 				?></div><?php
+				$is_first_tab = false;
 			endforeach;
 
 		else :
@@ -542,8 +616,8 @@ function booked_get_admin_appointments($date,$time_format,$date_format,$calendar
 	$month = date_i18n('m',strtotime($date));
 	$day = date_i18n('d',strtotime($date));
 
-	$start_timestamp = strtotime($year.'-'.$month.'-'.$day.' 00:00:00');
-	$end_timestamp = strtotime($year.'-'.$month.'-'.$day.' 23:59:59');
+	$start_timestamp = strtotime( $year.'-'.$month.'-'.$day.' 00:00:00' );
+	$end_timestamp = strtotime( $year.'-'.$month.'-'.$day.' 23:59:59' );
 
 	$args = array(
 		'post_type' => 'booked_appointments',
@@ -726,17 +800,19 @@ function booked_admin_calendar_date_loop($date,$time_format,$date_format,$calend
 				$title = !empty($todays_defaults_details[$timeslot]['title']) ? $todays_defaults_details[$timeslot]['title'] : '';
 			}
 
-			echo '<div class="timeslot bookedClearFix'.($title ? ' has-title ' : '').'">';
+			$is_disabled = booked_is_timeslot_disabled( $date,$timeslot,$calendar_id );
+
+			echo '<div class="timeslot bookedClearFix' . ( $title ? ' has-title ' : '' ) . ( $is_disabled ? ' booked-disabled' : '' ) . '">';
 				echo '<span class="timeslot-time">';
 				if ( $title ) {
 					echo '<span class="timeslot-title">' . esc_html($title) . '</span><br>';
 				}
-				echo '<i class="fa fa-clock-o"></i>&nbsp;&nbsp;'.$timeslotText.'</span>';
+				echo '<i class="booked-icon booked-icon-clock"></i>&nbsp;&nbsp;'.$timeslotText.'</span>';
 				echo '<span class="timeslot-count">';
 				
 					do_action('booked_single_timeslot_in_list_start', $this_timeslot_timestamp, $timeslot, $calendar_id);
 
-					echo '<span class="spots-available'.($spots_available == 0 ? ' empty' : '').'">'.$spots_available.' '._n('time slot','time slots',$spots_available,'booked').' '.esc_html__('available','booked').'</span>';
+					echo '<span class="spots-available'.($spots_available == 0 ? ' empty' : '').'">'.$spots_available.' '._n('space','spaces',$spots_available,'booked').' '.esc_html__('available','booked').'</span>';
 
 					/*
 					Display the appointments set in this timeslot
@@ -746,7 +822,7 @@ function booked_admin_calendar_date_loop($date,$time_format,$date_format,$calend
 
 						$booked_appts = count($appts_in_this_timeslot);
 
-						echo '<strong>'.$booked_appts.' '._n('Appointment','Appointments',$booked_appts,'booked').':</strong>';
+						echo '<strong>'. sprintf( esc_html( _n('%d Appointment','%d Appointments',$booked_appts,'booked') ), $booked_appts ) . ':</strong>';
 
 						foreach($appts_in_this_timeslot as $appt_id):
 
@@ -754,17 +830,17 @@ function booked_admin_calendar_date_loop($date,$time_format,$date_format,$calend
 								$user_info = get_userdata($appointments_array[$appt_id]['user']);
 								if (isset($user_info->ID)):
 									if ($user_info->user_firstname):
-										$user_display = '<a href="#" class="user" data-user-id="'.$appointments_array[$appt_id]['user'].'">'.$user_info->user_firstname.($user_info->user_lastname ? ' '.$user_info->user_lastname : '').'</a>';
+										$user_display = '<a href="#" class="user" data-user-id="'.$appointments_array[$appt_id]['user'].'"><i class="booked-icon booked-icon-pencil"></i>&nbsp;'.$user_info->user_firstname.($user_info->user_lastname ? ' '.$user_info->user_lastname : '').'</a>';
 									elseif ($user_info->display_name):
-										$user_display = '<a href="#" class="user" data-user-id="'.$appointments_array[$appt_id]['user'].'">'.$user_info->display_name.'</a>';
+										$user_display = '<a href="#" class="user" data-user-id="'.$appointments_array[$appt_id]['user'].'"><i class="booked-icon booked-icon-pencil"></i>&nbsp;'.$user_info->display_name.'</a>';
 									else :
-										$user_display = '<a href="#" class="user" data-user-id="'.$appointments_array[$appt_id]['user'].'">'.$user_info->user_login.'</a>';
+										$user_display = '<a href="#" class="user" data-user-id="'.$appointments_array[$appt_id]['user'].'"><i class="booked-icon booked-icon-pencil"></i>&nbsp;'.$user_info->user_login.'</a>';
 									endif;
 								else :
 									$user_display = esc_html__('(this user no longer exists)','booked');
 								endif;
 							else :
-								$user_display = '<a href="#" class="user" data-user-id="0">'.$appointments_array[$appt_id]['guest_name'].' '.$appointments_array[$appt_id]['guest_surname'].'</a>';
+								$user_display = '<a href="#" class="user" data-user-id="0"><i class="booked-icon booked-icon-pencil"></i>&nbsp;'.$appointments_array[$appt_id]['guest_name'].' '.$appointments_array[$appt_id]['guest_surname'].'</a>';
 							endif;
 
 							$status = ($appointments_array[$appt_id]['status'] !== 'publish' && $appointments_array[$appt_id]['status'] !== 'future' ? 'pending' : 'approved');
@@ -775,7 +851,7 @@ function booked_admin_calendar_date_loop($date,$time_format,$date_format,$calend
 								do_action('booked_admin_calendar_buttons_before', $calendar_id, $appt_id, $status);
 
 								if ( apply_filters('booked_admin_show_calendar_buttons', true) ) {
-									echo '<a href="#" class="delete"'.($calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '').'><i class="fa fa-remove"></i></a>'.($status == 'pending' ? '<button data-appt-id="'.$appt_id.'" class="approve button button-primary">'.esc_html__('Approve','booked').'</button>' : '');
+									echo '<a href="#" class="delete"'.($calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '').'><i class="booked-icon booked-icon-close"></i></a>'.($status == 'pending' ? '<button data-appt-id="'.$appt_id.'" class="approve button button-primary">'.esc_html__('Approve','booked').'</button>' : '');
 								}
 
 								do_action('booked_admin_calendar_buttons_after', $calendar_id, $appt_id, $status);
@@ -790,7 +866,10 @@ function booked_admin_calendar_date_loop($date,$time_format,$date_format,$calend
 					do_action('booked_single_timeslot_in_list_end',$this_timeslot_timestamp,$timeslot,$calendar_id);
 
 				echo '</span>';
-				echo '<span class="timeslot-people"><button data-timeslot="'.$timeslot.'" data-title="'.esc_attr($title).'" data-date="'.$date.'"'.($calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '').' class="new-appt button"'.(!$spots_available ? ' disabled' : '').'>'.esc_html__('New Appointment','booked').' ...</button></span>';
+				echo '<span class="timeslot-people">';
+					echo '<button data-timeslot="'.$timeslot.'" data-title="'.esc_attr($title).'" data-date="'.$date.'"'.($calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '').' class="new-appt button button-primary"'.(!$spots_available ? ' disabled' : '').'>'.esc_html__('New Appointment','booked').'</button>';
+					echo ( empty($appts_in_this_timeslot) ? '<button data-timeslot="'.$timeslot.'" data-title="'.esc_attr($title).'" data-date="'.$date.'"'.($calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '').' class="disable-slot button"'.(!$spots_available ? ' disabled' : '').'>' . ( $is_disabled ? esc_html__('Enable','booked') : esc_html__('Disable','booked') ) . '</button>' : '' );
+				echo '</span>';
 			echo '</div>';
 
 		endforeach;
@@ -835,7 +914,7 @@ function booked_admin_calendar_date_loop($date,$time_format,$date_format,$calend
 							do_action('booked_admin_calendar_buttons_before', $calendar_id, $appt_id, $status);
 
 							if ( apply_filters('booked_admin_show_calendar_buttons', true) ) {
-								echo '<a href="#" class="delete"'.($calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '').'><i class="fa fa-remove"></i></a>'.($status == 'pending' ? '<button data-appt-id="'.$appt_id.'" class="approve button button-primary">'.esc_html__('Approve','booked').'</button>' : '');
+								echo '<a href="#" class="delete"'.($calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '').'><i class="booked-icon booked-icon-close"></i></a>'.($status == 'pending' ? '<button data-appt-id="'.$appt_id.'" class="approve button button-primary">'.esc_html__('Approve','booked').'</button>' : '');
 							}
 
 							do_action('booked_admin_calendar_buttons_after', $calendar_id, $appt_id, $status);
@@ -890,7 +969,7 @@ function booked_admin_calendar_date_loop($date,$time_format,$date_format,$calend
 						do_action('booked_admin_calendar_buttons_before', $calendar_id, $appt_id, $status);
 	
 						if ( apply_filters('booked_admin_show_calendar_buttons', true) ) {
-							echo '<a href="#" class="delete"'.($calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '').'><i class="fa fa-remove"></i></a>'.($status == 'pending' ? '<button data-appt-id="'.$appt_id.'" class="approve button button-primary">'.esc_html__('Approve','booked').'</button>' : '');
+							echo '<a href="#" class="delete"'.($calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '').'><i class="booked-icon booked-icon-close"></i></a>'.($status == 'pending' ? '<button data-appt-id="'.$appt_id.'" class="approve button button-primary">'.esc_html__('Approve','booked').'</button>' : '');
 						}
 	
 						do_action('booked_admin_calendar_buttons_after', $calendar_id, $appt_id, $status);
@@ -970,10 +1049,12 @@ function booked_admin_calendar_date_square($date,$calendar_id = false){
 			$appointments_array[$day][$post->ID]['timestamp'] = $timestamp;
 			$appointments_array[$day][$post->ID]['status'] = $post->post_status;
 		endwhile;
-		$appointments_array = apply_filters('booked_appointments_array', $appointments_array);
+		$appointments_array = apply_filters('booked_appointments_day_array', $appointments_array);
 	endif;
 
-	$classes[] = 'active';
+	if ( !isset($_POST['inactive']) ):
+		$classes[] = 'active';
+	endif;
 
 	$today_date = date_i18n('Y').'-'.date_i18n('m').'-'.date_i18n('j');
 	if ($today_date == $_POST['date']):
@@ -1025,23 +1106,23 @@ function booked_render_custom_fields($calendar = false){
 	
 						if ($field_type == 'single-checkbox'):
 	
-							?><li class="ui-state-default"><i class="sub-handle fa fa-bars"></i>
+							?><li class="ui-state-default"><i class="sub-handle booked-icon booked-icon-bars"></i>
 								<input type="text" name="<?php echo $field['name']; ?>" value="<?php echo htmlentities($field['value'], ENT_QUOTES | ENT_IGNORE, "UTF-8"); ?>" placeholder="<?php esc_html_e('Enter a label for this checkbox...','booked'); ?>" />
-								<span class="cf-delete"><i class="fa fa-close"></i></span>
+								<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 							</li><?php
 	
 						elseif ($field_type == 'single-radio-button'):
 	
-							?><li class="ui-state-default"><i class="sub-handle fa fa-bars"></i>
+							?><li class="ui-state-default"><i class="sub-handle booked-icon booked-icon-bars"></i>
 								<input type="text" name="<?php echo $field['name']; ?>" value="<?php echo htmlentities($field['value'], ENT_QUOTES | ENT_IGNORE, "UTF-8"); ?>" placeholder="<?php esc_html_e('Enter a label for this radio button...','booked'); ?>" />
-								<span class="cf-delete"><i class="fa fa-close"></i></span>
+								<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 							</li><?php
 	
 						elseif ($field_type == 'single-drop-down'):
 	
-							?><li class="ui-state-default"><i class="sub-handle fa fa-bars"></i>
+							?><li class="ui-state-default"><i class="sub-handle booked-icon booked-icon-bars"></i>
 								<input type="text" name="<?php echo $field['name']; ?>" value="<?php echo htmlentities($field['value'], ENT_QUOTES | ENT_IGNORE, "UTF-8"); ?>" placeholder="<?php esc_html_e('Enter a label for this option...','booked'); ?>" />
-								<span class="cf-delete"><i class="fa fa-close"></i></span>
+								<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 							</li><?php
 	
 						elseif ($field_type == 'required'):
@@ -1053,22 +1134,22 @@ function booked_render_custom_fields($calendar = false){
 							if ($look_for_subs == 'checkboxes'):
 	
 								?></ul>
-								<button class="cfButton button" data-type="single-checkbox"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Checkbox','booked'); ?></button>
-								<span class="cf-delete"><i class="fa fa-close"></i></span>
+								<button class="cfButton button" data-type="single-checkbox"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Checkbox','booked'); ?></button>
+								<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 							</li><?php
 	
 							elseif ($look_for_subs == 'radio-buttons'):
 	
 								?></ul>
-								<button class="cfButton button" data-type="single-radio-button"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Radio Button','booked'); ?></button>
-								<span class="cf-delete"><i class="fa fa-close"></i></span>
+								<button class="cfButton button" data-type="single-radio-button"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Radio Button','booked'); ?></button>
+								<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 							</li><?php
 	
 							elseif ($look_for_subs == 'dropdowns'):
 	
 								?></ul>
-								<button class="cfButton button" data-type="single-option"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Option','booked'); ?></button>
-								<span class="cf-delete"><i class="fa fa-close"></i></span>
+								<button class="cfButton button" data-type="single-drop-down"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Option','booked'); ?></button>
+								<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 							</li><?php
 	
 							endif;
@@ -1099,29 +1180,29 @@ function booked_render_custom_fields($calendar = false){
 	
 						case 'single-line-text-label' :
 	
-							?><li class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+							?><li class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 								<small><?php esc_html_e('Single Line Text','booked'); ?></small>
 								<p><input class="cf-required-checkbox"<?php if ($is_required): echo ' checked="checked"'; endif; ?> type="checkbox" name="required---<?php echo $numbers_only; ?>" id="required---<?php echo $numbers_only; ?>"> <label for="required---<?php echo $numbers_only; ?>"><?php esc_html_e('Required Field','booked'); ?></label></p>
 								<input type="text" name="<?php echo $field['name']; ?>" value="<?php echo htmlentities($field['value'], ENT_QUOTES | ENT_IGNORE, "UTF-8"); ?>" placeholder="<?php esc_html_e('Enter a label for this field...','booked'); ?>" />
-								<span class="cf-delete"><i class="fa fa-close"></i></span>
+								<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 							</li><?php
 	
 						break;
 	
 						case 'paragraph-text-label' :
 	
-							?><li class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+							?><li class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 								<small><?php esc_html_e('Paragraph Text','booked'); ?></small>
 								<p><input class="cf-required-checkbox"<?php if ($is_required): echo ' checked="checked"'; endif; ?> type="checkbox" name="required---<?php echo $numbers_only; ?>" id="required---<?php echo $numbers_only; ?>"> <label for="required---<?php echo $numbers_only; ?>"><?php esc_html_e('Required Field','booked'); ?></label></p>
 								<input type="text" name="<?php echo $field['name']; ?>" value="<?php echo htmlentities($field['value'], ENT_QUOTES | ENT_IGNORE, "UTF-8"); ?>" placeholder="<?php esc_html_e('Enter a label for this field...','booked'); ?>" />
-								<span class="cf-delete"><i class="fa fa-close"></i></span>
+								<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 							</li><?php
 	
 						break;
 	
 						case 'checkboxes-label' :
 	
-							?><li class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+							?><li class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 								<small><?php esc_html_e('Checkboxes','booked'); ?></small>
 								<p><input class="cf-required-checkbox"<?php if ($is_required): echo ' checked="checked"'; endif; ?> type="checkbox" name="required---<?php echo $numbers_only; ?>" id="required---<?php echo $numbers_only; ?>"> <label for="required---<?php echo $numbers_only; ?>"><?php esc_html_e('Required Field','booked'); ?></label></p>
 								<input type="text" name="<?php echo $field['name']; ?>" value="<?php echo htmlentities($field['value'], ENT_QUOTES | ENT_IGNORE, "UTF-8"); ?>" placeholder="<?php esc_html_e('Enter a label for this checkbox group...','booked'); ?>" />
@@ -1133,7 +1214,7 @@ function booked_render_custom_fields($calendar = false){
 	
 						case 'radio-buttons-label' :
 	
-							?><li class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+							?><li class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 								<small><?php esc_html_e('Radio Buttons','booked'); ?></small>
 								<p><input class="cf-required-checkbox"<?php if ($is_required): echo ' checked="checked"'; endif; ?> type="checkbox" name="required---<?php echo $numbers_only; ?>" id="required---<?php echo $numbers_only; ?>"> <label for="required---<?php echo $numbers_only; ?>"><?php esc_html_e('Required Field','booked'); ?></label></p>
 								<input type="text" name="<?php echo $field['name']; ?>" value="<?php echo htmlentities($field['value'], ENT_QUOTES | ENT_IGNORE, "UTF-8"); ?>" placeholder="<?php esc_html_e('Enter a label for this radio button group...','booked'); ?>" />
@@ -1145,7 +1226,7 @@ function booked_render_custom_fields($calendar = false){
 	
 						case 'drop-down-label' :
 	
-							?><li class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+							?><li class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 								<small><?php esc_html_e('Drop Down','booked'); ?></small>
 								<p><input class="cf-required-checkbox"<?php if ($is_required): echo ' checked="checked"'; endif; ?> type="checkbox" name="required---<?php echo $numbers_only; ?>" id="required---<?php echo $numbers_only; ?>"> <label for="required---<?php echo $numbers_only; ?>"><?php esc_html_e('Required Field','booked'); ?></label></p>
 								<input type="text" name="<?php echo $field['name']; ?>" value="<?php echo htmlentities($field['value'], ENT_QUOTES | ENT_IGNORE, "UTF-8"); ?>" placeholder="<?php esc_html_e('Enter a label for this drop-down group...','booked'); ?>" />
@@ -1157,11 +1238,11 @@ function booked_render_custom_fields($calendar = false){
 						
 						case 'plain-text-content' :
 	
-							?><li class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+							?><li class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 								<small><?php esc_html_e('Text Content','booked'); ?></small>
 								<textarea name="<?php echo $field['name']; ?>"><?php echo htmlentities($field['value'], ENT_QUOTES | ENT_IGNORE, "UTF-8"); ?></textarea>
 								<small class="help-text"><?php esc_html_e('HTML is allowed in this field.','booked'); ?></small>
-								<span class="cf-delete"><i class="fa fa-close"></i></span>
+								<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 							</li><?php
 	
 						break;
@@ -1192,22 +1273,22 @@ function booked_render_custom_fields($calendar = false){
 					if ($look_for_subs == 'checkboxes'):
 	
 						?></ul>
-						<button class="cfButton button" data-type="single-checkbox"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Checkbox','booked'); ?></button>
-						<span class="cf-delete"><i class="fa fa-close"></i></span>
+						<button class="cfButton button" data-type="single-checkbox"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Checkbox','booked'); ?></button>
+						<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 					</li><?php
 	
 					elseif ($look_for_subs == 'radio-buttons'):
 	
 						?></ul>
-						<button class="cfButton button" data-type="single-radio-button"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Radio Button','booked'); ?></button>
-						<span class="cf-delete"><i class="fa fa-close"></i></span>
+						<button class="cfButton button" data-type="single-radio-button"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Radio Button','booked'); ?></button>
+						<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 					</li><?php
 	
 					elseif ($look_for_subs == 'dropdowns'):
 	
 						?></ul>
-						<button class="cfButton button" data-type="single-drop-down"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Option','booked'); ?></button>
-						<span class="cf-delete"><i class="fa fa-close"></i></span>
+						<button class="cfButton button" data-type="single-drop-down"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Option','booked'); ?></button>
+						<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 					</li><?php
 	
 					endif;
@@ -1218,11 +1299,11 @@ function booked_render_custom_fields($calendar = false){
 		?></ul>
 	</form>
 	
-	<button class="cfButton button" data-type="single-line-text-label"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Single Line Text','booked'); ?></button>&nbsp;
-	<button class="cfButton button" data-type="paragraph-text-label"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Paragraph Text','booked'); ?></button>&nbsp;
-	<button class="cfButton button" data-type="checkboxes-label"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Checkboxes','booked'); ?></button>&nbsp;
-	<button class="cfButton button" data-type="radio-buttons-label"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Radio Buttons','booked'); ?></button>&nbsp;
-	<button class="cfButton button" data-type="drop-down-label"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Drop Down','booked'); ?></button>&nbsp;
-	<button class="cfButton button" data-type="plain-text-content"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Text Content','booked'); ?></button>
+	<button class="cfButton button" data-type="single-line-text-label"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Single Line Text','booked'); ?></button>&nbsp;
+	<button class="cfButton button" data-type="paragraph-text-label"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Paragraph Text','booked'); ?></button>&nbsp;
+	<button class="cfButton button" data-type="checkboxes-label"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Checkboxes','booked'); ?></button>&nbsp;
+	<button class="cfButton button" data-type="radio-buttons-label"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Radio Buttons','booked'); ?></button>&nbsp;
+	<button class="cfButton button" data-type="drop-down-label"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Drop Down','booked'); ?></button>&nbsp;
+	<button class="cfButton button" data-type="plain-text-content"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Text Content','booked'); ?></button>
 	<?php do_action('booked_custom_fields_add_buttons');
 }
