@@ -1,39 +1,36 @@
 <?php
 	
 /*
-Plugin Name: Booked Appointments
-Plugin URI: http://getbooked.io
+Plugin Name: Booked
+Plugin URI: https://getbooked.io
 Description: Powerful appointment booking made simple.
-Version: 1.9.8
+Version: 2.0.2
 Author: Boxy Studio
 Author URI: https://boxystudio.com
 Text Domain: booked
 */
 
-define('BOOKED_VERSION', '1.9.8');
-define('BOOKED_FA_VERSION','4.6.3');
-define('BOOKED_FA_ID','fcc8474e79');
-define('BOOKED_WELCOME_SCREEN', get_option('booked_welcome_screen',true));
-define('BOOKED_DEMO_MODE', get_option('booked_demo_mode',false));
-define('BOOKED_PLUGIN_URL', untrailingslashit(plugin_dir_url( __FILE__ )) );
-define('BOOKED_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define('BOOKED_STYLESHEET_DIR', get_stylesheet_directory());
-define('BOOKED_PLUGIN_TEMPLATES_DIR', plugin_dir_path( __FILE__ ) . '/templates/');
-define('BOOKED_AJAX_INCLUDES_DIR', plugin_dir_path( __FILE__ ) . '/includes/ajax/');
+define( 'BOOKED_VERSION', '2.0.2' );
+define( 'BOOKED_WELCOME_SCREEN', get_option('booked_welcome_screen',true) );
+define( 'BOOKED_DEMO_MODE', get_option('booked_demo_mode',false) );
+define( 'BOOKED_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
+define( 'BOOKED_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
+define( 'BOOKED_STYLESHEET_DIR', get_stylesheet_directory() );
+define( 'BOOKED_PLUGIN_TEMPLATES_DIR', BOOKED_PLUGIN_DIR . '/templates/' );
+define( 'BOOKED_AJAX_INCLUDES_DIR', BOOKED_PLUGIN_DIR . '/includes/ajax/' );
 
-// Include the required class for plugin updates.
-require_once('updates/plugin-update-checker.php');
-$Booked_BoxyUpdateChecker = PucFactory::buildUpdateChecker('http://boxyupdates.com/get/?action=get_metadata&slug=booked', __FILE__, 'booked');
+// Included Add-Ons - Installation/Activation
+define( 'BOOKED_FEA_VERSION', '1.1.14' );
+define( 'BOOKED_WC_VERSION', '1.4.5' );
+define( 'BOOKED_CF_VERSION', '1.1.1' );
+require_once BOOKED_PLUGIN_DIR . '/includes/add-ons/init.php';
 
-// Booked Mailer Actions (Added in v1.9.0)
-add_action( 'booked_confirmation_email', 'booked_mailer', 10, 3 );
-add_action( 'booked_admin_confirmation_email', 'booked_mailer', 10, 5 );
-add_action( 'booked_reminder_email', 'booked_mailer', 10, 3 );
-add_action( 'booked_admin_reminder_email', 'booked_mailer', 10, 5 );
-add_action( 'booked_cancellation_email', 'booked_mailer', 10, 3 );
-add_action( 'booked_admin_cancellation_email', 'booked_mailer', 10, 5 );
-add_action( 'booked_approved_email', 'booked_mailer', 10, 3 );
-add_action( 'booked_registration_email', 'booked_mailer', 10, 3 );
+// Booked Updates
+require_once BOOKED_PLUGIN_DIR . '/includes/updates/plugin-update-checker.php';
+$booked_update_check = PucFactory::buildUpdateChecker('http://boxyupdates.com/get/?action=get_metadata&slug=booked', __FILE__, 'booked');
+
+// Booked Mailer Functions
+require_once('includes/mailer_functions.php');
 
 if(!class_exists('booked_plugin')) {
 	class booked_plugin {
@@ -42,7 +39,7 @@ if(!class_exists('booked_plugin')) {
 		 */
 		public function __construct() {
 
-			$this->booked_screens = apply_filters('booked_admin_booked_screens', array('booked-pending','booked-appointments','booked-settings','booked-addons','booked-welcome'));
+			$this->booked_screens = apply_filters('booked_admin_booked_screens', array('booked-pending','booked-appointments','booked-settings','booked-welcome'));
 
 			require_once(sprintf("%s/post-types/booked_appointments.php", BOOKED_PLUGIN_DIR));
 			$booked_appointments_post_type = new booked_appointments_post_type();
@@ -73,7 +70,6 @@ if(!class_exists('booked_plugin')) {
 			add_action('wp_enqueue_scripts', array(&$this, 'front_end_scripts'),1);
 			
 			add_action('admin_menu', array(&$this, 'booked_add_pending_appt_bubble' ));
-			add_action('admin_menu', array(&$this, 'booked_add_new_addons_bubble'));
 			add_action('admin_notices', array(&$this, 'booked_pending_notice' ));
 			add_action('admin_notices', array(&$this, 'booked_no_profile_page_notice' ));
 			add_action('parent_file', array(&$this, 'booked_tax_menu_correction'));
@@ -149,72 +145,22 @@ if(!class_exists('booked_plugin')) {
 					$appt_id = $post->ID;
 					$reminder_sent = get_post_meta($appt_id,'_appointment_admin_reminder_sent',true);
 					
-					if (!$reminder_sent):
-					
-						$title = get_post_meta($appt_id,'_appointment_title',true);
-						$timeslot = get_post_meta($appt_id,'_appointment_timeslot',true);
-						$timestamp = get_post_meta($appt_id,'_appointment_timestamp',true);
-						$cf_meta_value = get_post_meta($appt_id,'_cf_meta_value',true);
-						$timeslots = explode('-',$timeslot);
-						$time_format = get_option('time_format');
-						$date_format = get_option('date_format');
-						$hide_end_times = get_option('booked_hide_end_times',false);
-						
-						$timestamp_start = strtotime(date_i18n('Y-m-d',$timestamp).' '.$timeslots[0]);
-						$timestamp_end = strtotime(date_i18n('Y-m-d',$timestamp).' '.$timeslots[1]);
-						$current_timestamp = current_time('timestamp');
-						
-						if ($timeslots[0] == '0000' && $timeslots[1] == '2400'):
-							$timeslotText = esc_html__('All day','booked');
-						else :
-							$timeslotText = date_i18n($time_format,$timestamp_start).(!$hide_end_times ? '&ndash;'.date_i18n($time_format,$timestamp_end) : '');
-						endif;
-						
-						$appt = get_post( $appt_id );
-						$appt_author = $appt->post_author;
-						
-						$guest_name = get_post_meta($appt_id,'_appointment_guest_name',true);
-						$guest_surname = get_post_meta($appt_id,'_appointment_guest_surname',true);
-						$guest_surname = ( $guest_surname ? $guest_surname : false );
-						$guest_name = ( $guest_surname ? $guest_name . ' ' . $guest_surname : $guest_name );
-						$guest_email = get_post_meta($appt_id,'_appointment_guest_email',true);
-						
-						if ($guest_name):
-							$user_name = $guest_name;
-							$email = $guest_email;
-						else:
-							$user_name = booked_get_name( $appt_author );
-							$user_data = get_userdata( $appt_author );
-							$email = $user_data->user_email;
-						endif;
-					
-						$appointment_calendar_id = get_the_terms( $appt_id,'booked_custom_calendars' );
-						if (!empty($appointment_calendar_id)):
-							foreach($appointment_calendar_id as $calendar):
-								$calendar_id = $calendar->term_id;
-								break;
-							endforeach;
-						else:
-							$calendar_id = false;
-						endif;
-								
-						if (!empty($calendar_id)): $calendar_term = get_term_by('id',$calendar_id,'booked_custom_calendars'); $calendar_name = $calendar_term->name; else: $calendar_name = false; endif;
-						
-						$day_name = date('D',$timestamp);
-						$timeslotText = apply_filters('booked_emailed_timeslot_text',$timeslotText,$timestamp_start,$timeslot,$calendar_id);
-						
+					if ( !$reminder_sent ):
+
 						// Send an email reminder
 						$email_content = get_option('booked_admin_reminder_email',false);
 						$email_subject = get_option('booked_admin_reminder_email_subject',false);
 						if ($email_content && $email_subject):
-							$admin_email = booked_which_admin_to_send_email($calendar_id);
-							$tokens = array('%name%','%date%','%time%','%customfields%','%calendar%','%email%','%title%');
-							$replacements = array($user_name,date_i18n($date_format,$timestamp),$timeslotText,$cf_meta_value,$calendar_name,$email,$title);
-							$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-							$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-							$email_subject = str_replace($tokens,$replacements,$email_subject);
+
+							$admin_email = booked_which_admin_to_send_email( $calendar_id );
+							$token_replacements = booked_get_appointment_tokens( $appt_id );
+							$email_content = booked_token_replacement( $email_content,$token_replacements );
+							$email_subject = booked_token_replacement( $email_subject,$token_replacements );
+
 							update_post_meta($appt_id,'_appointment_admin_reminder_sent',true);
-							do_action( 'booked_admin_reminder_email', $admin_email, $email_subject, $email_content, $email, $user_name );
+
+							do_action( 'booked_admin_reminder_email', $admin_email, $email_subject, $email_content, $token_replacements['email'], $token_replacements['name'] );
+
 						endif;
 
 					endif;
@@ -257,69 +203,22 @@ if(!class_exists('booked_plugin')) {
 					$appt_id = $post->ID;
 					$reminder_sent = get_post_meta($appt_id,'_appointment_user_reminder_sent',true);
 					
-					if (!$reminder_sent):
+					$send_mail = true;
+					if ( !$reminder_sent && apply_filters( 'booked_prepare_sending_reminder', true, $appt_id ) ):
 					
-						$title = get_post_meta($appt_id,'_appointment_title',true);
-						$timeslot = get_post_meta($appt_id,'_appointment_timeslot',true);
-						$timestamp = get_post_meta($appt_id,'_appointment_timestamp',true);
-						$cf_meta_value = get_post_meta($appt_id,'_cf_meta_value',true);
-						$timeslots = explode('-',$timeslot);
-						$time_format = get_option('time_format');
-						$date_format = get_option('date_format');
-						$hide_end_times = get_option('booked_hide_end_times',false);
-						
-						$timestamp_start = strtotime(date_i18n('Y-m-d',$timestamp).' '.$timeslots[0]);
-						$timestamp_end = strtotime(date_i18n('Y-m-d',$timestamp).' '.$timeslots[1]);
-						$current_timestamp = current_time('timestamp');
-						
-						if ($timeslots[0] == '0000' && $timeslots[1] == '2400'):
-							$timeslotText = esc_html__('All day','booked');
-						else :
-							$timeslotText = date_i18n($time_format,$timestamp_start).(!$hide_end_times ? '&ndash;'.date_i18n($time_format,$timestamp_end) : '');
-						endif;
-						
-						$appt = get_post( $appt_id );
-						$appt_author = $appt->post_author;
-						
-						$guest_name = get_post_meta($appt_id,'_appointment_guest_name',true);
-						$guest_surname = get_post_meta($appt_id,'_appointment_guest_surname',true);
-						$guest_surname = ( $guest_surname ? $guest_surname : false );
-						$guest_name = ( $guest_surname ? $guest_name . ' ' . $guest_surname : $guest_name );
-						$guest_email = get_post_meta($appt_id,'_appointment_guest_email',true);
-						
-						if ($guest_name):
-							$user_name = $guest_name;
-							$email = $guest_email;
-						else:
-							$user_name = booked_get_name( $appt_author );
-							$user_data = get_userdata( $appt_author );
-							$email = $user_data->user_email;
-						endif;
-						
-						$appointment_calendar_id = get_the_terms( $appt_id,'booked_custom_calendars' );
-						if (!empty($appointment_calendar_id)):
-							foreach($appointment_calendar_id as $calendar):
-								$calendar_id = $calendar->term_id;
-								break;
-							endforeach;
-						else:
-							$calendar_id = false;
-						endif;
-								
-						if (!empty($calendar_id)): $calendar_term = get_term_by('id',$calendar_id,'booked_custom_calendars'); $calendar_name = $calendar_term->name; else: $calendar_name = false; endif;
-						
-						// Send an email reminder
 						$email_content = get_option('booked_reminder_email',false);
 						$email_subject = get_option('booked_reminder_email_subject',false);
 						
 						if ($email_content && $email_subject):
-							$tokens = array('%name%','%date%','%time%','%customfields%','%calendar%','%email%','%title%');
-							$replacements = array($user_name,date_i18n($date_format,$timestamp),$timeslotText,$cf_meta_value,$calendar_name,$email,$title);
-							$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-							$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-							$email_subject = str_replace($tokens,$replacements,$email_subject);
+
+							$token_replacements = booked_get_appointment_tokens( $appt_id );
+							$email_content = booked_token_replacement( $email_content,$token_replacements );
+							$email_subject = booked_token_replacement( $email_subject,$token_replacements );
+
 							update_post_meta($appt_id,'_appointment_user_reminder_sent',true);
-							do_action( 'booked_reminder_email', $email, $email_subject, $email_content );
+
+							do_action( 'booked_reminder_email', $token_replacements['email'], $email_subject, $email_content );
+							
 						endif;
 
 					endif;
@@ -366,7 +265,7 @@ if(!class_exists('booked_plugin')) {
 				if (!current_user_can('edit_booked_appointments') && !defined( 'DOING_AJAX' )){
 					
 					$booked_profile_page = booked_get_profile_page();
-			
+
 					if ($booked_profile_page):
 						$redirect_url = get_permalink($booked_profile_page);
 					else:
@@ -383,12 +282,6 @@ if(!class_exists('booked_plugin')) {
 			require_once(sprintf("%s/includes/admin-functions.php", BOOKED_PLUGIN_DIR));
 			require_once(sprintf("%s/includes/dashboard-widget.php", BOOKED_PLUGIN_DIR));
 			$this->init_settings();
-
-			$new_addons = $this->booked_new_addons();
-
-			if ($new_addons):
-				add_action('admin_notices', array(&$this, 'booked_addons_notice' ));
-			endif;
 			
 			// Welcome Screen Redirect
 			if ( !get_transient( '_booked_welcome_screen_activation_redirect' ) ) {
@@ -435,37 +328,11 @@ if(!class_exists('booked_plugin')) {
 			endif;
 			
 		}
-
-		public function booked_new_addons(){
-			$json_array = get_transient( 'booked_addons_json' );
-			if (!$json_array):
-				$json_array = $this->booked_curl('https://boxystudio.com/?addons_category=14');
-				if (!$json_array):
-					set_transient( 'booked_addons_json', '[]', 86400 );
-				else:
-					set_transient( 'booked_addons_json', $json_array, 86400 );
-				endif;
-			endif;
-
-			$new_addons = 0;
-
-			if (!$json_array): $json_array = array(); else : $json_array = json_decode($json_array,true); endif;
-			if (!empty($json_array)):
-				foreach($json_array as $product):
-					$plugin_slug = $product['plugin_slug'];
-					if (!get_option('booked_addon_viewed_'.$plugin_slug)):
-							$new_addons++;
-					endif;
-				endforeach;
-			endif;
-
-			return $new_addons;
-		}
 		
 		public function booked_profile_tabs($default_tabs){
 			
 			foreach($default_tabs as $slug => $name):
-				echo '<li'.($name['class'] ? ' class="'.$name['class'].'"' : '').'><a href="#'.$slug.'"><i class="fa '.$name['fa-icon'].'"></i>'.$name['title'].'</a></li>';
+				echo '<li'.($name['class'] ? ' class="'.$name['class'].'"' : '').'><a href="#'.$slug.'"><i class="booked-icon '.$name['booked-icon'].'"></i>'.$name['title'].'</a></li>';
 			endforeach;
 			
 		}
@@ -484,7 +351,7 @@ if(!class_exists('booked_plugin')) {
 			
 			// Hide the Admin Bar from subscribers.
 		    $booked_current_user = wp_get_current_user();
-			if ( isset($booked_current_user->roles[0]) && $booked_current_user->roles[0]=='subscriber' ) {
+			if ( isset($booked_current_user->roles[0]) && in_array( 'subscriber',$booked_current_user->roles ) ) {
 				add_filter('show_admin_bar', '__return_false');
 			}
 			
@@ -492,7 +359,7 @@ if(!class_exists('booked_plugin')) {
 			require_once(sprintf("%s/includes/functions.php", BOOKED_PLUGIN_DIR));
 
 			// Start a session if none is started yet.
-			if(!session_id()) {
+			if( !session_id() ) {
 		        session_start();
 		    }
 		    
@@ -542,7 +409,7 @@ if(!class_exists('booked_plugin')) {
 		        if (window.ifaddtocalendar == undefined) { window.ifaddtocalendar = 1;
 		            var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
 		            s.type = 'text/javascript';s.charset = 'UTF-8';s.async = true;
-		            s.src = '<?php echo BOOKED_PLUGIN_URL; ?>/js/atc.min.js';
+		            s.src = '<?php echo BOOKED_PLUGIN_URL; ?>/assets/js/atc.min.js';
 		            var h = d[g]('body')[0];h.appendChild(s); }})();
 			</script><?php
 				
@@ -580,6 +447,9 @@ if(!class_exists('booked_plugin')) {
 				'booked_button_color',
 				'booked_email_logo',
 				'booked_default_email_user',
+				'booked_email_force_sender',
+				'booked_email_force_sender_from',
+				'booked_emailer_disabled',
 				'booked_reminder_buffer',
 				'booked_admin_reminder_buffer',
 				'booked_reminder_email',
@@ -626,7 +496,6 @@ if(!class_exists('booked_plugin')) {
 			add_submenu_page('booked-appointments', esc_html__('Pending','booked'), esc_html__('Pending','booked'), 'edit_booked_appointments', 'booked-pending', array(&$this, 'admin_pending_list'));
 			add_submenu_page('booked-appointments', esc_html__('Calendars','booked'), esc_html__('Calendars','booked'), 'manage_booked_options', 'edit-tags.php?taxonomy=booked_custom_calendars');
 			add_submenu_page('booked-appointments', esc_html__('Settings','booked'), esc_html__('Settings','booked'), 'edit_booked_appointments', 'booked-settings', array(&$this, 'plugin_settings_page'));
-			add_submenu_page('booked-appointments', esc_html__('Add-Ons','booked'), esc_html__('Add-Ons','booked'), 'manage_booked_options', 'booked-addons', array(&$this, 'booked_addons_page'));
 			add_submenu_page('booked-appointments', esc_html__('What\'s New?','booked'), esc_html__('What\'s New?','booked'), 'manage_booked_options', 'booked-welcome', array(&$this, 'booked_welcome_content'));
 		}
 			
@@ -671,14 +540,6 @@ if(!class_exists('booked_plugin')) {
 			include(sprintf("%s/templates/settings.php", BOOKED_PLUGIN_DIR));
 		}
 
-		// Booked Add-Ons
-		public function booked_addons_page() {
-			if(!current_user_can('manage_booked_options')) {
-				wp_die(esc_html__('You do not have sufficient permissions to access this page.', 'booked'));
-			}
-			include(sprintf("%s/templates/add-ons.php", BOOKED_PLUGIN_DIR));
-		}
-
 		// Booked Pending Appointments List
 		public function admin_pending_list() {
 			if(!current_user_can('edit_booked_appointments')) {
@@ -693,21 +554,6 @@ if(!class_exists('booked_plugin')) {
 				wp_die(esc_html__('You do not have sufficient permissions to access this page.', 'booked'));
 			}
 			include(sprintf("%s/templates/admin-calendar.php", BOOKED_PLUGIN_DIR));
-		}
-
-		// Add New Add-Ons Bubble
-		public function booked_add_new_addons_bubble() {
-
-			global $submenu;
-
-			$new_addons = $this->booked_new_addons();
-
-			foreach ( $submenu as $key => $value ) :
-				if ( $key == 'booked-appointments' ) :
-					if ( $new_addons ) { $submenu[$key][4][0] .= " <span style='position:relative; top:1px; margin:-2px 0 0 2px' class='update-plugins count-$new_addons' title='$new_addons'><span style='padding:0 6px 0 4px; min-width:7px; text-align:center;' class='update-count'>" . $new_addons . "</span></span>"; }
-					return;
-				endif;
-			endforeach;
 		}
 
 		// Add Pending Appointments Bubble
@@ -765,23 +611,6 @@ if(!class_exists('booked_plugin')) {
 
 		}
 
-		public function booked_addons_notice() {
-
-			if (current_user_can('manage_booked_options')):
-
-				$page = (isset($_GET['page']) ? $page = $_GET['page'] : $page = false);
-				if ($page != 'booked-addons' && $page != 'booked-welcome'):
-
-					echo '<div class="update-nag" style="line-height:28px">';
-						echo sprintf(esc_html__( '%s are available!', 'booked' ), '<strong>Booked Add-Ons</strong>').'&nbsp;&nbsp;&nbsp;<a href="'.get_admin_url().'admin.php?page=booked-addons" class="button">'.esc_html__('View Available Add-Ons','booked').'</a>';
-					echo '</div>';
-
-				endif;
-
-			endif;
-
-		}
-
 		/**********************
 		ADD USER FIELD TO CALENDAR TAXONOMY PAGE
 		**********************/
@@ -796,7 +625,7 @@ if(!class_exists('booked_plugin')) {
 					$allowed_users = array();
 					foreach ( $all_users as $user ):
 						$wp_user = new WP_User($user->ID);
-						if ( !in_array( 'subscriber', $wp_user->roles ) ):
+						if ( in_array( 'administrator', $wp_user->roles ) || in_array( 'booked_booking_agent', $wp_user->roles ) ):
 							array_push($allowed_users, $user);
 						endif;
 					endforeach;
@@ -826,7 +655,7 @@ if(!class_exists('booked_plugin')) {
 			$allowed_users = array();
 			foreach ( $all_users as $user ):
 				$wp_user = new WP_User($user->ID);
-				if ( !in_array( 'subscriber', $wp_user->roles ) ):
+				if ( in_array( 'administrator', $wp_user->roles ) || in_array( 'booked_booking_agent', $wp_user->roles ) ):
 					array_push($allowed_users, $user);
 				endif;
 			endforeach; ?>
@@ -947,7 +776,7 @@ if(!class_exists('booked_plugin')) {
 			
 			// For Serializing Arrays
 			if ($current_page == 'booked-settings' || $screen->id == 'dashboard'):
-				wp_enqueue_script('booked-serialize', BOOKED_PLUGIN_URL . '/js/jquery.serialize.js', array(), BOOKED_VERSION);
+				wp_enqueue_script('booked-serialize', BOOKED_PLUGIN_URL . '/assets/js/jquery.serialize.js', array(), BOOKED_VERSION);
 			endif;
 
 			// Load the rest of the stuff!
@@ -958,14 +787,13 @@ if(!class_exists('booked_plugin')) {
 				wp_enqueue_script('jquery-ui');
 				wp_enqueue_script('jquery-ui-sortable');
 				wp_enqueue_script('jquery-ui-datepicker');
-				wp_enqueue_script('booked-font-awesome', '//use.fontawesome.com/'.BOOKED_FA_ID.'.js', array(), BOOKED_FA_VERSION);
-				wp_enqueue_script('spin-js', BOOKED_PLUGIN_URL . '/js/spin.min.js', array(), '2.0.1');
-				wp_enqueue_script('spin-jquery', BOOKED_PLUGIN_URL . '/js/spin.jquery.js', array(), '2.0.1');
-				wp_enqueue_script('booked-chosen', BOOKED_PLUGIN_URL . '/js/chosen/chosen.jquery.min.js', array(), '1.2.0');
-				wp_enqueue_script('booked-fitvids', BOOKED_PLUGIN_URL . '/js/fitvids.js', array(), '1.1');
-				wp_enqueue_script('booked-tooltipster', BOOKED_PLUGIN_URL . '/js/tooltipster/js/jquery.tooltipster.min.js', array(), '3.3.0', true);
-				wp_enqueue_script('booked-calendar-popup', BOOKED_PLUGIN_URL . '/js/jquery.bookedCalendarPopup.js', array(), BOOKED_VERSION);
-				wp_register_script('booked-admin', BOOKED_PLUGIN_URL . '/js/admin-functions.js', array(), BOOKED_VERSION);
+				wp_enqueue_script('spin-js', BOOKED_PLUGIN_URL . '/assets/js/spin.min.js', array(), '2.0.1');
+				wp_enqueue_script('spin-jquery', BOOKED_PLUGIN_URL . '/assets/js/spin.jquery.js', array(), '2.0.1');
+				wp_enqueue_script('booked-chosen', BOOKED_PLUGIN_URL . '/assets/js/chosen/chosen.jquery.min.js', array(), '1.2.0');
+				wp_enqueue_script('booked-fitvids', BOOKED_PLUGIN_URL . '/assets/js/fitvids.js', array(), '1.1');
+				wp_enqueue_script('booked-tooltipster', BOOKED_PLUGIN_URL . '/assets/js/tooltipster/js/jquery.tooltipster.min.js', array(), '3.3.0', true);
+				wp_enqueue_script('booked-calendar-popup', BOOKED_PLUGIN_URL . '/assets/js/jquery.bookedCalendarPopup.js', array(), BOOKED_VERSION);
+				wp_register_script('booked-admin', BOOKED_PLUGIN_URL . '/assets/js/admin-functions.js', array(), BOOKED_VERSION);
 				
 				$booked_js_vars = array(
 					'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -979,6 +807,8 @@ if(!class_exists('booked_plugin')) {
 					'i18n_single_add_confirm' => esc_html__('You are about to add the following time slot(s)','booked'),
 					'i18n_to' => esc_html__('to','booked'),
 					'i18n_please_wait' => esc_html__('Please wait ...','booked'),
+					'i18n_update_appointment' => esc_html__('Update Appointment','booked'),
+					'i18n_create_appointment' => esc_html__('Create Appointment','booked'),
 					'i18n_all_day' => esc_html__('All day','booked'),
 					'i18n_choose_customer' => esc_html__('Please choose a customer.','booked'),
 					'i18n_fill_out_required_fields' => esc_html__('Please fill out all required fields.','booked'),
@@ -1010,11 +840,12 @@ if(!class_exists('booked_plugin')) {
 			
 			if (in_array($current_page,$this->booked_screens) || $screen->id == 'dashboard'):
 				wp_enqueue_style('wp-color-picker');
-				wp_enqueue_style('booked-tooltipster', 	BOOKED_PLUGIN_URL . '/js/tooltipster/css/tooltipster.css', array(), '3.3.0');
-				wp_enqueue_style('booked-tooltipster-theme', 	BOOKED_PLUGIN_URL . '/js/tooltipster/css/themes/tooltipster-light.css', array(), '3.3.0');
-				wp_enqueue_style('chosen', BOOKED_PLUGIN_URL . '/js/chosen/chosen.min.css', array(), '1.2.0');
-				wp_enqueue_style('booked-animations', BOOKED_PLUGIN_URL . '/css/animations.css', array(), BOOKED_VERSION);
-				wp_enqueue_style('booked-admin', BOOKED_PLUGIN_URL . '/css/admin-styles.css', array(), BOOKED_VERSION);
+				wp_enqueue_style('booked-icons', BOOKED_PLUGIN_URL . '/assets/css/icons.css', array(), BOOKED_VERSION);
+				wp_enqueue_style('booked-tooltipster', 	BOOKED_PLUGIN_URL . '/assets/js/tooltipster/css/tooltipster.css', array(), '3.3.0');
+				wp_enqueue_style('booked-tooltipster-theme', 	BOOKED_PLUGIN_URL . '/assets/js/tooltipster/css/themes/tooltipster-light.css', array(), '3.3.0');
+				wp_enqueue_style('chosen', BOOKED_PLUGIN_URL . '/assets/js/chosen/chosen.min.css', array(), '1.2.0');
+				wp_enqueue_style('booked-animations', BOOKED_PLUGIN_URL . '/assets/css/animations.css', array(), BOOKED_VERSION);
+				wp_enqueue_style('booked-admin', BOOKED_PLUGIN_URL . '/assets/css/admin-styles.css', array(), BOOKED_VERSION);
 			endif;
 		
 		}
@@ -1023,14 +854,14 @@ if(!class_exists('booked_plugin')) {
 		// --------- FRONT-END SCRIPTS/STYLES --------- //
 
 		public function front_end_scripts() {
+
 			wp_enqueue_script('jquery');
 			wp_enqueue_script('jquery-ui');
 			wp_enqueue_script('jquery-ui-datepicker');
-			wp_enqueue_script('booked-font-awesome', '//use.fontawesome.com/'.BOOKED_FA_ID.'.js', array(), BOOKED_FA_VERSION);
-			wp_enqueue_script('booked-spin-js', 	BOOKED_PLUGIN_URL . '/js/spin.min.js', array(), '2.0.1', true);
-			wp_enqueue_script('booked-spin-jquery', BOOKED_PLUGIN_URL . '/js/spin.jquery.js', array(), '2.0.1', true);
-			wp_enqueue_script('booked-tooltipster', BOOKED_PLUGIN_URL . '/js/tooltipster/js/jquery.tooltipster.min.js', array(), '3.3.0', true);
-			wp_register_script('booked-functions', BOOKED_PLUGIN_URL . '/js/functions.js', array(), BOOKED_VERSION, true);
+			wp_enqueue_script('booked-spin-js', 	BOOKED_PLUGIN_URL . '/assets/js/spin.min.js', array(), '2.0.1', true);
+			wp_enqueue_script('booked-spin-jquery', BOOKED_PLUGIN_URL . '/assets/js/spin.jquery.js', array(), '2.0.1', true);
+			wp_enqueue_script('booked-tooltipster', BOOKED_PLUGIN_URL . '/assets/js/tooltipster/js/jquery.tooltipster.min.js', array(), '3.3.0', true);
+			wp_register_script('booked-functions', BOOKED_PLUGIN_URL . '/assets/js/functions.js', array(), BOOKED_VERSION, true);
 
 			$booked_redirect_type = get_option('booked_appointment_redirect_type','booked-profile');
 			$booked_detect_profile_page = booked_get_profile_page();
@@ -1065,16 +896,23 @@ if(!class_exists('booked_plugin')) {
 		}
 
 		public static function front_end_styles() {
-			wp_enqueue_style('booked-tooltipster', 	BOOKED_PLUGIN_URL . '/js/tooltipster/css/tooltipster.css', array(), '3.3.0');
-			wp_enqueue_style('booked-tooltipster-theme', 	BOOKED_PLUGIN_URL . '/js/tooltipster/css/themes/tooltipster-light.css', array(), '3.3.0');
-			wp_enqueue_style('booked-animations', 	BOOKED_PLUGIN_URL . '/css/animations.css', array(), BOOKED_VERSION);
-			wp_enqueue_style('booked-styles', 		BOOKED_PLUGIN_URL . '/css/styles.css', array(), BOOKED_VERSION);
-			wp_enqueue_style('booked-responsive', 	BOOKED_PLUGIN_URL . '/css/responsive.css', array(), BOOKED_VERSION);
+			
+			wp_enqueue_style('booked-icons', BOOKED_PLUGIN_URL . '/assets/css/icons.css', array(), BOOKED_VERSION);
+			wp_enqueue_style('booked-tooltipster', 	BOOKED_PLUGIN_URL . '/assets/js/tooltipster/css/tooltipster.css', array(), '3.3.0');
+			wp_enqueue_style('booked-tooltipster-theme', 	BOOKED_PLUGIN_URL . '/assets/js/tooltipster/css/themes/tooltipster-light.css', array(), '3.3.0');
+			wp_enqueue_style('booked-animations', 	BOOKED_PLUGIN_URL . '/assets/css/animations.css', array(), BOOKED_VERSION);
+			wp_enqueue_style('booked-styles', 		BOOKED_PLUGIN_URL . '/assets/css/styles.css', array(), BOOKED_VERSION);
+			wp_enqueue_style('booked-responsive', 	BOOKED_PLUGIN_URL . '/assets/css/responsive.css', array(), BOOKED_VERSION);
+
+			if ( defined('NECTAR_THEME_NAME') && NECTAR_THEME_NAME == 'salient' ):
+				wp_enqueue_style('booked-salient-overrides', BOOKED_PLUGIN_URL . '/assets/css/theme-specific/salient.css', array(), BOOKED_VERSION);
+			endif;
+
 		}
 
 		public static function front_end_color_theme() {
 			if (!isset($_GET['print'])):
-				$colors_pattern_file = BOOKED_PLUGIN_DIR . '/css/color-theme.php';
+				$colors_pattern_file = BOOKED_PLUGIN_DIR . '/assets/css/color-theme.php';
 				if ( !file_exists($colors_pattern_file) ) {
 					return;
 				}
@@ -1098,46 +936,6 @@ if(!class_exists('booked_plugin')) {
 
 	} // END class booked_plugin
 } // END if(!class_exists('booked_plugin'))
-
-function booked_mailer($to,$subject,$message,$from_email = false,$from_name = false){
-	
-	add_filter( 'wp_mail_content_type', 'booked_set_html_content_type' );
-	
-	$booked_email_logo = get_option('booked_email_logo');
-	if ($booked_email_logo):
-		$logo = apply_filters( 'booked_email_logo_html', '<img src="'.$booked_email_logo.'" style="max-width:100%; height:auto; display:block; margin:10px 0 20px;">' );
-	else :
-		$logo = apply_filters( 'booked_email_logo_html', '' );
-	endif;
-
-	$link_color = get_option('booked_button_color','#56C477');
-
-	if ( file_exists( get_stylesheet_directory() . '/booked/email-template.html' ) ):
-		$template = file_get_contents( get_stylesheet_directory() . '/booked/email-template.html', true );
-	elseif ( file_exists( get_template_directory() . '/booked/email-template.html' ) ):
-		$template = file_get_contents( get_template_directory() . '/booked/email-template.html', true );
-	else:
-		$template = file_get_contents( untrailingslashit( BOOKED_PLUGIN_DIR ) . '/includes/email-templates/default.html', true );
-	endif;
-
-	$template = file_get_contents('includes/email-templates/default.html', true);
-	$filter = array('%content%','%logo%','%link_color%');
-	$replace = array(wpautop($message),$logo,$link_color);
-	if ( $from_email ):
-		$headers[] = 'From: ' . ( $from_name ? $from_name . ' <' . $from_email . '>' : $from_email );
-	endif;
-	$headers[] = 'Content-Type: text/html; charset=UTF-8';
-	$message = str_replace($filter, $replace, $template);
-
-	wp_mail($to,$subject,$message,$headers);
-
-	remove_filter( 'wp_mail_content_type', 'booked_set_html_content_type' );
-
-}
-
-function booked_set_html_content_type() {
-	return 'text/html';
-}
 
 if(class_exists('booked_plugin')) {
 	
