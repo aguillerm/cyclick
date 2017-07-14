@@ -39,7 +39,7 @@ class Booked_WC_Appointment {
 
 	public static function get( $post_id=null ) {
 		if ( !is_integer($post_id) ) {
-			$message = sprintf(__('Booked_WC_Appointment::get($post_id) integer expected when %1$s given.', 'booked-woocommerce-payments'), gettype($post_id));
+			$message = sprintf( __('%s integer expected when %s given.', 'booked-woocommerce-payments'), 'Booked_WC_Appointment::get($post_id)', gettype($post_id) );
 			throw new Exception($message);
 		} else if ( $post_id===0 ) {
 			self::$appointments[$post_id] = false;
@@ -51,11 +51,11 @@ class Booked_WC_Appointment {
 	}
 
 	protected function get_data() {
+
 		$this->post = get_post($this->post_id);
 
 		if ( !$this->post ) {
-			$message = sprintf(__('An error has occur while retrieving Appointment data for Appointment with ID %1$d.', 'booked-woocommerce-payments'), $this->post_id);
-			throw new Exception($message);
+			return false;
 		}
 
 		return $this;
@@ -98,30 +98,55 @@ class Booked_WC_Appointment {
 	}
 
 	protected function get_timeslot_text() {
-		$timeslots = explode('-', $this->timeslot);
-		$time_format = get_option('time_format');
-		$date_format = get_option('date_format');
 
-		$time_start = date_i18n($time_format, strtotime($timeslots[0]));
-		$time_end = date_i18n($time_format, strtotime($timeslots[1]));
+		global $timeslot_saved,$timestamp_saved;
 
-		$hide_end_times = get_option('booked_hide_end_times');
+		if ( !$this->timeslot && isset($timeslot_saved) && $timeslot_saved ):
 
-		$day_year = date_i18n($date_format, $this->timestamp);
+			$this->timeslot = $timeslot_saved;
 
-		if ($timeslots[0] == '0000' && $timeslots[1] == '2400') {
-			$timeslotText = __('All day Appointment', 'booked-woocommerce-payments');
-		} else if ( !$hide_end_times ) {
-			$timeslotText = sprintf(__('from %1$s to %2$s on %3$s', 'booked-woocommerce-payments'), $time_start, $time_end, $day_year);
-		} else if ( $hide_end_times ) {
-			$timeslotText = sprintf(__('at %1$s on %2$s', 'booked-woocommerce-payments'), $time_start, $day_year);
-		} else {
-			$timeslotText = 'N/A';
-		}
+		endif;
 
-		$this->timeslot_text = $timeslotText;
+		if ( !$this->timestamp && isset($timestamp_saved) && $timestamp_saved ):
 
-		return $this;
+			$this->timestamp = $timestamp_saved;
+
+		endif;
+
+		if ( !empty($this->timeslot) ):
+
+			$timeslots = explode('-', $this->timeslot);
+			$time_format = get_option('time_format');
+			$date_format = get_option('date_format');
+
+			$time_start = date_i18n($time_format, strtotime($timeslots[0]));
+			$time_end = date_i18n($time_format, strtotime($timeslots[1]));
+
+			$hide_end_times = get_option('booked_hide_end_times');
+			
+			if ( $this->timestamp ):
+				$timestamp_saved = $this->timestamp;
+			endif;
+
+			$day_year = date_i18n($date_format, $timestamp_saved);
+	
+			if ($timeslots[0] == '0000' && $timeslots[1] == '2400') {
+				$timeslotText = $day_year . ' (' . esc_html__('All day','booked-woocommerce-payments') . ')';
+			} else if ( !$hide_end_times ) {
+				$timeslotText = sprintf(__('from %1$s to %2$s on %3$s', 'booked-woocommerce-payments'), $time_start, $time_end, $day_year);
+			} else if ( $hide_end_times ) {
+				$timeslotText = sprintf(__('at %1$s on %2$s', 'booked-woocommerce-payments'), $time_start, $day_year);
+			} else {
+				$timeslotText = 'N/A';
+			}
+
+			$this->timeslot_text = $timeslotText;
+			$timeslot_saved = $this->timeslot;
+			
+			return $this;
+
+		endif;
+	
 	}
 
 	protected function get_calendar() {
@@ -182,7 +207,7 @@ class Booked_WC_Appointment {
 			$product_id = intval($product_data->product_id);
 			$data_to_add = array();
 
-			$product_obj = Booked_WC_Product::get($product_id);
+			$product_obj = wc_get_product($product_id);
 			$data_to_add['product'] = $product_obj;
 
 			if ( isset($product_data->variation_id) ) {

@@ -5,6 +5,7 @@ class Booked_WC_Cart {
 
 	// doesn't work on INIT, => use template_redirect
 	public static function add_appointment( $app_id=null ) {
+
 		$app_id = intval($app_id);
 
 		$appointment = Booked_WC_Appointment::get($app_id);
@@ -80,6 +81,11 @@ class Booked_WC_Cart {
 
 			$variation_attributes = array();
 
+			// If WPML is installed, let's make sure it adds the correct Product ID to the cart.
+			if ( function_exists( 'icl_object_id' ) ):
+				$product_id = icl_object_id( $product_id, 'product', true );
+			endif;
+
 			$cart->add_to_cart(
 				$product_id,
 				$quantity,
@@ -87,6 +93,7 @@ class Booked_WC_Cart {
 				$variation_attributes,
 				$additional_item_data
 			);
+
 		}
 
 		return true;
@@ -102,50 +109,65 @@ class Booked_WC_Cart {
 	}
 
 	public static function get_cart_appointments() {
-		$cart_items = WC()->cart->get_cart();
-		$cart_apps = array(
-			'extended' => array(), // app_id::product_id::variation_id
-			'ids' => array()
-		);
 
-		$app_id_key = BOOKED_WC_PLUGIN_PREFIX . 'appointment_id';
+		$cart = WC()->cart;
 
-		foreach ($cart_items as $cart_item) {
-			if ( !isset($cart_item[$app_id_key]) ) {
-				continue;
+		if ( method_exists($cart, 'get_cart') ):
+
+			$cart_items = $cart->get_cart();
+			$cart_apps = array(
+				'extended' => array(), // app_id::product_id::variation_id
+				'ids' => array()
+			);
+
+			$app_id_key = BOOKED_WC_PLUGIN_PREFIX . 'appointment_id';
+
+			foreach ($cart_items as $cart_item) {
+				if ( !isset($cart_item[$app_id_key]) ) {
+					continue;
+				}
+
+				$app_id = $cart_item[$app_id_key];
+				$product_id = intval($cart_item['product_id']);
+				$variation_id = intval($cart_item['variation_id']);
+
+				$cart_apps['ids'][] = $app_id;
+				$cart_apps['extended'][] = "{$app_id}::{$product_id}::{$variation_id}"; // app_id::product_id::variation_id
 			}
 
-			$app_id = $cart_item[$app_id_key];
-			$product_id = intval($cart_item['product_id']);
-			$variation_id = intval($cart_item['variation_id']);
+			return $cart_apps;
 
-			$cart_apps['ids'][] = $app_id;
-			$cart_apps['extended'][] = "{$app_id}::{$product_id}::{$variation_id}"; // app_id::product_id::variation_id
-		}
+		else:
 
-		return $cart_apps;
+			return false;
+
+		endif;
+
 	}
 }
 
 class Booked_WC_Cart_Hooks {
 
 	// change the product title on the cart page if it is assigned to a appointment
-	public static function woocommerce_cart_item_name($product_title, $cart_item, $cart_item_key) {
+	public static function woocommerce_cart_item_name( $product_title, $cart_item, $cart_item_key ) {
 		
 		$app_id_key = BOOKED_WC_PLUGIN_PREFIX . 'appointment_id';
 
 		if ( !isset($cart_item[$app_id_key]) ) {
 			return $product_title;
 		}
-                
 
 		$appt_id = intval($cart_item[$app_id_key]);
 
 		try {
 			
-			if (isset($cart_item['variation_id']) && $cart_item['variation_id']):
+			if ( isset($cart_item['variation_id']) && $cart_item['variation_id'] ):
 				$variation = wc_get_product($cart_item['variation_id']);
-				$variation_text = '<br>'.$variation->get_formatted_variation_attributes();
+				if ( function_exists( 'wc_get_formatted_variation' ) ):
+					$variation_text = '<br>' . wc_get_formatted_variation( $variation );
+				else:
+					$variation_text = '<br>' . $variation->get_formatted_variation_attributes();
+				endif;
 			else:
 				$variation_text = '';
 			endif;
@@ -153,39 +175,71 @@ class Booked_WC_Cart_Hooks {
 			$appointment = Booked_WC_Appointment::get($appt_id);
 
 			// remove product title link, so the visitors can't acess the product details page
-			$product_title = preg_replace('~<a[^>]+>([^<]+)</a>~i', '$1', $product_title).$variation_text;
+			$product_title = '<b>' . preg_replace('~<a[^>]+>([^<]+)</a>~i', '$1', $product_title) . ' &times; ' . $cart_item['quantity'] . '</b>' . $variation_text;
 
-			$product_title .= '<div class="booked-wc-checkout-section"><em><small>' . $appointment->timeslot_text . '</small></em></div>';
+			$product_title .= '<div class="booked-wc-checkout-section"><small>' . ucwords( $appointment->timeslot_text ) . '</small></div>';
 
 			if ( !empty($appointment->calendar) && !empty($appointment->calendar->calendar_obj) ) {
-				//$product_title .= '<div class="booked-wc-checkout-section"><small><b>' . __('Calendar', 'booked-woocommerce-payments') . ':</b><br/>' . $appointment->calendar->calendar_obj->name . '</small></div>';
+				
+				$product_title .= '<div class="booked-wc-checkout-section">';
 
-				// check for a booking agent
+				// Get the Date
+				$date_format = get_option('date_format');
+				$product_title .= '<small><b>' . __('Date', 'booked-woocommerce-payments') . ':</b>&nbsp;' . date_i18n( $date_format, $appointment->timestamp ) . '</small>';
+
+				// Get the Calendar Name
+				$product_title .= '<br><small><b>' . __('Calendar', 'booked-woocommerce-payments') . ':</b>&nbsp;' . $appointment->calendar->calendar_obj->name . '</small>';
+
+				// Check for a Booking Agent
 				$term_meta = get_option( "taxonomy_{$appointment->calendar->calendar_obj->term_id}" );
 	  			$assignee_email = $term_meta['notifications_user_id'];
 	  			if ( $assignee_email && ($usr=get_user_by('email', $assignee_email)) ) {
-					$product_title .= '<div class="booked-wc-checkout-section"><small><b>' . __('Booking Agent', 'booked-woocommerce-payments') . ':</b><br/>' . $usr->display_name . '</small></div>';
+					$product_title .= '<br><small><b>' . __('Booking Agent', 'booked-woocommerce-payments') . ':</b>&nbsp;' . $usr->display_name . '</small>';
 	  			}
+
+	  			$product_title .= '</div>';
 			}
 
 			$custom_fields = (array) $appointment->custom_fields;
 			foreach ($custom_fields as $field_label => $field_value) {
 				$product_title .= '<div class="booked-wc-checkout-section"><small><b>' . $field_label . ':</b><br/>' . $field_value . '</small></div>';
 			}
+
 		} catch (Exception $e) {
-			$text = __('The appointment no longer exists. Please double check your order.', 'booked-woocommerce-payments');
-			$product_title .= '<div class="booked-wc-checkout-section"><em><small>' . $text . '</small></em></div>';
+
+			echo '<pre>' . print_r( $e, true ) . '</pre>';
+
+			return $product_title;
+
 		}
-                /*
-		if ( !is_admin() ) {
-			$product_title .= '<b>' . __('Quantity', 'booked-woocommerce-payments') . ':</b>';
-		}*/
 
 		return $product_title;
+		
+	}
+
+	public static function woocommerce_checkout_cart_item_quantity( $quantity , $cart_item , $cart_item_key  ) {   
+    	$app_id_key = BOOKED_WC_PLUGIN_PREFIX . 'appointment_id';
+		if ( isset($cart_item[$app_id_key]) ) {
+			return false;
+		}
+		return $quantity;
+	}
+
+	public static function woocommerce_cart_item_thumbnail( $thumbnail, $cart_item ) {
+
+		$app_id_key = BOOKED_WC_PLUGIN_PREFIX . 'appointment_id';
+		if ( isset($cart_item[$app_id_key]) ) {
+			if ( Booked_WC_Settings::get_option('enable_thumbnails') === 'enable' ) {
+				return $thumbnail;
+			} else {
+				return false;
+			}
+		}
+
 	}
 
 	// removed the missing appointments from the cart
-	public static function woocommerce_remore_missing_appointment_products() {
+	public static function woocommerce_remove_missing_appointment_products() {
 
 		$cart = WC()->cart;
 		if ( !method_exists($cart, 'remove_cart_item') || !method_exists($cart, 'get_cart') ) {

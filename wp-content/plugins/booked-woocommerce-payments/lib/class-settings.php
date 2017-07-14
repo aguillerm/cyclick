@@ -26,8 +26,8 @@ class Booked_WC_Settings {
 	public function add_admin_menu_page () {
 		add_submenu_page(
 			BOOKED_WC_APPOINTMENTS_PAGE,
-			__('Payment Options', 'booked-woocommerce-payments'),
-			__('Payment Options', 'booked-woocommerce-payments'),
+			__('WooCommerce', 'booked-woocommerce-payments'),
+			__('WooCommerce', 'booked-woocommerce-payments'),
 			'manage_booked_options',
 			BOOKED_WC_PLUGIN_PREFIX . 'payment_options',
 			array($this, 'render_payment_options_page')
@@ -74,6 +74,7 @@ class Booked_WC_Settings_Fields {
 		// Sets the defaults if settings aren't saved yet.
 		$settings = get_option($this->options_name);
 		if ( !$settings ) {
+			$default_settings['enable_thumbnails'] = 'enable';
 			$default_settings['enable_auto_cleanup'] = 'disable';
 			$default_settings['cleanup_mode'] = 'twicedaily';
 			update_option($this->options_name, $default_settings);
@@ -86,6 +87,14 @@ class Booked_WC_Settings_Fields {
 			$this->options_name
 		);
 
+		add_settings_field(
+			'enable_thumbnails',
+			__('Enable Thumbnails', 'booked-woocommerce-payments'),
+			array($this, 'enable_thumbnails'),
+			$this->options_name,
+			$this->options_name
+		);
+		
 		add_settings_field(
 			'enable_auto_cleanup',
 			__('Enable Auto-Cleanup', 'booked-woocommerce-payments'),
@@ -117,6 +126,25 @@ class Booked_WC_Settings_Fields {
 
 	public function field_section() {
 		//
+	}
+
+	public function enable_thumbnails() {
+		$options = get_option($this->options_name);
+		$field_value = isset($options['enable_thumbnails']) ? $options['enable_thumbnails'] : false;
+
+		$radio_options = array(
+			'enable' => __('Enable', 'booked-woocommerce-payments'),
+			'disable' => __('Disable', 'booked-woocommerce-payments')
+		);
+		?>
+		<p><?php echo __('Enable this to show product thumbnails for Booked items (on the cart/checkout screens).', 'booked-woocommerce-payments') ?></p>
+		<?php foreach ($radio_options as $option_value => $option_label): ?>
+			<div>
+				<input name="<?php echo $this->options_name ?>[enable_thumbnails]" type="radio" value="<?php echo $option_value ?>" <?php echo checked($field_value, $option_value) ?> />
+				<p for="<?php echo $this->options_name ?>" style="display:inline-block; margin:0; padding:0; position:relative; top:-1px;"><?php echo $option_label ?></p>
+			</div>
+		<?php endforeach ?>
+		<?php
 	}
 
 	public function enable_auto_cleanup() {

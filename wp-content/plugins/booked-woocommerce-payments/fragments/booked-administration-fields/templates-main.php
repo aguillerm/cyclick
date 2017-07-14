@@ -3,7 +3,7 @@ if ( $field_type==='paid-service-label' ):
 	$look_for_subs = 'paid-service';
 	?>
 	<li class="ui-state-default">
-		<i class="main-handle fa fa-bars"></i>
+		<i class="main-handle booked-icon booked-icon-bars"></i>
 		<small><?php _e('Paid Service Selector', 'booked-woocommerce-payments'); ?></small>
 
 		<p>

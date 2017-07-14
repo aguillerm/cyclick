@@ -17,61 +17,22 @@ if(!class_exists('BookedFEA_Ajax')) {
 		// Delete an Appointment
 		public function booked_fea_delete_appt(){
 			
-			if (isset($_POST['appt_id'])):
-			
-				$time_format = get_option('time_format');
-				$date_format = get_option('date_format');
+			if ( isset($_POST['appt_id']) ):
 		
-				$appt_id = $_POST['appt_id'];
-				$appt = get_post($appt_id);
-				$user_id = $appt->post_author;
-				$timestamp = get_post_meta($appt_id,'_appointment_timestamp',true);
-				$cf_meta_value = get_post_meta($appt_id,'_cf_meta_value',true);
-		
-				$timeslot = get_post_meta($appt_id,'_appointment_timeslot',true);
-				$timeslots = explode('-',$timeslot);
-		
-				if ($timeslots[0] == '0000' && $timeslots[1] == '2400'):
-					$timeslotText = __('All day','booked-frontend-agents');
-				else :
-					$timeslotText = date_i18n($time_format,$timestamp);
-				endif;
-				
-				$appointment_calendar_id = get_the_terms( $appt_id,'booked_custom_calendars' );
-				if (!empty($appointment_calendar_id)):
-					foreach($appointment_calendar_id as $calendar):
-						$calendar_id = $calendar->term_id;
-						break;
-					endforeach;
-				else:
-					$calendar_id = false;
-				endif;
-				
-				if (!empty($calendar_id)): $calendar_term = get_term_by('id',$calendar_id,'booked_custom_calendars'); $calendar_name = $calendar_term->name; else: $calendar_name = false; endif;
+				$appt_id = esc_html( $_POST['appt_id'] );
 		
 				// Send an email to the user?
 				$email_content = get_option('booked_cancellation_email_content');
 				$email_subject = get_option('booked_cancellation_email_subject');
+				
 				if ($email_content && $email_subject):
-				
-					$guest_name = get_post_meta($appt_id, '_appointment_guest_name',true);
-					$guest_email = get_post_meta($appt_id, '_appointment_guest_email',true);
-				
-					if (!$guest_name):
-						$user_name = booked_get_name($user_id);
-						$user_data = get_userdata( $user_id );
-						$email = $user_data->user_email;
-					else:
-						$user_name = $guest_name;
-						$email = $guest_email;
-					endif;
-					
-					$tokens = array('%name%','%date%','%time%','%customfields%','%calendar%','%email%');
-					$replacements = array($user_name,date_i18n($date_format,$timestamp),$timeslotText,$cf_meta_value,$calendar_name,$email);
-					$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_subject = str_replace($tokens,$replacements,$email_subject);
-					booked_mailer( $email, $email_subject, $email_content );
+
+					$token_replacements = booked_get_appointment_tokens( $appt_id );
+					$email_content = booked_token_replacement( $email_content,$token_replacements );
+					$email_subject = booked_token_replacement( $email_subject,$token_replacements );
+
+					booked_mailer( $token_replacements['email'], $email_subject, $email_content );
+
 				endif;
 		
 				wp_delete_post($appt_id,true);
@@ -86,60 +47,21 @@ if(!class_exists('BookedFEA_Ajax')) {
 			
 			if (isset($_POST['appt_id'])):
 		
-				$appt_id = $_POST['appt_id'];
-		
-				$time_format = get_option('time_format');
-				$date_format = get_option('date_format');
-		
-				$appt = get_post($appt_id);
-				$user_id = $appt->post_author;
-				$timestamp = get_post_meta($appt_id,'_appointment_timestamp',true);
-				$cf_meta_value = get_post_meta($appt_id,'_cf_meta_value',true);
-		
-				$timeslot = get_post_meta($appt_id,'_appointment_timeslot',true);
-				$timeslots = explode('-',$timeslot);
-		
-				if ($timeslots[0] == '0000' && $timeslots[1] == '2400'):
-					$timeslotText = __('All day','booked-frontend-agents');
-				else :
-					$timeslotText = date_i18n($time_format,$timestamp);
-				endif;
-				
-				$appointment_calendar_id = get_the_terms( $appt_id,'booked_custom_calendars' );
-				if (!empty($appointment_calendar_id)):
-					foreach($appointment_calendar_id as $calendar):
-						$calendar_id = $calendar->term_id;
-						break;
-					endforeach;
-				else:
-					$calendar_id = false;
-				endif;
-				
-				if (!empty($calendar_id)): $calendar_term = get_term_by('id',$calendar_id,'booked_custom_calendars'); $calendar_name = $calendar_term->name; else: $calendar_name = false; endif;
+				$appt_id = esc_html( $_POST['appt_id'] );
 		
 				// Send an email to the user?
 				$email_content = get_option('booked_approval_email_content');
 				$email_subject = get_option('booked_approval_email_subject');
+
+				$token_replacements = booked_get_appointment_tokens( $appt_id );
+
 				if ($email_content && $email_subject):
-				
-					$guest_name = get_post_meta($appt_id, '_appointment_guest_name',true);
-					$guest_email = get_post_meta($appt_id, '_appointment_guest_email',true);
+
+					$email_content = booked_token_replacement( $email_content,$token_replacements );
+					$email_subject = booked_token_replacement( $email_subject,$token_replacements );
 					
-					if (!$guest_name):
-						$user_name = booked_get_name($user_id);
-						$user_data = get_userdata( $user_id );
-						$email = $user_data->user_email;
-					else:
-						$user_name = $guest_name;
-						$email = $guest_email;
-					endif;
+					booked_mailer( $token_replacements['email'], $email_subject, $email_content );
 					
-					$tokens = array('%name%','%date%','%time%','%customfields%','%calendar%','%email%');
-					$replacements = array($user_name,date_i18n($date_format,$timestamp),$timeslotText,$cf_meta_value,$calendar_name,$email);
-					$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_subject = str_replace($tokens,$replacements,$email_subject);
-					booked_mailer( $email, $email_subject, $email_content );
 				endif;
 		
 				wp_publish_post( $appt_id );
@@ -208,6 +130,8 @@ if(!class_exists('BookedFEA_Ajax')) {
 						else :
 							$timeslotText = $time_start.' '.__('to','booked-frontend-agents').' '.$time_end;
 						endif;
+						
+						$cf_meta_value = apply_filters('booked_fea_cf_metavalue',$cf_meta_value);
 			
 						echo '<p class="fea-modal-title fea-bordered">'.__('Appointment Information','booked-frontend-agents').'</p>';
 						do_action('booked_before_appointment_information_admin');
@@ -219,7 +143,7 @@ if(!class_exists('BookedFEA_Ajax')) {
 					endif;
 			
 					// Close button
-					echo '<a href="#" class="close"><i class="fa fa-remove"></i></a>';
+					echo '<a href="#" class="close"><i class="booked-icon booked-icon-close"></i></a>';
 				echo '</div>';
 				
 				echo ob_get_clean();

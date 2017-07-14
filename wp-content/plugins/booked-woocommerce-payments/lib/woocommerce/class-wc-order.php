@@ -20,7 +20,7 @@ class Booked_WC_Order {
 
 	public static function get( $order_id=null ) {
 		if ( !is_integer($order_id) ) {
-			$message = sprintf(__('Booked_WC_Order::get($order_id) integer expected when %1$s given.', 'booked-woocommerce-payments'), gettype($order_id));
+			$message = sprintf( __('%s integer expected when %s given.', 'booked-woocommerce-payments'), 'Booked_WC_Order::get($order_id)', gettype($order_id) );
 			throw new Exception($message);
 		} else if ( $order_id===0 ) {
 			self::$orders[$order_id] = false;
@@ -38,7 +38,7 @@ class Booked_WC_Order {
 	}
 
 	protected function get_status_text() {
-		$status = $this->order->post_status;
+		$status = $this->order->get_status();
 		$statuses = wc_get_order_statuses();
 
 		$this->order->post_status_text = isset($statuses[$status]) ? $statuses[$status] : $status;
@@ -95,6 +95,12 @@ class Booked_WC_Order_Hooks {
 		}
 	}
 	
+	public static function booked_wc_mailer_actions( $mailer_actions ){
+		$mailer_actions[] = 'booked_wc_confirmation_email';
+		$mailer_actions[] = 'booked_wc_admin_confirmation_email';
+		return $mailer_actions;
+	}
+
 	public static function woocommerce_order_complete( $order_id ) {
 		
 		$order_id = (int) $order_id;
@@ -113,92 +119,48 @@ class Booked_WC_Order_Hooks {
 
 		$completed = array();
 		foreach ($appointments as $appt_id) {
+			
 			if (!in_array($appt_id, $completed) && !get_post($appt_id)) {
 				return;
 			}
 
 			$completed[] = $appt_id;
 			
-			$title = get_post_meta($appt_id,'_appointment_title',true);
-			$timeslot = get_post_meta($appt_id,'_appointment_timeslot',true);
-			$timestamp = get_post_meta($appt_id,'_appointment_timestamp',true);
-			$cf_meta_value = get_post_meta($appt_id,'_cf_meta_value',true);
-			$timeslots = explode('-',$timeslot);
-			$time_format = get_option('time_format');
-			$date_format = get_option('date_format');
-			$hide_end_times = get_option('booked_hide_end_times',false);
-			
-			$timestamp_start = strtotime(date_i18n('Y-m-d',$timestamp).' '.$timeslots[0]);
-			$timestamp_end = strtotime(date_i18n('Y-m-d',$timestamp).' '.$timeslots[1]);
-			$current_timestamp = current_time('timestamp');
-			
-			if ($timeslots[0] == '0000' && $timeslots[1] == '2400'):
-				$timeslotText = __('All day','booked');
-			else :
-				$timeslotText = date_i18n($time_format,$timestamp_start).(!$hide_end_times ? '&ndash;'.date_i18n($time_format,$timestamp_end) : '');
-			endif;
-			
-			$appt = get_post( $appt_id );
-			$appt_author = $appt->post_author;
-			$guest_name = get_post_meta($appt_id,'_appointment_guest_name',true);
-			$guest_email = get_post_meta($appt_id,'_appointment_guest_email',true);
-			
-			if ($guest_name):
-				$user_name = $guest_name;
-				$email = $guest_email;
-			else:
-				$user_name = booked_get_name( $appt_author );
-				$user_data = get_userdata( $appt_author );
-				$email = $user_data->user_email;
-			endif;
-			
-			$appointment_calendar_id = get_the_terms( $appt_id,'booked_custom_calendars' );
-			if (!empty($appointment_calendar_id)):
-				foreach($appointment_calendar_id as $calendar):
-					$calendar_id = $calendar->term_id;
-					break;
-				endforeach;
-			else:
-				$calendar_id = false;
-			endif;
-					
-			if (!empty($calendar_id)): $calendar_term = get_term_by('id',$calendar_id,'booked_custom_calendars'); $calendar_name = $calendar_term->name; else: $calendar_name = false; endif;
-			
-			$day_name = date('D',$timestamp);
-			$timeslotText = apply_filters('booked_emailed_timeslot_text',$timeslotText,$timestamp_start,$timeslot,$calendar_id);
-			
 			// Add Booked WC confirmation email actions
-			add_action('booked_wc_confirmation_email', 'booked_mailer', 10, 3);
-			add_action('booked_wc_admin_confirmation_email', 'booked_mailer', 10, 3);
+			add_action( 'booked_wc_confirmation_email', 'booked_mailer', 10, 3 );
+			add_action( 'booked_wc_admin_confirmation_email', 'booked_mailer', 10, 3 );
 			
 			// Send a confirmation email to the User?
 			$email_content = get_option('booked_appt_confirmation_email_content');
 			$email_subject = get_option('booked_appt_confirmation_email_subject');
+
+			$token_replacements = booked_get_appointment_tokens( $appt_id );
+
 			if ($email_content && $email_subject):
-				$tokens = array('%name%','%date%','%time%','%customfields%','%calendar%','%email%','%title%');
-				$replacements = array($user_name,date_i18n($date_format,$timestamp),$timeslotText,$cf_meta_value,$calendar_name,$email,$title);
-				$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-				$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-				$email_subject = str_replace($tokens,$replacements,$email_subject);
-				do_action( 'booked_wc_confirmation_email', $email, $email_subject, $email_content );
+
+				$email_content = booked_token_replacement( $email_content,$token_replacements );
+				$email_subject = booked_token_replacement( $email_subject,$token_replacements );
+
+				do_action( 'booked_wc_confirmation_email', $token_replacements['email'], $email_subject, $email_content );
+
 			endif;
 		
 			// Send an email to the Admin?
 			$email_content = get_option('booked_admin_appointment_email_content');
 			$email_subject = get_option('booked_admin_appointment_email_subject');
 			if ($email_content && $email_subject):
+
 				$admin_email = booked_which_admin_to_send_email($calendar_id);
-				$tokens = array('%name%','%date%','%time%','%customfields%','%calendar%','%email%','%title%');
-				$replacements = array($user_name,date_i18n($date_format,$timestamp),$timeslotText,$cf_meta_value,$calendar_name,$email,$title);
-				$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-				$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-				$email_subject = str_replace($tokens,$replacements,$email_subject);
+				$email_content = booked_token_replacement( $email_content,$token_replacements );
+				$email_subject = booked_token_replacement( $email_subject,$token_replacements );
+
 				do_action( 'booked_wc_admin_confirmation_email', $admin_email, $email_subject, $email_content );
+				
 			endif;
 			
 			// Remove Booked WC confirmation email actions
-			remove_action('booked_wc_confirmation_email', 'booked_mailer', 10);
-			remove_action('booked_wc_admin_confirmation_email', 'booked_mailer', 10);
+			remove_action( 'booked_wc_confirmation_email', 'booked_mailer', 10 );
+			remove_action( 'booked_wc_admin_confirmation_email', 'booked_mailer', 10 );
 			
 		}
 		
@@ -223,13 +185,13 @@ class Booked_WC_Order_Hooks {
 			}
 
 			foreach ($appointment->products as $product) {
-				$product_id = $product->product_id;
+				$product_id = apply_filters( 'wpml_object_id', $product->product_id, 'product', false);
 				$variation_id = isset($product->variation_id) ? $product->variation_id : 0;
 
 				$check_key = "{$app_id}::{$product_id}::{$variation_id}";
 
 				if ( !in_array($check_key, $cart_appointments['extended']) ) {
-					$message = sprintf(__('Appointment "%1$s" and Cart products do not match. Please make sure that all Appointment products are available in the Cart.', 'booked-woocommerce-payments'), $appointment->timeslot_text);
+					$message = sprintf( __('Appointment "%s" and cart products do not match. Please make sure that all appointment products are available in the cart.', 'booked-woocommerce-payments'), $appointment->timeslot_text );
 					throw new Exception( $message );
 				}
 			}

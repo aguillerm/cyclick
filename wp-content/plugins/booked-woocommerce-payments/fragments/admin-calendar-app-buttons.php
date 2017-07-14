@@ -7,9 +7,11 @@ $awaiting_status = BOOKED_WC_PLUGIN_PREFIX . 'awaiting';
 
 ?>
 
-<?php if ( !$appointment->order_id || $appointment->order_id == 'manual' ): ?>
+<?php
 
-	<a href="#" class="delete" <?php echo $calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '' ?> ><i class="fa fa-remove"></i></a>
+if ( !$appointment->order_id || $appointment->order_id == 'manual' ): ?>
+
+	<a href="#" class="delete" <?php echo $calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '' ?> ><i class="booked-icon booked-icon-close"></i></a>
 	
 <?php endif; ?>
 

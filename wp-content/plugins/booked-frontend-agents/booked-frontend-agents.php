@@ -1,17 +1,16 @@
 <?php
 	
 /*
-Plugin Name: Booked Front-end Agents
+Plugin Name: Booked Add-On: Front-End Agents
 Plugin URI: http://booked.boxydemos.com
 Description: Adds the ability for Booking Agents to manage their appointments on the front-end.
-Version: 1.1.13
+Version: 1.1.14
 Author: Boxy Studio
 Author URI: https://www.boxystudio.com
 */
 
 define('BOOKEDFEA_PLUGIN_DIR', dirname(__FILE__));
 define('BOOKEDFEA_PLUGIN_URL', WP_PLUGIN_URL . '/booked-frontend-agents');
-define('BOOKEDFEA_VERSION','1.1.13');
 
 // Include the required class for plugin updates.
 require_once('updates/plugin-update-checker.php');
@@ -49,11 +48,11 @@ if( in_array('booked/booked.php',apply_filters('active_plugins',get_option('acti
 			}
 			
 			public static function front_end_styles() {
-				wp_enqueue_style('booked-fea-styles', BOOKEDFEA_PLUGIN_URL . '/css/styles.css', array(), BOOKEDFEA_VERSION);
+				wp_enqueue_style('booked-fea-styles', BOOKEDFEA_PLUGIN_URL . '/css/styles.css', array(), BOOKED_VERSION);
 			}
 			
 			public static function front_end_scripts() {
-				wp_register_script('booked-fea-js', BOOKEDFEA_PLUGIN_URL . '/js/functions.js', array(), BOOKEDFEA_VERSION, true);
+				wp_register_script('booked-fea-js', BOOKEDFEA_PLUGIN_URL . '/js/functions.js', array(), BOOKED_VERSION, true);
 				$booked_fea_vars = array(
 					'ajax_url' => admin_url( 'admin-ajax.php' ),
 					'i18n_confirm_appt_delete' => __('Are you sure you want to cancel this appointment?','booked-frontend-agents'),
@@ -68,22 +67,22 @@ if( in_array('booked/booked.php',apply_filters('active_plugins',get_option('acti
 				$custom_tabs = array(
 					'fea_appointments' => array(
 						'title' => __('Upcoming Appointments','booked-frontend-agents'),
-						'fa-icon' => 'fa-calendar',
+						'booked-icon' => 'booked-icon-calendar',
 						'class' => false
 					),
 					'fea_pending' => array(
 						'title' => __('Pending Appointments','booked-frontend-agents') . '<div class="counter"></div>',
-						'fa-icon' => 'fa-clock-o',
+						'booked-icon' => 'booked-icon-clock',
 						'class' => false
 					),
 					'fea_history' => array(
 						'title' => __('Appointment History','booked-frontend-agents'),
-						'fa-icon' => 'fa-calendar-o',
+						'booked-icon' => 'booked-icon-calendar',
 						'class' => false
 					),
 					'edit' => array(
 						'title' => __('Edit Profile','booked-frontend-agents'),
-						'fa-icon' => 'fa-edit',
+						'booked-icon' => 'booked-icon-pencil',
 						'class' => 'edit-button'
 					)
 				);

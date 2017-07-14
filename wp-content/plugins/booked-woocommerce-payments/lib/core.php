@@ -62,6 +62,8 @@ class Booked_WC {
 		add_filter('booked_admin_pending_post_status',array('Booked_WC_Functions', 'booked_admin_pending_post_status'), 10, 2);
 		add_filter('booked_fea_shortcode_appointments_buttons', array('Booked_WC_Functions', 'booked_fea_shortcode_appointments_buttons'), 10, 2);
 		add_filter('woocommerce_cart_item_name', array('Booked_WC_Cart_Hooks', 'woocommerce_cart_item_name'), 10, 3);
+		add_filter('woocommerce_cart_item_thumbnail', array('Booked_WC_Cart_Hooks', 'woocommerce_cart_item_thumbnail'), 10, 2 );
+		add_filter('woocommerce_checkout_cart_item_quantity', array('Booked_WC_Cart_Hooks', 'woocommerce_checkout_cart_item_quantity'), 10, 3 );
 		add_filter('woocommerce_order_item_name', array('Booked_WC_Order_Item_Hooks', 'woocommerce_order_item_name'), 10, 2);
 		add_filter('woocommerce_attribute_label', array('Booked_WC_Order_Item_Hooks', 'woocommerce_attribute_label'), 10, 3);
 		add_filter('woocommerce_hidden_order_itemmeta', array('Booked_WC_Order_Hooks', 'woocommerce_hidden_order_itemmeta'), 10);
@@ -71,7 +73,7 @@ class Booked_WC {
 		# Actions
 		# ------------------
 
-		add_action('wp_loaded', array('Booked_WC_Cart_Hooks', 'woocommerce_remore_missing_appointment_products'), 10, 1);
+		add_action('wp_loaded', array('Booked_WC_Cart_Hooks', 'woocommerce_remove_missing_appointment_products'), 10, 1);
 		add_action('woocommerce_resume_order', array('Booked_WC_Order_Hooks', 'woocommerce_validate_order_items'), 10, 1);
 		add_action('woocommerce_new_order', array('Booked_WC_Order_Hooks', 'woocommerce_validate_order_items'), 10, 1);
 		add_action('wp_ajax_booked_new_appointment_form', array('Booked_WC_Functions', 'booked_new_appointment_form'), 5);

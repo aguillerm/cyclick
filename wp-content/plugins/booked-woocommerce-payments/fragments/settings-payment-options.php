@@ -1,5 +1,5 @@
 <div class="booked-settings-wrap booked-payment-settings-wrap wrap">
-	<div class="booked-settings-title"><?php echo __('Payment Settings', 'booked-woocommerce-payments') ?></div>
+	<div class="booked-settings-title"><?php echo __('WooCommerce Settings', 'booked-woocommerce-payments') ?></div>
 
 	<div id="booked-admin-panel-container">
 

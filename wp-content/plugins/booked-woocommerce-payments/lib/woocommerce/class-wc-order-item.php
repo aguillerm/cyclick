@@ -41,8 +41,6 @@ class Booked_WC_Order_Item_Hooks {
 
 		if ( $appointment ) {
 			$meta_value = $appointment->timeslot_text;
-		} else {
-			$meta_value = __('Appointment is no longer available.', 'booked-woocommerce-payments');
 		}
 
 		return $meta_value;
@@ -81,8 +79,6 @@ class Booked_WC_Order_Item_Hooks {
 
 		if ( $appointment ) {
 			$string = $appointment->timeslot_text;
-		} else {
-			$string = __('Appointment is no longer available.', 'booked-woocommerce-payments');
 		}
 
 		return $string;

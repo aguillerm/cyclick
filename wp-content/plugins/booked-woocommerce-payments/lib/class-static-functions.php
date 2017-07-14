@@ -24,7 +24,8 @@ class Booked_WC_Functions {
 						'compare' => '=',
 						'value' => 'yes'
 					)
-				)
+				),
+				'suppress_filters' => false
 			));
 
 			$options = array();
@@ -47,15 +48,15 @@ class Booked_WC_Functions {
 		if ( $calendar_id ) {
 			$calendar_id = intval($calendar_id);
 			$search_query = "`post_type` = 'page' AND `post_content` LIKE '%calendar={$calendar_id}%'";
-			$search_query .= " OR `post_type` = 'page' AND `post_content` LIKE '%calendar=\'{$calendar_id}\'%'";
 			$search_query .= " OR `post_type` = 'page' AND `post_content` LIKE '%calendar=\"{$calendar_id}\"%'";
+			$search_query .= ' OR `post_type` = "page" AND `post_content` LIKE "%calendar=\'{'.$calendar_id.'}\'%"';
 			$query = "SELECT * FROM `{$wpdb->posts}` WHERE ".$search_query;
 			$pages = $wpdb->get_results($query);
 		}
 		
 		if ( !$pages ) {
 			$shortcode = '[booked-calendar';
-			$query = "SELECT * FROM `{$wpdb->posts}` WHERE `post_type` = 'page' AND `post_content` LIKE '%{$shortcode}%'";
+			$query = "SELECT * FROM `{$wpdb->posts}` WHERE `post_type` = 'page' AND `post_content` LIKE '{$shortcode}'";
 			$pages = $wpdb->get_results($query);
 		}
 		
@@ -153,7 +154,7 @@ class Booked_WC_Functions {
 		// handle the custom fields data
 		$has_product = false;
 
-		foreach($custom_fields as $field) {
+		foreach($custom_fields as $key => $field) {
 			$field_name = $field['name'];
 			$field_parts = explode('---',$field_name);
 			$field_type = $field_parts[0];
@@ -177,7 +178,7 @@ class Booked_WC_Functions {
 			$is_required = (isset($end_of_string[1]) ? true : false);
 
 			// set product title
-			$custom_field_data[$field_title] = esc_html($product->title);
+			$custom_field_data[$key]['value'] = esc_html($product->title);
 
 			$field_marker .= 'product_id::' . $product_id;
 
@@ -189,16 +190,16 @@ class Booked_WC_Functions {
 					$variation_title = $variation_details['variation_title'];
 
 					// add variation value
-					$custom_field_data[$field_title] .= '<br />[ ' . esc_html($variation_title) . ' ]';
-
+					$custom_field_data[$key]['value'] .= '<br />[ ' . esc_html($variation_title) . ' ]';
 					$field_marker .= '|variation_id::' . $variation_id;
+
 				}
 			}
 
 			// add a marker containing the product ID
 			// simple-product -> product_id::ID
 			// variable-product -> product_id::ID|variation_id::ID
-			$custom_field_data[$field_title] .= "<!-- {$field_marker} -->";
+			$custom_field_data[$key]['value'] .= "<!-- {$field_marker} -->";
 
 			$has_product = true;
 		}
@@ -212,7 +213,10 @@ class Booked_WC_Functions {
 				$assignee_email = $term_meta['notifications_user_id'];
 	
 				if ( $assignee_email && ($usr=get_user_by('email', $assignee_email)) ) {
-					$custom_field_data[__('Booking Agent', 'booked-woocommerce-payments')] = $usr->display_name;
+					$custom_field_data['booking-agent'] = array(
+						'label' => esc_attr__('Booking Agent', 'booked-woocommerce-payments'),
+						'value' => $usr->display_name
+					);
 				}
 			}
 		
@@ -241,6 +245,7 @@ class Booked_WC_Functions {
 	}
 
 	public static function booked_store_appointment_creation_date( $appointment_id=null ) {
+		
 		if ( !$appointment_id ) {
 			return;
 		}
@@ -249,6 +254,7 @@ class Booked_WC_Functions {
 
 		update_post_meta($appointment_id, '_' . BOOKED_WC_PLUGIN_PREFIX . 'time_created', $current_time);
 		update_post_meta($appointment_id, '_' . BOOKED_WC_PLUGIN_PREFIX . 'date_created', date('Y-m-d H:i:s', $current_time));
+		
 	}
 
 	public static function booked_get_custom_fields_information() {
@@ -355,7 +361,7 @@ class Booked_WC_Functions {
 		}
 	}
 
-	public static function booked_new_appointment_created( $appointment_id=null ) {
+	public static function booked_new_appointment_created( $appointment_id = null ) {
 		
 		if ( is_admin() && isset($_POST['booked_form_type']) && $_POST['booked_form_type'] == 'admin' ):
 			return;		
@@ -502,12 +508,16 @@ class Booked_WC_Functions {
 					break;
 				endif;
 			endforeach;
+			
+			$booked_disable_confirmation_emails = apply_filters( 'booked_disable_confirmation_emails', true );
 	
-			if ( $booked_wc_product ) {
+			if ( $booked_wc_product && $booked_disable_confirmation_emails ) {
 				remove_action( 'booked_confirmation_email', 'booked_mailer', 10 );
+				remove_action( 'booked_admin_confirmation_email', 'booked_mailer', 10 );
 			} else {
 				return;
 			}
+			
 		else:
 			return;
 		endif;

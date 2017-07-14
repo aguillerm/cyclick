@@ -47,12 +47,6 @@ $input_customer_type = 'current';
 
 $current_user = wp_get_current_user();
 
-$appointment_limit = get_option('booked_appointment_limit');
-if ($appointment_limit) {
-	$upcoming_user_appointments = booked_user_appointments($current_user->ID,true);
-	$reached_limit = $upcoming_user_appointments >= $appointment_limit;
-}
-
 $appt_timeslot = $timeslotText ? $timeslotText : '';
 $appt_date_name = date_i18n( $date_format, strtotime( $date ) );
 
@@ -77,34 +71,30 @@ $user_nickname = get_user_meta($current_user->ID, 'nickname', true);
 		<input type="hidden" name="app_action" value="<?php echo $app_action ?>" />
 		<input type="hidden" name="source" value="<?php echo $source ?>" />
 
-		<?php
-		if (!$reached_limit): ?>
-			<p><?php echo sprintf(__('Please confirm that you would like to change the appointment date for %s to the following:', 'booked-woocommerce-payments'), $user_nickname); ?></p>
+		<p><?php echo sprintf(__('Please confirm that you would like to change the appointment date for %s to the following:', 'booked-woocommerce-payments'), $user_nickname); ?></p>
 
-			<div class="booked-appointments">
-				<div class="booked-appointment-details">
-					<p class="appointment-info"><i class="fa fa-calendar-o"></i>&nbsp;&nbsp;&nbsp;<?php echo sprintf( esc_html__( '%s at %s','booked' ), $appt_date_name, $appt_timeslot ); ?></p>
-				</div>
+		<div class="booked-appointments">
+			<div class="booked-appointment-details">
+				<p class="appointment-info"><i class="booked-icon booked-icon-calendar"></i>&nbsp;&nbsp;&nbsp;<?php echo sprintf( esc_html__( '%s at %s','booked' ), $appt_date_name, $appt_timeslot ); ?></p>
 			</div>
+		</div>
 
-			<input type="hidden" name="user_id" value="<?php echo $current_user->ID; ?>" />
+		<input type="hidden" name="user_id" value="<?php echo $current_user->ID; ?>" />
 
-			<div class="field">
-				<p class="status"></p>
-			</div>
+		<div class="field">
+			<p class="status"></p>
+		</div>
 
-			<div class="field">
-				<?php if (!$reached_limit): ?>
-					<input type="submit" id="submit-edit-request-appointment" class="button button-primary" value="<?php _e('Update Appointment Date', 'booked-woocommerce-payments'); ?>">
-					<button class="cancel button"><?php _e('Cancel', 'booked-woocommerce-payments'); ?></button>
-				<?php else: ?>
-					<button class="cancel button"><?php _e('Okay', 'booked-woocommerce-payments'); ?></button>
-				<?php endif; ?>
-			</div>
-		<?php else : ?>
-			<p><?php echo sprintf(_n("Sorry, but you've hit the appointment limit. Each user may only book %d appointment at a time.","Sorry, but you've hit the appointment limit. Each user may only book %d appointments at a time.", $appointment_limit, 'booked-woocommerce-payments'), $appointment_limit); ?></p>
-		<?php endif; ?>
+		<div class="field">
+			<?php if (!$reached_limit): ?>
+				<input type="submit" id="submit-edit-request-appointment" class="button button-primary" value="<?php _e('Update Appointment Date', 'booked-woocommerce-payments'); ?>">
+				<button class="cancel button"><?php _e('Cancel', 'booked-woocommerce-payments'); ?></button>
+			<?php else: ?>
+				<button class="cancel button"><?php _e('Okay', 'booked-woocommerce-payments'); ?></button>
+			<?php endif; ?>
+		</div>
+
 	</form>
 </div>
 
-<a href="#" class="close"><i class="fa fa-remove"></i></a>
+<a href="#" class="close"><i class="booked-icon booked-icon-close"></i></a>

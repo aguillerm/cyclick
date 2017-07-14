@@ -1,5 +1,6 @@
 <?php
-// $product = Booked_WC_Product::get( $product_id );
+
+//$product = Booked_WC_Product::get( $product_id );
 
 if ( !$product->variations ) {
 	return;

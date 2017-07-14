@@ -1,13 +1,44 @@
-=== Booked Payments with WooCommerce ===
+=== Booked Add-On: WooCommerce Payments ===
 Donate link: https://boxystudio.com/#coffee
 Tags: booked, add-on
 Requires at least: 4.0
-Tested up to: 4.6.1
-Stable tag: 4.6.1
+Tested up to: 4.8
 
 Adds the ability to accept payments for appointments using WooCommerce.
 
 == Changelog ==
+
+= 1.4.5 =
+* *FIX:* Fixed an issue when clicking the "Pay Now" button.
+
+= 1.4.4 =
+* **NEW:** Added option to show/hide the product thumbnail in the cart.
+* **NEW:** Added support for Booked 2.0.
+
+= 1.4.3 =
+* *FIX:* Some bug fixes related to cart items.
+
+= 1.4.2 =
+* **NEW** Added support for WordPress 4.8.
+* *FIX:* Fixes with lables and values for bookings. Update Booked to the latest version as well or this won't work properly.
+
+= 1.4.1 =
+* *FIX:* Fixes an issue with adding appointments to the cart when using WPML.
+
+= 1.4.0 =
+* **NEW:** WooCommerce 3.x Support
+* **NEW:** The appointment date is now shown in the cart/checkout screens.
+* *FIX:* Fixes for "free" products.
+* *FIX:* Fixes for product variations.
+* *FIX:* Linked thumbnail is now hidden from cart page for appointments.
+* *FIX:* Cleaned up the cart/checkout pages in regards to the product display and quantity text.
+
+= 1.3.3 =
+* *FIX:* Fixed an issue related to "booked_wc_variables".
+* *FIX:* Fixed an issue where the appointment limit (if set) was reached when the user tried to change the appointment date.
+
+= 1.3.2 =
+* *FIX:* Fixed a WPML issue where products would not show in different languages where applicable.
 
 = 1.3.1 =
 * *FIX:* Fixed an issue where in some cases, the "Change Date" button would not function properly.

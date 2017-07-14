@@ -5,6 +5,7 @@ class Booked_WC_Prevent_Purchasing {
 	private function __construct() {
 
 		add_action('pre_get_posts', array($this, 'remove_products_from_shop_listing'), 90, 1);
+		
 	}
 
 	public static function setup() {

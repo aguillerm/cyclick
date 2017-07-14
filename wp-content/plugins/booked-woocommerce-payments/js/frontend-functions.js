@@ -4,10 +4,10 @@
 	var $field_container;
 
 	$doc.ready(function() {
-		
+			
 		$(document).on("booked-on-new-app", function(event) {
 			$field_container = $('.field.field-paid-service');
-			booked_wc_products_field();
+			booked_wc_products_field($field_container);
 		});
 
 		booked_wc_btn_edit_appointment_shortcode();
@@ -28,8 +28,9 @@
 		
 	});
 
-	function booked_wc_products_field() {
-		var $dropdown = $('select', $field_container);
+	function booked_wc_products_field(field_container) {
+
+		var $dropdown = $('select', field_container);
 
 		$dropdown.on('change', function() {
 			var $this = $(this),
@@ -43,6 +44,7 @@
 	}
 
 	function booked_wc_load_variations( product_id, field_name, calendar_id, variations_container ) {
+
 		if ( !product_id ) {
 			variations_container.html('');
 			return;
@@ -196,7 +198,7 @@
 			
 			var $thisButton = $(this);
 			
-			$('form#newAppointmentForm p.status').show().html('<i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;&nbsp;' + booked_js_vars.i18n_please_wait);
+			$('form#newAppointmentForm p.status').show().html('<i class="booked-icon booked-icon-spinner-clock booked-icon-spin"></i>&nbsp;&nbsp;&nbsp;' + booked_js_vars.i18n_please_wait);
 	        resize_booked_modal();
 			
 			e.preventDefault();
@@ -221,7 +223,7 @@
 							if (!thisVal){ $(this).val(thisDefault); }
 						});
 
-						$('form#newAppointmentForm p.status').show().html('<i class="fa fa-warning" style="color:#E35656"></i>&nbsp;&nbsp;&nbsp;' + data[1]);
+						$('form#newAppointmentForm p.status').show().html('<i class="booked-icon booked-icon-alert" style="color:#E35656"></i>&nbsp;&nbsp;&nbsp;' + data[1]);
 						resize_booked_modal();
 
 					} else {

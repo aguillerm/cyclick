@@ -58,6 +58,7 @@ class Booked_WC_Ajax {
 	}
 
 	public function load_product_variations() {
+
 		if (
 			empty($_POST['product_id'])
 			|| !get_post($_POST['product_id'])
@@ -86,8 +87,7 @@ class Booked_WC_Ajax {
 
 		try {
 			$product = Booked_WC_Product::get($product_id);
-
-			$fragment_file = Booked_WC_Fragments::get_path('ajax-loaded/product', 'variations');
+			$fragment_file = Booked_WC_Fragments::get_path('ajax-loaded/product','variations');
 			include($fragment_file);
 		} catch (Exception $e) {
 			$message = __('An error has occur.', 'booked-woocommerce-payments');

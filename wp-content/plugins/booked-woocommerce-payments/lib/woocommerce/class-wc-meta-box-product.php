@@ -44,10 +44,12 @@ class Booked_WC_Meta_Box_Product_Data {
 	# ------------------
 
 	public function woocommerce_process_product_meta( $post_id ) {
+		
 		// Get types
 		$is_booked_appointment = isset($_POST['_booked_appointment']) ? 'yes' : 'no';
 
 		// Product type + Booked Appointment Service
 		update_post_meta($post_id, '_booked_appointment', $is_booked_appointment);
+		
 	}
 }

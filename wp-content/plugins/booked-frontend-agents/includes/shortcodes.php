@@ -130,7 +130,7 @@ class Booked_FEA_Shortcodes {
 						echo '<div class="appt-block bookedClearFix" data-appt-id="'.$appt['post_id'].'">';
 						
 							$default_button_html = '<div class="booked-fea-buttons">';
-								$default_button_html .= '<a href="#" class="delete"'.($calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '').'><i class="fa fa-remove"></i></a>';
+								$default_button_html .= '<a href="#" class="delete"'.($calendar_id ? ' data-calendar-id="'.$calendar_id.'"' : '').'><i class="booked-icon booked-icon-close"></i></a>';
 								$default_button_html .= ($status_class == 'pending' ? '<button data-appt-id="'.$appt['post_id'].'" class="approve button button-primary">'.__('Approve','booked-frontend-agents').'</button>' : '');
 							$default_button_html .=	'</div>';
 						
@@ -190,11 +190,12 @@ class Booked_FEA_Shortcodes {
 							echo '<br>';
 							if ($late_date > $date_to_compare): echo '<span class="late-appt">' . __('This appointment has passed.','booked-frontend-agents') . '</span><br>'; endif;
 							if ($appt['calendar_id']): echo '<strong style="color:#000">'.$appt['calendar_id'][0]->name.'</strong><br>'; endif;
-							echo '<i class="fa fa-calendar"></i>'.$day_name.', '.$date_display;
-							echo '&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o"></i>'.$timeslotText;
+							echo '<i class="booked-icon booked-icon-calendar"></i>'.$day_name.', '.$date_display;
+							echo '&nbsp;&nbsp;&nbsp;<i class="booked-icon booked-icon-clock"></i>'.$timeslotText;
 							
 							do_action('booked_shortcode_appointments_additional_information', $appt['post_id']);
-							echo ($cf_meta_value ? '<br><i class="fa fa-info-circle"></i><a href="#" class="booked-show-cf">'.__('Additional information','booked-frontend-agents').'</a><div class="cf-meta-values-hidden">'.$cf_meta_value.'</div>' : '');
+							$cf_meta_value = apply_filters('booked_fea_cf_metavalue',$cf_meta_value);
+							echo ($cf_meta_value ? '<br><i class="booked-icon booked-icon-info"></i><a href="#" class="booked-show-cf">'.__('Additional information','booked-frontend-agents').'</a><div class="cf-meta-values-hidden">'.$cf_meta_value.'</div>' : '');
 							
 							if (!$historic):
 								if ($appt_date_time >= $date_to_compare):

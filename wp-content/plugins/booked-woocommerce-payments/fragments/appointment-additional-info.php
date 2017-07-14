@@ -23,4 +23,4 @@ if ( $appointment->order_id ) {
 }
 ?>
 
-<br><i class="fa fa-shopping-cart"></i><span class="<?php echo $payment_class ?>" ><?php echo $status_text ?></span>
+<br><i class="booked-icon booked-icon-cart"></i><span class="<?php echo $payment_class ?>" ><?php echo $status_text ?></span>

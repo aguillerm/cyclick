@@ -1,13 +1,15 @@
-=== Booked Front-end Agents ===
+=== Booked Add-On: Front-End Agents ===
 Donate link: https://boxystudio.com/#coffee
 Tags: booked, add-on
 Requires at least: 4.0
-Tested up to: 4.5.2
-Stable tag: 4.5.2
+Tested up to: 4.8
 
 Adds the ability for Booking Agents to manage their appointments on the front-end.
 
 == Changelog ==
+
+= 1.1.14 =
+* **NEW:** Added support for Booked 2.0.
 
 = 1.1.13 =
 * *FIX:* Fixed another issue where Administrators were not seeing their upcoming appointments on the front-end profile.

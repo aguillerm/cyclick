@@ -37,4 +37,5 @@ class Booked_WC_Variation {
 
 		return $variation_data_to_return;
 	}
+	
 }

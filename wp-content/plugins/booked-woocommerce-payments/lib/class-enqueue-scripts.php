@@ -44,21 +44,25 @@ class Booked_WC_EnqueueScript {
 		if ($default_post_status != 'draft'):
 			$js_variables_array['i18n_confirm_appt_edit'] = false;
 		endif;
-		
-		wp_localize_script('jquery', 'booked_wc_variables', $js_variables_array );
+
+		wp_localize_script( 'booked-wc-fe-functions', 'booked_wc_variables', $js_variables_array );
+		wp_localize_script( 'booked-wc-admin-functions', 'booked_wc_variables', $js_variables_array );
+
 	}
 
 	public function enqueue_front_end_script() {
 		if ( !is_admin() ):
-			wp_enqueue_script('booked-wc-fe-functions', $this->plugin_url . '/js/frontend-functions.js', array('jquery') );
-			wp_enqueue_style('booked-wc-fe-styles', $this->plugin_url . '/css/frontend-style.css');
+			wp_register_script( 'booked-wc-fe-functions', $this->plugin_url . '/js/frontend-functions.js', array('jquery') );
+			wp_enqueue_style( 'booked-wc-fe-styles', $this->plugin_url . '/css/frontend-style.css' );
 			$this->add_js_variables();
+			wp_enqueue_script( 'booked-wc-fe-functions' );
 		endif;
 	}
 
 	public function enqueue_back_end_script() {
-		wp_enqueue_script('booked-wc-admin-functions', $this->plugin_url . '/js/admin-functions.js', array('jquery') );
-		wp_enqueue_style('booked-wc-admin-styles', $this->plugin_url . '/css/admin-style.css');
+		wp_register_script( 'booked-wc-admin-functions', $this->plugin_url . '/js/admin-functions.js', array('jquery') );
+		wp_enqueue_style( 'booked-wc-admin-styles', $this->plugin_url . '/css/admin-style.css' );
 		$this->add_js_variables();
+		wp_enqueue_script( 'booked-wc-admin-functions' );
 	}
 }

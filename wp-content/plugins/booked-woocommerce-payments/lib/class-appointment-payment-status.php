@@ -11,10 +11,10 @@ class Booked_WC_Appointment_Payment_Status {
 
 	public function __construct($app_id) {
 		if ( !is_integer($app_id) ) {
-			$message = sprintf(__('new Booked_WC_Appointment_Payment_Status::get($app_id) integer expected when %1$s given.', 'booked-woocommerce-payments'), gettype($app_id));
+			$message = sprintf( __('%s integer expected when %s given.', 'booked-woocommerce-payments'), 'new Booked_WC_Appointment_Payment_Status::get($app_id)', gettype($app_id) );
 			throw new Exception($message);
 		} else if ( $app_id===0 ) {
-			$message = __('new Booked_WC_Appointment_Payment_Status::get($app_id) invalid ID is given. $app_id=0', 'booked-woocommerce-payments');
+			$message = sprintf( __('%s invalid ID is given. %s', 'booked-woocommerce-payments'), 'new Booked_WC_Appointment_Payment_Status::get($app_id)', '$app_id=0' );
 			throw new Exception($message);
 		}
 
@@ -41,13 +41,13 @@ class Booked_WC_Appointment_Payment_Status {
 
 	public function set_statuses() {
 		
-		if ( $this->order_id && $this->order_id === 'manual' || $this->order_id && $this->order_obj->order->post_status === 'wc-completed' ) {
+		if ( $this->order_id && $this->order_id === 'manual' || $this->order_id && $this->order_obj->order->get_status() === 'wc-completed' || $this->order_id && $this->order_obj->order->get_status() === 'completed' ) {
 			$this->is_paid = true;
 			$this->payment_status = 'paid';
 			$this->payment_status_text = __('Order Paid', 'booked-woocommerce-payments');
 		} elseif ( $this->order_id ) {
-			$this->is_paid = $this->order_obj->order->post_status === 'wc-completed';
-			$this->payment_status = $this->order_obj->order->post_status;
+			$this->is_paid = ( $this->order_obj->order->get_status() === 'wc-completed' || $this->order_obj->order->get_status() === 'completed' );
+			$this->payment_status = $this->order_obj->order->get_status();
 			$this->payment_status_text = __('Order ', 'booked-woocommerce-payments') . $this->order_obj->order->post_status_text;
 		}
 

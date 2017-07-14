@@ -1,15 +1,15 @@
 <?php
 $products = Booked_WC_Functions::get_products();
 ?>
-<li id="bookedCFTemplate-paid-service-label" class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+<li id="bookedCFTemplate-paid-service-label" class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 	<small><?php _e('Paid Service Selector', 'booked-woocommerce-payments'); ?></small>
 	<p><input class="cf-required-checkbox" type="checkbox" name="required" id="required"> <label for="required"><?php _e('Required Field', 'booked-woocommerce-payments'); ?></label></p>
 	<input type="text" name="paid-service-label" value="" placeholder="Enter a label for this drop-down group..." />
 	<ul id="booked-cf-paid-service"></ul>
-	<button class="cfButton button" data-type="single-paid-service"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php _e('WooCommerce Product', 'booked-woocommerce-payments'); ?></button>
-	<span class="cf-delete"><i class="fa fa-close"></i></span>
+	<button class="cfButton button" data-type="single-paid-service"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php _e('WooCommerce Product', 'booked-woocommerce-payments'); ?></button>
+	<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 </li>
-<li id="bookedCFTemplate-single-paid-service" class="ui-state-default"><i class="sub-handle fa fa-bars"></i>
+<li id="bookedCFTemplate-single-paid-service" class="ui-state-default"><i class="sub-handle booked-icon booked-icon-bars"></i>
 	<select name="single-paid-service" >
 		<option value=""><?php _e('Select a Product', 'booked-woocommerce-payments'); ?></option>
 		<?php foreach ($products['options'] as $product_id => $product_title): ?>
@@ -17,5 +17,5 @@ $products = Booked_WC_Functions::get_products();
 			<option value="<?php echo $product_id ?>"><?php echo esc_html($product->title); ?></option>
 		<?php endforeach ?>
 	</select>
-	<span class="cf-delete"><i class="fa fa-close"></i></span>
+	<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 </li>
