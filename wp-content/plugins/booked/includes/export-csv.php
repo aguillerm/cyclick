@@ -25,7 +25,7 @@ endif;
 header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=booked_appointments_export.csv');
 $output = fopen('php://output', 'w');
-fputcsv($output, array('Name','Email','Calendar','Date','Start Time','End Time','Combined Date/Time','Custom Field Data'));
+fputcsv($output, array('First Name','Last Name','Email','Calendar','Date','Start Time','End Time','Combined Date/Time','Custom Field Data'));
 
 $args = array(
 	'post_type' => 'booked_appointments',
@@ -71,12 +71,14 @@ if($bookedAppointments->have_posts()):
 		$user_id = get_post_meta($post->ID, '_appointment_user',true);
 		
 		$customer_name = false;
+		$customer_surname = false;
 		$customer_email = false;
 		
 		if ($user_id):
 			$user_info = get_userdata($user_id);
 			if (!empty($user_info)):
-				$customer_name = booked_get_name($user_id);
+				$customer_name = booked_get_name( $user_id, 'first' );
+				$customer_surname = booked_get_name( $user_id, 'last' );
 				$customer_email = $user_info->user_email;
 			else:
 				continue;
@@ -86,6 +88,7 @@ if($bookedAppointments->have_posts()):
 		if (!$customer_name):
 		
 			$customer_name = get_post_meta($post->ID, '_appointment_guest_name',true);
+			$customer_surname = get_post_meta($post->ID, '_appointment_guest_surname',true);
 			$customer_email = get_post_meta($post->ID, '_appointment_guest_email',true);
 		
 		endif;
@@ -101,8 +104,9 @@ if($bookedAppointments->have_posts()):
 		$time_start = date_i18n($time_format,strtotime(date_i18n('Y-m-d',$timestamp).' '.$timeslot[0]));
 		$time_end = date_i18n($time_format,strtotime(date_i18n('Y-m-d',$timestamp).' '.$timeslot[1]));
 		
-		$appointments_array[$post->ID]['customer_name'] = $customer_name;
-		$appointments_array[$post->ID]['customer_email'] = $customer_email;
+		$appointments_array[$post->ID]['customer_name'] = esc_html( $customer_name );
+		$appointments_array[$post->ID]['customer_surname'] = esc_html( $customer_surname );
+		$appointments_array[$post->ID]['customer_email'] = esc_html( $customer_email );
 		$appointments_array[$post->ID]['calendar'] = implode(',',$calendars);
 		$appointments_array[$post->ID]['appointment_date'] = $date_start;
 		$appointments_array[$post->ID]['appointment_start_time'] = $time_start;

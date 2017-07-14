@@ -22,10 +22,12 @@ endif;
 
 ?>
 <div class="booked-scrollable">
-	
+
+	<p class="booked-title-bar"><small><?php esc_html_e('New Appointment','booked'); ?></small></p>
+		
 	<?php if ($calendar_name): ?><p class="booked-calendar-name"><?php echo $calendar_name; ?></p><?php endif; ?>
 	
-	<p class="name"><b><i class="fa fa-calendar-o"></i>&nbsp;&nbsp;<?php echo date_i18n($date_format, strtotime($date)); ?>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o"></i>&nbsp;&nbsp;<?php echo $timeslotText; ?></b></p>
+	<p class="name"><b><i class="booked-icon booked-icon-calendar"></i>&nbsp;&nbsp;<?php echo date_i18n($date_format, strtotime($date)); ?>&nbsp;&nbsp;&nbsp;&nbsp;<i class="booked-icon booked-icon-clock"></i>&nbsp;&nbsp;<?php echo $timeslotText; ?></b></p>
 	<form action="" method="post" class="booked-form" id="newAppointmentForm"<?php if ($calendar_id): echo ' data-calendar-id="'.$calendar_id.'"'; endif; ?>>
 
 		<input type="hidden" name="date" value="<?php echo date_i18n('Y-m-j', strtotime($date)); ?>" />
@@ -49,7 +51,7 @@ endif;
 
 		<br>
 
-		<div class="condition-block customer_type default" id="condition-current">
+		<div class="condition-block customer_type default" id="condition-current" data-condition-val="current">
 			<div class="field">
 				<select data-placeholder="<?php esc_html_e('Select a customer','booked'); ?>..." id="userList" name="user_id">
 					<option></option>
@@ -62,7 +64,7 @@ endif;
 		
 		<?php $name_requirements = get_option('booked_registration_name_requirements',array('require_name')); ?>
 
-		<div class="condition-block customer_type" id="condition-new">
+		<div class="condition-block customer_type" id="condition-new" data-condition-val="new">
 			
 			<?php if (isset($name_requirements[0]) && $name_requirements[0] == 'require_surname'): ?>
 				<div class="field">
@@ -83,7 +85,7 @@ endif;
 		
 		<?php if ($guest_booking): ?>
 		
-			<div class="condition-block customer_type" id="condition-guest">
+			<div class="condition-block customer_type" id="condition-guest" data-condition-val="guest">
 
 				<?php if (isset($name_requirements[0]) && $name_requirements[0] == 'require_surname'): ?>
 					<div class="field">
@@ -121,6 +123,4 @@ endif;
 	</form>
 </div>
 
-<p class="booked-title-bar"><small><?php esc_html_e('New Appointment','booked'); ?></small></p>
-
-<?php echo '<a href="#" class="close"><i class="fa fa-remove"></i></a>';
+<?php echo '<a href="#" class="close"><i class="booked-icon booked-icon-close"></i></a>';

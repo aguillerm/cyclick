@@ -33,19 +33,19 @@ $appointment_counter = 0;
 			
 			<div class="booked-appointments">
 				<?php
-				foreach ($appointments as $appointment_key => $appointment) {
+				foreach ($appointments as $appointment_key => $appointment):
 					// print the appointment details
-					include(BOOKED_AJAX_INCLUDES_DIR . 'front/appointment-form/appointment.php');
+					include( BOOKED_AJAX_INCLUDES_DIR . 'front/appointment-form/appointment.php' );
 					$appointment_counter++;
-				}
+				endforeach;
 				?>
 			</div>
 
 			<?php
-			if ( ! $is_user_logged_in && $customer_type != 'guest' ) {
-				include(BOOKED_AJAX_INCLUDES_DIR . 'front/appointment-form/form-fields-registration.php');
+			if ( get_option('users_can_register') && !$is_user_logged_in && $customer_type != 'guest' ) {
+				include( BOOKED_AJAX_INCLUDES_DIR . 'front/appointment-form/form-fields-registration.php' );
 			} elseif ( !$is_user_logged_in && $customer_type == 'guest' ) {
-				include(BOOKED_AJAX_INCLUDES_DIR . 'front/appointment-form/form-fields-guest.php');
+				include( BOOKED_AJAX_INCLUDES_DIR . 'front/appointment-form/form-fields-guest.php' );
 			}
 			?>
 
@@ -94,7 +94,7 @@ $appointment_counter = 0;
 			</div>
 
 			<?php
-			if ( ! $is_user_logged_in ) {
+			if ( get_option('users_can_register') && !$is_user_logged_in ) {
 				include(BOOKED_AJAX_INCLUDES_DIR . 'front/appointment-form/form-fields-registration.php');
 			}
 			?>

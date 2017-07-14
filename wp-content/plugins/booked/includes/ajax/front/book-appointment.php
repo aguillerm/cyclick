@@ -50,12 +50,12 @@ if ($appt_is_available):
 	
 	$custom_field_data = array();
 	$cf_meta_value = '';
-	
+
 	if (!empty($custom_fields)):
 	
 		$previous_field = false;
-	
-		foreach($custom_fields as $field):
+
+		foreach($custom_fields as $key => $field):
 	
 			$field_name = $field['name'];
 			$field_title = $field['value'];
@@ -77,7 +77,11 @@ if ($appt_is_available):
 					if (is_array($field_value)){
 						$field_value = implode(', ',$field_value);
 					}
-					$custom_field_data[$current_group_name] = $field_value;
+
+					$custom_field_data[$key] = array(
+						'label' => $current_group_name,
+						'value' => $field_value
+					);
 	
 				endif;
 	
@@ -86,12 +90,12 @@ if ($appt_is_available):
 			}
 	
 		endforeach;
-		
+
 		$custom_field_data = apply_filters('booked_custom_field_data', $custom_field_data);
 	
 		if (!empty($custom_field_data)):
-			foreach($custom_field_data as $label => $value):
-				$cf_meta_value .= '<p class="cf-meta-value"><strong>'.$label.'</strong><br>'.$value.'</p>';
+			foreach($custom_field_data as $key => $data):
+				$cf_meta_value .= '<p class="cf-meta-value"><strong>'.$data['label'].'</strong><br>'.$data['value'].'</p>';
 			endforeach;
 		endif;
 	
@@ -133,51 +137,38 @@ if ($appt_is_available):
 				
 				if ($appointment_default_status == 'publish'): wp_publish_post($post_id); endif;
 		
-				if (apply_filters('booked_update_cf_meta_value', true)) {
+				if ( apply_filters('booked_update_cf_meta_value', true) ) {
 					update_post_meta($post_id, '_cf_meta_value', $cf_meta_value);
 				}
 		
-				if (apply_filters('booked_update_appointment_calendar', true)) {
+				if ( apply_filters('booked_update_appointment_calendar', true) ) {
 					if (!empty($calendar_id)): $calendar_term = get_term_by('id',$calendar_id[0],'booked_custom_calendars'); $calendar_name = $calendar_term->name; wp_set_object_terms($post_id,$calendar_id,'booked_custom_calendars'); else: $calendar_name = false; endif;
 				}
-		
-				$timeslots = explode('-',$timeslot);
-		
-				$timestamp_start = strtotime('2015-01-01 '.$timeslots[0]);
-				$timestamp_end = strtotime('2015-01-01 '.$timeslots[1]);
-		
-				if ($timeslots[0] == '0000' && $timeslots[1] == '2400'):
-					$timeslotText = esc_html__('All day','booked');
-				else :
-					$timeslotText = date_i18n($time_format,$timestamp_start).(!$hide_end_times ? '&ndash;'.date_i18n($time_format,$timestamp_end) : '');
-				endif;
-				
-				$day_name = date('D',$timestamp);
-				$timeslotText = apply_filters('booked_emailed_timeslot_text',$timeslotText,$timestamp,$timeslot,$calendar_id);
 				
 				// Send a confirmation email to the User?
-				$email_content = get_option('booked_appt_confirmation_email_content');
-				$email_subject = get_option('booked_appt_confirmation_email_subject');
-				if ($email_content && $email_subject):
-					$tokens = array('%name%','%date%','%time%','%customfields%','%calendar%','%email%','%title%');
-					$replacements = array($fullname,date_i18n($date_format,$timestamp),$timeslotText,$cf_meta_value,$calendar_name,$email,$title);
-					$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_subject = str_replace($tokens,$replacements,$email_subject);
-					do_action('booked_confirmation_email', $email, $email_subject, $email_content );
+				$email_content = get_option('booked_appt_confirmation_email_content',false);
+				$email_subject = get_option('booked_appt_confirmation_email_subject',false);
+
+				$token_replacements = booked_get_appointment_tokens( $post_id );
+
+				if ( $email_content && $email_subject ):
+					
+					$email_content = booked_token_replacement( $email_content,$token_replacements );
+					$email_subject = booked_token_replacement( $email_subject,$token_replacements );
+					do_action( 'booked_confirmation_email', $token_replacements['email'], $email_subject, $email_content );
+
 				endif;
 			
 				// Send an email to the Admin?
-				$email_content = get_option('booked_admin_appointment_email_content');
-				$email_subject = get_option('booked_admin_appointment_email_subject');
+				$email_content = get_option('booked_admin_appointment_email_content',false);
+				$email_subject = get_option('booked_admin_appointment_email_subject',false);
 				if ($email_content && $email_subject):
-					$admin_email = booked_which_admin_to_send_email($_POST['calendar_id']);
-					$tokens = array('%name%','%date%','%time%','%customfields%','%calendar%','%email%','%title%');
-					$replacements = array($fullname,date_i18n($date_format,$timestamp),$timeslotText,$cf_meta_value,$calendar_name,$email,$title);
-					$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_subject = str_replace($tokens,$replacements,$email_subject);
-					do_action('booked_admin_confirmation_email', $admin_email, $email_subject, $email_content, $email, $fullname );
+
+					$admin_email = booked_which_admin_to_send_email( esc_html( $_POST['calendar_id'] ) );
+					$email_content = booked_token_replacement( $email_content,$token_replacements );
+					$email_subject = booked_token_replacement( $email_subject,$token_replacements );
+					do_action( 'booked_admin_confirmation_email', $admin_email, $email_subject, $email_content, $token_replacements['email'], $token_replacements['name'] );
+
 				endif;
 				
 				do_action('booked_new_appointment_created', $post_id);
@@ -237,49 +228,33 @@ if ($appt_is_available):
 			if (!empty($calendar_id)): $calendar_term = get_term_by('id',$calendar_id[0],'booked_custom_calendars'); $calendar_name = $calendar_term->name; wp_set_object_terms($post_id,$calendar_id,'booked_custom_calendars'); else: $calendar_name = false; endif;
 		}
 	
-		$timeslots = explode('-',$timeslot);
-	
-		$timestamp_start = strtotime('2015-01-01 '.$timeslots[0]);
-		$timestamp_end = strtotime('2015-01-01 '.$timeslots[1]);
-	
-		if ($timeslots[0] == '0000' && $timeslots[1] == '2400'):
-			$timeslotText = esc_html__('All day','booked');
-		else :
-			$timeslotText = date_i18n($time_format,$timestamp_start).(!$hide_end_times ? '&ndash;'.date_i18n($time_format,$timestamp_end) : '');
-		endif;
-		
-		$day_name = date('D',$timestamp);
-		$timeslotText = apply_filters('booked_emailed_timeslot_text',$timeslotText,$timestamp,$timeslot,$calendar_id);
-	
 		// Send a confirmation email to the User?
 		$email_content = get_option('booked_appt_confirmation_email_content');
 		$email_subject = get_option('booked_appt_confirmation_email_subject');
+
+		$token_replacements = booked_get_appointment_tokens( $post_id );
+
 		if ($email_content && $email_subject):
-			$user_name = booked_get_name($user_id);
-			$user_data = get_userdata( $user_id );
-			$email = $user_data->user_email;
-			$tokens = array('%name%','%date%','%time%','%customfields%','%calendar%','%email%','%title%');
-			$replacements = array($user_name,date_i18n($date_format,$timestamp),$timeslotText,$cf_meta_value,$calendar_name,$email,$title);
-			$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-			$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-			$email_subject = str_replace($tokens,$replacements,$email_subject);
-			do_action( 'booked_confirmation_email', $email, $email_subject, $email_content );
+
+			$email_content = booked_token_replacement( $email_content,$token_replacements );
+			$email_subject = booked_token_replacement( $email_subject,$token_replacements );
+
+			do_action( 'booked_confirmation_email', $token_replacements['email'], $email_subject, $email_content );
+
 		endif;
 	
 		// Send an email to the Admin?
 		$email_content = get_option('booked_admin_appointment_email_content');
 		$email_subject = get_option('booked_admin_appointment_email_subject');
+
 		if ($email_content && $email_subject):
+
 			$admin_email = booked_which_admin_to_send_email($_POST['calendar_id']);
-			$user_name = booked_get_name($user_id);
-			$user_data = get_userdata( $user_id );
-			$email = $user_data->user_email;
-			$tokens = array('%name%','%date%','%time%','%customfields%','%calendar%','%email%','%title%');
-			$replacements = array($user_name,date_i18n($date_format,$timestamp),$timeslotText,$cf_meta_value,$calendar_name,$email,$title);
-			$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-			$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-			$email_subject = str_replace($tokens,$replacements,$email_subject);
-			do_action( 'booked_admin_confirmation_email', $admin_email, $email_subject, $email_content, $email, $user_name );
+			$email_content = booked_token_replacement( $email_content,$token_replacements );
+			$email_subject = booked_token_replacement( $email_subject,$token_replacements );
+
+			do_action( 'booked_admin_confirmation_email', $admin_email, $email_subject, $email_content, $token_replacements['email'], $token_replacements['name'] );
+
 		endif;
 		
 		do_action('booked_new_appointment_created', $post_id);
@@ -310,19 +285,12 @@ if ($appt_is_available):
 				$captcha_code = false;
 		    endif;
 		
-			$username = ( $surname ? sanitize_user($name.'_'.$surname) : sanitize_user($name) );
-			$errors = booked_registration_validation($username,$email,$password,$captcha_word,$captcha_code);
-		
-			if (!empty($errors)):
-				$rand = rand(111,999);
-				$username = $username.'_'.$rand;
-				$errors = booked_registration_validation($username,$email,$password,$captcha_word,$captcha_code);
-			endif;
+			$errors = booked_registration_validation($email,$password,$captcha_word,$captcha_code);
 		
 			if (empty($errors)):
 			
 				$userdata = array(
-		        	'user_login'    =>  $username,
+		        	'user_login'    =>  $email,
 					'user_email'    =>  $email,
 					'user_pass'     =>  $password,
 					'first_name'	=>	$name,
@@ -334,70 +302,15 @@ if ($appt_is_available):
 				wp_update_user( array ('ID' => $user_id, 'display_name' => $name ) );
 		
 		        $creds = array();
-				$creds['user_login'] = $username;
+				$creds['user_login'] = $email;
 				$creds['user_password'] = $password;
 				$creds['remember'] = true;
 				$user_signon = wp_signon( $creds, false );
 				if ( is_wp_error($user_signon) ){
 					$signin_errors = $user_signon->get_error_message();
 				}
-		
-		        $timeslots = explode('-',$timeslot);
-		
-				$timestamp_start = strtotime('2015-01-01 '.$timeslots[0]);
-				$timestamp_end = strtotime('2015-01-01 '.$timeslots[1]);
-		
-				if ($timeslots[0] == '0000' && $timeslots[1] == '2400'):
-					$timeslotText = esc_html__('All day','booked');
-				else :
-					$timeslotText = date_i18n($time_format,$timestamp_start).(!$hide_end_times ? '&ndash;'.date_i18n($time_format,$timestamp_end) : '');
-				endif;
-				
-				$day_name = date('D',$timestamp);
-				$timeslotText = apply_filters('booked_emailed_timeslot_text',$timeslotText,$timestamp,$timeslot,$calendar_id);
-				
-				if (apply_filters('booked_update_appointment_calendar', true)) {
-					if (!empty($calendar_id)): $calendar_term = get_term_by('id',$calendar_id[0],'booked_custom_calendars'); $calendar_name = $calendar_term->name; wp_set_object_terms($post_id,$calendar_id,'booked_custom_calendars'); else: $calendar_name = false; endif;
-				}
-		
-		        // Send an email to the Admin?
-		        $email_content = get_option('booked_admin_appointment_email_content');
-				$email_subject = get_option('booked_admin_appointment_email_subject');
-				if ($email_content && $email_subject):
-					$admin_email = booked_which_admin_to_send_email($_POST['calendar_id']);
-					$tokens = array('%name%','%date%','%time%','%customfields%','%calendar%','%email%','%title%');
-					$replacements = array($fullname,date_i18n($date_format,$timestamp),$timeslotText,$cf_meta_value,$calendar_name,$email,$title);
-					$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_subject = str_replace($tokens,$replacements,$email_subject);
-					do_action( 'booked_admin_confirmation_email', $admin_email, $email_subject, $email_content, $email, $fullname );
-				endif;
-		
-				// Send a registration welcome email to the new user?
-				$email_content = get_option('booked_registration_email_content');
-				$email_subject = get_option('booked_registration_email_subject');
-				if ($email_content && $email_subject):
-					$tokens = array('%name%','%email%','%username%','%password%');
-					$replacements = array($fullname,$email,$username,$password);
-					$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_subject = str_replace($tokens,$replacements,$email_subject);
-					do_action( 'booked_registration_email', $email, $email_subject, $email_content );
-				endif;
-		
-				// Send an email to the User?
-				$email_content = get_option('booked_appt_confirmation_email_content');
-				$email_subject = get_option('booked_appt_confirmation_email_subject');
-				if ($email_content && $email_subject):
-					$tokens = array('%name%','%date%','%time%','%customfields%','%calendar%','%email%','%title%');
-					$replacements = array($fullname,date_i18n($date_format,$timestamp),$timeslotText,$cf_meta_value,$calendar_name,$email,$title);
-					$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-					$email_subject = str_replace($tokens,$replacements,$email_subject);
-					do_action( 'booked_confirmation_email', $email, $email_subject, $email_content );
-				endif;
-		
-		        // Create a new appointment post for this new customer
+
+				// Create a new appointment post for this new customer
 				$new_post = apply_filters('booked_new_appointment_args', array(
 					'post_title' => date_i18n($date_format,$timestamp).' @ '.date_i18n($time_format,$timestamp).' (User: '.$user_id.')',
 					'post_content' => '',
@@ -413,7 +326,7 @@ if ($appt_is_available):
 				update_post_meta($post_id, '_appointment_timeslot', $timeslot);
 				update_post_meta($post_id, '_appointment_user', $user_id);
 				
-				if ($appointment_default_status == 'publish'): wp_publish_post($post_id); endif;
+				if ($appointment_default_status == 'publish'): wp_publish_post( $post_id ); endif;
 		
 				if (apply_filters('booked_update_cf_meta_value', true)) {
 					update_post_meta($post_id, '_cf_meta_value', $cf_meta_value);
@@ -424,6 +337,60 @@ if ($appt_is_available):
 				}
 		
 				do_action('booked_new_appointment_created', $post_id);
+				
+				if (apply_filters('booked_update_appointment_calendar', true)) {
+					if (!empty($calendar_id)): $calendar_term = get_term_by('id',$calendar_id[0],'booked_custom_calendars'); $calendar_name = $calendar_term->name; wp_set_object_terms($post_id,$calendar_id,'booked_custom_calendars'); else: $calendar_name = false; endif;
+				}
+
+				$token_replacements = booked_get_appointment_tokens( $post_id );
+		
+		        // Send an email to the Admin?
+		        $email_content = get_option('booked_admin_appointment_email_content');
+				$email_subject = get_option('booked_admin_appointment_email_subject');
+
+				if ($email_content && $email_subject):
+
+					$email_calendar_id = esc_html( $_POST['calendar_id'] );
+
+					$admin_email = booked_which_admin_to_send_email( $email_calendar_id );
+					$email_content = booked_token_replacement( $email_content,$token_replacements );
+					$email_subject = booked_token_replacement( $email_subject,$token_replacements );
+
+					do_action( 'booked_admin_confirmation_email', $admin_email, $email_subject, $email_content, $token_replacements['email'], $token_replacements['name'] );
+
+				endif;
+		
+				// Send a registration welcome email to the new user?
+				$email_content = get_option('booked_registration_email_content');
+				$email_subject = get_option('booked_registration_email_subject');
+				if ($email_content && $email_subject):
+
+					$token_replacements = array(
+						'name' => $fullname,
+						'email' => $email,
+						'username' => $email,
+						'password' => $password
+					);
+
+					$email_content = booked_token_replacement( $email_content,$token_replacements,'user' );
+					$email_subject = booked_token_replacement( $email_subject,$token_replacements,'user' );
+
+					do_action( 'booked_registration_email', $token_replacements['email'], $email_subject, $email_content );
+
+				endif;
+		
+				// Send an email to the User?
+				$email_content = get_option('booked_appt_confirmation_email_content');
+				$email_subject = get_option('booked_appt_confirmation_email_subject');
+
+				if ($email_content && $email_subject):
+
+					$email_content = booked_token_replacement( $email_content,$token_replacements );
+					$email_subject = booked_token_replacement( $email_subject,$token_replacements );
+
+					do_action( 'booked_confirmation_email', $token_replacements['email'], $email_subject, $email_content );
+
+				endif;
 		
 				$_SESSION['appt_requested'] = 1;
 				$_SESSION['new_account'] = 1;
@@ -463,19 +430,12 @@ elseif ( $is_new_registration ):
 			$captcha_code = false;
 	    endif;
 	
-		$username = ( $surname ? sanitize_user($name.'_'.$surname) : sanitize_user($name) );
-		$errors = booked_registration_validation($username,$email,$password,$captcha_word,$captcha_code);
-	
-		if (!empty($errors)):
-			$rand = rand(111,999);
-			$username = $username.'_'.$rand;
-			$errors = booked_registration_validation($username,$email,$password,$captcha_word,$captcha_code);
-		endif;
+		$errors = booked_registration_validation($email,$password,$captcha_word,$captcha_code);
 	
 		if (empty($errors)):
 		
 			$userdata = array(
-	        	'user_login'    =>  $username,
+	        	'user_login'    =>  $email,
 				'user_email'    =>  $email,
 				'user_pass'     =>  $password,
 				'first_name'	=>	$name,
@@ -489,7 +449,7 @@ elseif ( $is_new_registration ):
 			wp_update_user( array ('ID' => $user_id, 'display_name' => $name ) );
 	
 	        $creds = array();
-			$creds['user_login'] = $username;
+			$creds['user_login'] = $email;
 			$creds['user_password'] = $password;
 			$creds['remember'] = true;
 			$user_signon = wp_signon( $creds, false );
@@ -501,12 +461,19 @@ elseif ( $is_new_registration ):
 			$email_content = get_option('booked_registration_email_content');
 			$email_subject = get_option('booked_registration_email_subject');
 			if ($email_content && $email_subject):
-				$tokens = array('%name%','%email%','%username%','%password%');
-				$replacements = array($fullname,$email,$username,$password);
-				$email_content = htmlentities(str_replace($tokens,$replacements,$email_content), ENT_QUOTES | ENT_IGNORE, "UTF-8");
-				$email_content = html_entity_decode($email_content, ENT_QUOTES | ENT_IGNORE, "UTF-8");
-				$email_subject = str_replace($tokens,$replacements,$email_subject);
-				do_action( 'booked_registration_email', $email, $email_subject, $email_content );
+
+				$token_replacements = array(
+					'name' => $fullname,
+					'email' => $email,
+					'username' => $email,
+					'password' => $password
+				);
+
+				$email_content = booked_token_replacement( $email_content,$token_replacements,'user' );
+				$email_subject = booked_token_replacement( $email_subject,$token_replacements,'user' );
+
+				do_action( 'booked_registration_email', $token_replacements['email'], $email_subject, $email_content );
+				
 			endif;
 	
 			do_action('booked_new_appointment_created', $post_id);

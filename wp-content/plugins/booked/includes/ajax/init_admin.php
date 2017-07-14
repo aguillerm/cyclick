@@ -8,6 +8,7 @@ if(!class_exists('Booked_Admin_AJAX')) {
 			// ------------ Actions ------------ //
 			
 			add_action('wp_ajax_booked_admin_add_appt', array(&$this,'booked_admin_add_appt'));
+			add_action('wp_ajax_booked_admin_edit_appt', array(&$this,'booked_admin_edit_appt'));
 			add_action('wp_ajax_booked_admin_delete_custom_timeslot', array(&$this,'booked_admin_delete_custom_timeslot'));
 			add_action('wp_ajax_booked_admin_adjust_custom_timeslot_count', array(&$this,'booked_admin_adjust_custom_timeslot_count'));
 			add_action('wp_ajax_booked_admin_add_custom_timeslot', array(&$this,'booked_admin_add_custom_timeslot'));
@@ -24,6 +25,7 @@ if(!class_exists('Booked_Admin_AJAX')) {
 			add_action('wp_ajax_booked_admin_delete_all', array(&$this,'booked_admin_delete_all'));
 			add_action('wp_ajax_booked_admin_delete_past', array(&$this,'booked_admin_delete_past'));
 			add_action('wp_ajax_booked_date_formatting', array(&$this,'booked_date_formatting'));
+			add_action('wp_ajax_booked_admin_disable_slot', array(&$this,'booked_admin_disable_slot'));
 			
 			
 			// ------------ Loaders ------------ //
@@ -38,11 +40,44 @@ if(!class_exists('Booked_Admin_AJAX')) {
 			add_action('wp_ajax_booked_admin_user_info_modal', array(&$this,'booked_admin_user_info_modal'));
 			add_action('wp_ajax_booked_admin_new_appointment_form', array(&$this,'booked_admin_new_appointment_form'));
 			add_action('wp_ajax_booked_admin_custom_timeslots_list', array(&$this,'booked_admin_custom_timeslots_list'));
+			add_action('wp_ajax_booked_admin_get_timeslots_select', array(&$this,'booked_admin_get_timeslots_select'));
 		
 		}
 		
 		
 		// ------------ ACTIONS ------------ //
+
+		// Enable/Disable Time Slot
+		public function booked_admin_disable_slot(){
+
+			$date = esc_html( $_POST['date'] );
+			$timeslot = esc_html( $_POST['timeslot'] );
+			$calendar_id = esc_html( $_POST['calendar_id'] );
+
+			$disabled_timeslots = get_option( 'booked_disabled_timeslots', array() );
+
+			if ( $calendar_id ):
+				if ( isset( $disabled_timeslots[$calendar_id][$date][$timeslot] ) ):
+					echo 'enabled';
+					unset( $disabled_timeslots[$calendar_id][$date][$timeslot] );
+				else:
+					echo 'disabled';
+					$disabled_timeslots[$calendar_id][$date][$timeslot] = true;
+				endif;
+			else:
+				if ( isset( $disabled_timeslots[0][$date][$timeslot] ) ):
+					echo 'enabled';
+					unset( $disabled_timeslots[0][$date][$timeslot] );
+				else:
+					echo 'disabled';
+					$disabled_timeslots[0][$date][$timeslot] = true;
+				endif;
+			endif;
+
+			update_option( 'booked_disabled_timeslots', $disabled_timeslots );
+			wp_die();
+			
+		}
 		
 		// Date Formatting
 		public function booked_date_formatting(){
@@ -68,6 +103,26 @@ if(!class_exists('Booked_Admin_AJAX')) {
 			endif;
 			wp_die();
 			
+		}
+
+		public function booked_admin_edit_appt(){
+
+			if ( is_user_logged_in() && current_user_can( 'edit_booked_appointments' ) ):
+
+				if (isset($_POST['appt_date']) && isset($_POST['appt_timeslot']) && isset($_POST['name']) && isset($_POST['email'])):
+				
+					include(BOOKED_AJAX_INCLUDES_DIR . 'admin/edit-appointment.php');
+				
+				endif;
+
+			else:
+
+				echo 'error###' . esc_html__( "Your user level does not have the ability to edit appointments.", "booked" );
+
+			endif;
+
+			wp_die();
+
 		}
 		
 		// Delete Custom Timeslot
@@ -741,13 +796,30 @@ if(!class_exists('Booked_Admin_AJAX')) {
 		
 		
 		// ------------ LOADERS ------------ //
+
+		// Timeslot Select Box
+		public function booked_admin_get_timeslots_select(){
+
+			if ( !isset($_POST['date']) || !isset($_POST['appt_id']) )
+				wp_die();
+
+			$date = esc_html( $_POST['date'] );
+			$year = date_i18n( 'Y', strtotime($date) );
+			$month = date_i18n( 'm', strtotime($date) );
+			$day = date_i18n( 'd', strtotime($date) );
+			$appt_id = ( isset($_POST['appt_id'] ) ? esc_html( $_POST['appt_id'] ) : false );
+
+			booked_timeslots_select( $appt_id, $year, $month, $day );
+			wp_die();
+
+		}
 			
 		// Timeslots
 		public function booked_admin_load_timeslots(){
 			
 			if (isset($_POST['day'])):
 			
-				$calendar_id = (isset($_POST['calendar_id']) ? $_POST['calendar_id'] : false);
+				$calendar_id = (isset($_POST['calendar_id']) ? esc_html( $_POST['calendar_id'] ) : false);
 
 				if ($calendar_id):
 					$booked_defaults = get_option('booked_defaults_'.$calendar_id);
@@ -755,7 +827,7 @@ if(!class_exists('Booked_Admin_AJAX')) {
 					$booked_defaults = get_option('booked_defaults');
 				endif;
 		
-				$day = $_POST['day'];
+				$day = esc_html( $_POST['day'] );
 				$time_format = get_option('time_format');
 		
 				if (!empty($booked_defaults[$day])):
@@ -795,7 +867,7 @@ if(!class_exists('Booked_Admin_AJAX')) {
 						$time_format = get_option('time_format');
 		
 						echo '<span class="timeslot" data-timeslot="'.$timeslot.'">';
-						echo '<span class="slotsBlock"><span class="changeCount minus" data-count="-1"><i class="fa fa-minus-circle"></i></span><span class="count"><em>'.$count.'</em> ' . _n('Space Available','Spaces Available',$count,'booked') . '</span><span class="changeCount add" data-count="1"><i class="fa fa-plus-circle"></i></span></span>';
+						echo '<span class="slotsBlock"><span class="changeCount minus" data-count="-1"><i class="booked-icon booked-icon-minus-circle"></i></span><span class="count"><em>'.$count.'</em> ' . _n('Space Available','Spaces Available',$count,'booked') . '</span><span class="changeCount add" data-count="1"><i class="booked-icon booked-icon-plus-circle"></i></span></span>';
 						
 						do_action( 'booked_single_custom_timeslot_start', $this_timeslot, $timeslot, $calendar_id );
 
@@ -804,17 +876,18 @@ if(!class_exists('Booked_Admin_AJAX')) {
 							if ( !empty($timeslots_detailed[$timeslot]['title']) ) {
 								echo '<span class="title">' . esc_html($timeslots_detailed[$timeslot]['title']) . '</span>';
 							}
+							
 						}
 
 						if ($time[0] == '0000' && $time[1] == '2400'):
-							echo '<span class="start"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;' . strtoupper(esc_html__('All day','booked')) . '</span>';
+							echo '<span class="start"><i class="booked-icon booked-icon-clock"></i>&nbsp;&nbsp;' . strtoupper(esc_html__('All day','booked')) . '</span>';
 						else :
-							echo '<span class="start"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;' . date_i18n($time_format,strtotime('2014-01-01 '.$time[0])) . '</span> &ndash; <span class="end">' . date_i18n($time_format,strtotime('2014-01-01 '.$time[1])) . '</span>';
+							echo '<span class="start"><i class="booked-icon booked-icon-clock"></i>&nbsp;&nbsp;' . date_i18n($time_format,strtotime('2014-01-01 '.$time[0])) . '</span> &ndash; <span class="end">' . date_i18n($time_format,strtotime('2014-01-01 '.$time[1])) . '</span>';
 						endif;
 						
 						do_action( 'booked_single_custom_timeslot_end', $this_timeslot, $timeslot, $calendar_id );
 		
-						echo '<span class="delete"><i class="fa fa-remove"></i></span>';
+						echo '<span class="delete"><i class="booked-icon booked-icon-close"></i></span>';
 						echo '</span>';
 		
 					endforeach;

@@ -7,7 +7,7 @@
 ?>
 
 <div class="field">
-	<label class="field-label"><?php esc_html_e("Your Information:","booked"); ?><i class="required-asterisk fa fa-asterisk"></i></label>
+	<label class="field-label"><?php esc_html_e("Your Information:","booked"); ?><i class="required-asterisk booked-icon booked-icon-required"></i></label>
 	<p class="field-small-p"><?php
 		echo ( $email_required ? ( $name_requirements == 'require_surname' ? esc_html__('Please enter your first name, last name and email address:','booked') : esc_html__('Please enter your name and email address:','booked') ) : ( isset($name_requirements[0]) && $name_requirements[0] == 'require_surname' ? esc_html__('Please enter your first and last name:','booked') : esc_html__('Please enter your name:','booked') ) );
 	?></p>

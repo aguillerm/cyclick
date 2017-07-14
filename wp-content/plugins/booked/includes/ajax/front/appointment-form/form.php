@@ -32,23 +32,26 @@ if ( $is_user_logged_in && $appointment_limit ) {
 <?php // Not logged in and guest booking is disabled ?>
 <?php if ( ! $is_user_logged_in && ! $guest_booking ): ?>
 
-	<form name="customerChoices" action="" id="customerChoices" class="bookedClearFix">
-		<div class="field">
-			<span class="checkbox-radio-block">
-				<input data-condition="customer_choice" type="radio" name="customer_choice[]" id="customer_new" value="new" checked="checked">
-				<label for="customer_new"><?php esc_html_e('New customer','booked'); ?></label>
-			</span>
-		</div>
+	<form name="customerChoices" action="" id="customerChoices" class="bookedClearFix"<?php echo ( !get_option('users_can_register') ? ' style="display:none;"' : '' ); ?>>
+		
+		<?php if ( get_option('users_can_register') ): ?>
+			<div class="field">
+				<span class="checkbox-radio-block">
+					<input data-condition="customer_choice" type="radio" name="customer_choice[]" id="customer_new" value="new" checked="checked">
+					<label for="customer_new"><?php esc_html_e('New customer','booked'); ?></label>
+				</span>
+			</div>
+		<?php endif; ?>
 		
 		<div class="field">
 			<span class="checkbox-radio-block">
-				<input data-condition="customer_choice" type="radio" name="customer_choice[]" id="customer_current" value="current">
+				<input data-condition="customer_choice" type="radio" name="customer_choice[]" id="customer_current" value="current"<?php echo ( !get_option('users_can_register') ? ' checked="checked"' : '' ); ?>>
 				<label for="customer_current"><?php esc_html_e('Current customer','booked'); ?></label>
 			</span>
 		</div>
 	</form>
 	
-	<div class="condition-block customer_choice" id="condition-current">
+	<div class="condition-block customer_choice<?php echo ( !get_option('users_can_register') && !is_user_logged_in() ? ' default' : '' ); ?>" id="condition-current">
 		
 		<?php  
 		$tmp_bookings = $bookings;
@@ -106,7 +109,7 @@ if ( $is_user_logged_in && $appointment_limit ) {
 <?php endif ?>
 
 <?php // The booking form ?>
-<div class="condition-block customer_choice default" id="condition-new">
+<div class="condition-block customer_choice<?php echo ( $guest_booking || get_option('users_can_register') && !is_user_logged_in() || is_user_logged_in() ? ' default' : '' ); ?>" id="condition-new">
 	<form action="" method="post" id="newAppointmentForm">
 		<input type="hidden" name="customer_type" value="<?php echo $customer_type; ?>" />
 		<input type="hidden" name="action" value="booked_add_appt" />
@@ -152,7 +155,7 @@ if ( $is_user_logged_in && $appointment_limit ) {
 		}
 		?>
 
-		<?php if ( 0 ) : ?>
+		<?php if ( ! $is_user_logged_in && ! $error_message && class_exists('ReallySimpleCaptcha') ) : ?>
 			<?php
 			$rsc_url = WP_PLUGIN_URL . '/really-simple-captcha/';
 			$captcha = new ReallySimpleCaptcha();

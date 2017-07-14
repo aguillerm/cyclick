@@ -65,7 +65,7 @@ if(!class_exists('Booked_AJAX')) {
 		
 		// Calendar Date
 		public function booked_calendar_date(){
-			
+
 			if (isset($_POST['date'])):
 			
 				$calendar_id = (isset($_POST['calendar_id']) ? $_POST['calendar_id'] : false);

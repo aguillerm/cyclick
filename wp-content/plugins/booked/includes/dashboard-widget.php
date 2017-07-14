@@ -12,7 +12,7 @@ class BookedDashboardWidget {
 
 		wp_add_dashboard_widget(
 	        'booked_upcoming_appointments',
-	        '<i class="fa fa-calendar"></i>&nbsp;&nbsp;'.esc_html__('Upcoming Appointments','booked'),
+	        '<i class="booked-icon booked-icon-calendar"></i>&nbsp;&nbsp;'.esc_html__('Upcoming Appointments','booked'),
 	        array($this, 'booked_dashboard_widget_function')
 	    );
 
@@ -142,7 +142,7 @@ class BookedDashboardWidget {
 					}
 
 				endwhile;
-				$appointments_array = apply_filters('booked_appointments_array', $appointments_array);
+				$appointments_array = apply_filters('booked_appointments_timestamp_postid_array', $appointments_array);
 			endif;
 			
 			// Sort by timestamp, just in case they aren't ordered properly.
@@ -176,19 +176,19 @@ class BookedDashboardWidget {
 						if (!isset($appt['guest_name'])):
 							$user_info = get_userdata($appt['user']);
 							if (isset($user_info->ID)):
-								echo '<a href="#" class="user" data-user-id="'.$user_info->ID.'">'.booked_get_name($user_info->ID).'</a>';
+								echo '<a href="#" class="user" data-user-id="'.$user_info->ID.'"><i class="booked-icon booked-icon-pencil"></i>&nbsp;'.booked_get_name($user_info->ID).'</a>';
 							else :
 								esc_html_e('(this user no longer exists)','booked');
 							endif;
 						else :
-							echo '<a href="#" class="user" data-user-id="0">'.$appt['guest_name'].'</a>';
+							echo '<a href="#" class="user" data-user-id="0"><i class="booked-icon booked-icon-pencil"></i>&nbsp;'.$appt['guest_name'].'</a>';
 						endif;
 					
 						echo '<br>';
 						if ($late_date > $date_to_compare): echo '<span class="late-appt">' . esc_html__('This appointment has passed.','booked') . '</span><br>'; endif;
 						if ($appt['calendar']): echo '<strong style="color:#000">'.$appt['calendar'].'</strong><br>'; endif;
-						echo '<i class="fa fa-calendar"></i>&nbsp;&nbsp;'.$day_name.', '.$date_display;
-						echo '&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o"></i>&nbsp;&nbsp;'.$timeslotText;
+						echo '<i class="booked-icon booked-icon-calendar"></i>&nbsp;&nbsp;'.$day_name.', '.$date_display;
+						echo '&nbsp;&nbsp;&nbsp;<i class="booked-icon booked-icon-clock"></i>&nbsp;&nbsp;'.$timeslotText;
 
 					echo '</span>';
 

@@ -49,22 +49,22 @@ if (empty($user_data)) {
 			$default_tabs = array(
 				'appointments' => array(
 					'title' => esc_html__('Upcoming Appointments','booked'),
-					'fa-icon' => 'fa-calendar',
+					'booked-icon' => 'booked-calendar',
 					'class' => false
 				),
 				'history' => array(
 					'title' => esc_html__('Appointment History','booked'),
-					'fa-icon' => 'fa-calendar-check-o',
+					'booked-icon' => 'booked-calendar-check-o',
 					'class' => false
 				),
 				'edit' => array(
 					'title' => esc_html__('Edit Profile','booked'),
-					'fa-icon' => 'fa-edit',
+					'booked-icon' => 'booked-edit',
 					'class' => 'edit-button'
 				)
 			);
 			
-			echo apply_filters('booked_profile_tabs',$default_tabs);
+			echo apply_filters( 'booked_profile_tabs', $default_tabs );
 		
 		?>
 	</ul>
@@ -73,7 +73,7 @@ if (empty($user_data)) {
 
 	if ( is_user_logged_in() && $my_profile ) : ?>
 	
-		<?php echo apply_filters('booked_profile_tab_content',$default_tabs); ?>
+		<?php echo apply_filters( 'booked_profile_tab_content',$default_tabs ); ?>
 
 	<?php endif; ?>
 

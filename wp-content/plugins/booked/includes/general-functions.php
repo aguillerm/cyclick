@@ -100,17 +100,35 @@ function booked_home_url(){
 	return $home_url;
 }
 
-function booked_get_name($user_id){
-	$username = get_user_meta( $user_id, 'first_name', true ) ? get_user_meta( $user_id, 'first_name', true ).(get_user_meta( $user_id, 'last_name', true ) ? ' '.get_user_meta( $user_id, 'last_name', true ) : '') : false;
-	if (!$username):
-		$user_info = get_userdata($user_id);
-		if (!empty($user_info)): $username = $user_info->display_name; else: return false; endif;
-	endif;
-	if (!$username):
-		$user_info = get_userdata($user_id);
-		if (!empty($user_info)): $username = $user_info->user_login; else: return false; endif;
-	endif;
-	return $username;
+function booked_get_name( $user_id, $part = 'full' ){
+	switch ($part):
+		case 'full':
+			$username = get_user_meta( $user_id, 'first_name', true ) ? get_user_meta( $user_id, 'first_name', true ).(get_user_meta( $user_id, 'last_name', true ) ? ' '.get_user_meta( $user_id, 'last_name', true ) : '') : false;
+			if (!$username):
+				$user_info = get_userdata($user_id);
+				if (!empty($user_info)): $username = $user_info->display_name; else: return false; endif;
+			endif;
+			if (!$username):
+				$user_info = get_userdata($user_id);
+				if (!empty($user_info)): $username = $user_info->user_login; else: return false; endif;
+			endif;
+			return $username;
+		break;
+		case 'first':
+			$username = get_user_meta( $user_id, 'first_name', true ) ? get_user_meta( $user_id, 'first_name', true ) : false;
+			if (!$username):
+				$username = booked_get_name( $user_id );
+			endif;
+			return $username;
+		break;
+		case 'last':
+			$username = get_user_meta( $user_id, 'last_name', true ) ? get_user_meta( $user_id, 'last_name', true ) : false;
+			if (!$username):
+				return '';
+			endif;
+			return $username;
+		break;
+	endswitch;
 }
 
 function booked_user_role()
@@ -204,7 +222,7 @@ function booked_pending_appts_count(){
 	
 }
 
-function booked_registration_validation( $username, $email, $password, $captcha_value = false, $captcha_from_user = false )  {
+function booked_registration_validation( $email, $password, $captcha_value = false, $captcha_from_user = false )  {
 	global $reg_errors;
 	$reg_errors = new WP_Error;
 	$errors = array();
@@ -218,19 +236,15 @@ function booked_registration_validation( $username, $email, $password, $captcha_
 		endif;
 	endif;
 
-	if ( !$username || !$email || !$password ) {
+	if ( !$email || !$password ) {
 	    $reg_errors->add('field', esc_html__('All fields are required to register.','booked'));
 	}
 
-	if ( 4 > strlen( $username ) ) {
-	    $reg_errors->add( 'username_length', esc_html__('That username is too short; at least 4 characters is required.','booked'));
-	}
-
-	if ( username_exists( $username ) ) {
+	if ( username_exists( $email ) ) {
     	$reg_errors->add('user_name', esc_html__('That username already exists.','booked'));
     }
 
-    if ( ! validate_username( $username ) ) {
+    if ( ! validate_username( $email ) ) {
 	    $reg_errors->add( 'username_invalid', esc_html__('That name is not valid.','booked'));
 	}
 
@@ -275,11 +289,19 @@ function booked_complete_registration() {
 		$email_content = get_option('booked_registration_email_content');
 		$email_subject = get_option('booked_registration_email_subject');
 		if ($email_content && $email_subject):
-			$tokens = array('%name%','%username%','%password%','%email%');
-			$replacements = array($display_name,$username,$password,$email);
-			$email_content = str_replace($tokens,$replacements,$email_content);
-			$email_subject = str_replace($tokens,$replacements,$email_subject);
+
+			$token_replacements = array(
+				'name' => $display_name,
+				'username' => $username,
+				'password' => $password,
+				'email' => $email
+			);
+
+			$email_content = booked_token_replacement( $email_content,$token_replacements,'user' );
+			$email_subject = booked_token_replacement( $email_subject,$token_replacements );
+
 			do_action('booked_registration_email',$email, $email_subject, $email_content);
+
 		endif;
 
         return '<p class="booked-form-notice"><strong>'.esc_html__('Success!','booked').'</strong><br />'.esc_html__('Registration complete, please check your email for login information.','booked').'</p>';
@@ -370,6 +392,7 @@ function booked_registration_form($name, $surname, $email, $password){
 
 /* Custom Time Slot Functions */
 function booked_apply_custom_timeslots_filter($booked_defaults = false,$calendar_id = false){
+
 	$custom_timeslots_array = array();
 	$booked_custom_timeslots_encoded = get_option('booked_custom_timeslots_encoded');
 	$booked_custom_timeslots_decoded = json_decode($booked_custom_timeslots_encoded,true);

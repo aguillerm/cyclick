@@ -34,7 +34,7 @@
 		
 	else:
 
-		?><div class="topSavingState savingState"><i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;<?php esc_html_e('Updating, please wait...','booked'); ?></div>
+		?><div class="topSavingState savingState"><i class="booked-icon booked-icon-spinner-clock booked-icon-spin"></i>&nbsp;&nbsp;<?php esc_html_e('Updating, please wait...','booked'); ?></div>
 		<div class="booked-settings-title"><?php esc_html_e('Pending Appointments','booked'); ?></div>
 	
 		<div class="booked-pending-cap bookedClearFix">
@@ -217,10 +217,10 @@
 							
 							echo '<br>';
 							if ($late_date > $date_to_compare): echo '<span class="late-appt">' . esc_html__('This appointment has passed.','booked') . '</span><br>'; endif;
-							if ($calendar_owner_name): echo '<i class="fa fa-user"></i>&nbsp;&nbsp;'.sprintf(esc_html__('Assigned to %s','booked'),$calendar_owner_name).'<br>'; endif;
-							if ($appt['calendar']): echo '<i class="fa fa-calendar"></i>&nbsp;&nbsp;<strong>'.$appt['calendar'].'</strong>: '; endif;
+							if ($calendar_owner_name): echo '<i class="booked-icon booked-icon-user"></i>&nbsp;&nbsp;'.sprintf(esc_html__('Assigned to %s','booked'),$calendar_owner_name).'<br>'; endif;
+							if ($appt['calendar']): echo '<i class="booked-icon booked-icon-calendar"></i>&nbsp;&nbsp;<strong>'.$appt['calendar'].'</strong>: '; endif;
 							echo $day_name.', '.$date_display;
-							echo '<br><i class="fa fa-clock-o"></i>&nbsp;&nbsp;'.($title ? '<strong>'.$title.':</strong>&nbsp;&nbsp;' : '').$timeslotText;
+							echo '<br><i class="booked-icon booked-icon-clock"></i>&nbsp;&nbsp;'.($title ? '<strong>'.$title.':</strong>&nbsp;&nbsp;' : '').$timeslotText;
 		
 						echo '</span>';
 		

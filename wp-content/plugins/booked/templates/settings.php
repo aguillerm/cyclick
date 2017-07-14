@@ -42,7 +42,7 @@
 	
 		settings_errors(); ?>
 	
-		<div class="topSavingState savingState"><i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;<?php esc_html_e('Updating, please wait...','booked'); ?></div>
+		<div class="topSavingState savingState"><i class="booked-icon booked-icon-spinner-clock booked-icon-spin"></i>&nbsp;&nbsp;<?php esc_html_e('Updating, please wait...','booked'); ?></div>
 	
 		<div class="booked-settings-title"><?php esc_html_e('Appointment Settings','booked'); ?><a class="booked-header-tiny-link" href="<?php echo get_admin_url(); ?>admin.php?page=booked-welcome"><?php echo sprintf(esc_html__('What\'s new in %s?','booked'),BOOKED_VERSION); ?></a></div>
 	
@@ -54,31 +54,31 @@
 				array(
 					'access' => 'admin',
 					'slug' => 'general',
-					'content' => '<i class="fa fa-gear"></i>&nbsp;&nbsp;'.esc_html__('General','booked')),
-				array(
-					'access' => 'admin',
-					'slug' => 'email-settings',
-					'content' => '<i class="fa fa-envelope"></i>&nbsp;&nbsp;'.esc_html__('Emails','booked')),
+					'content' => '<i class="booked-icon booked-icon-gear"></i>&nbsp;&nbsp;'.esc_html__('General','booked')),
 				array(
 					'access' => 'agent',
 					'slug' => 'defaults',
-					'content' => '<i class="fa fa-clock-o"></i>&nbsp;&nbsp;'.esc_html__('Time Slots','booked').'<span class="savingState">&nbsp;&nbsp;&nbsp;<i class="fa fa-refresh fa-spin"></i></span>'),
+					'content' => '<i class="booked-icon booked-icon-clock"></i>&nbsp;&nbsp;'.esc_html__('Time Slots','booked').'<span class="savingState">&nbsp;&nbsp;&nbsp;<i class="booked-icon booked-icon-spinner-clock booked-icon-spin"></i></span>'),
 				array(
 					'access' => 'agent',
 					'slug' => 'custom-timeslots',
-					'content' => '<i class="fa fa-clock-o"></i>&nbsp;&nbsp;'.esc_html__('Custom Time Slots','booked').'<span class="savingState">&nbsp;&nbsp;&nbsp;<i class="fa fa-refresh fa-spin"></i></span>'),
+					'content' => '<i class="booked-icon booked-icon-clock"></i>&nbsp;&nbsp;'.esc_html__('Custom Time Slots','booked').'<span class="savingState">&nbsp;&nbsp;&nbsp;<i class="booked-icon booked-icon-spinner-clock booked-icon-spin"></i></span>'),
 				array(
 					'access' => 'agent',
 					'slug' => 'custom-fields',
-					'content' => '<i class="fa fa-pencil"></i>&nbsp;&nbsp;'.esc_html__('Custom Fields','booked')),
+					'content' => '<i class="booked-icon booked-icon-pencil"></i>&nbsp;&nbsp;'.esc_html__('Custom Fields','booked')),
+				array(
+					'access' => 'admin',
+					'slug' => 'email-settings',
+					'content' => '<i class="booked-icon booked-icon-email"></i>&nbsp;&nbsp;'.esc_html__('Emails','booked')),
 				array(
 					'access' => 'admin',
 					'slug' => 'export-appointments',
-					'content' => '<i class="fa fa-external-link-square"></i>&nbsp;&nbsp;'.esc_html__('Export','booked')),
+					'content' => '<i class="booked-icon booked-icon-sign-out"></i>&nbsp;&nbsp;'.esc_html__('Export','booked')),
 				array(
 					'access' => 'admin',
 					'slug' => 'shortcodes',
-					'content' => '<i class="fa fa-code"></i>&nbsp;&nbsp;'.esc_html__('Shortcodes','booked')),
+					'content' => '<i class="booked-icon booked-icon-code"></i>&nbsp;&nbsp;'.esc_html__('Shortcodes','booked')),
 			));
 			
 			$tab_counter = 1;
@@ -148,7 +148,7 @@
 										</div>
 										
 										<?php $selected_value = get_option('booked_require_guest_email_address',false); ?>
-										<div class="condition-block booking_type" id="condition-guest" style="<?php if ($booking_type == 'guest'): ?>display:block; <?php endif; ?>">
+										<div class="condition-block booking_type" data-condition-val="guest" style="<?php if ($booking_type == 'guest'): ?>display:block; <?php endif; ?>">
 											<div class="section-row">
 												<div class="section-head">
 												
@@ -182,7 +182,7 @@
 												<p style="margin:1.2em 0 10px;"><input style="margin:-4px 5px 0 0;" data-condition="redirect_type" id="redirect_type_none" name="<?php echo $option_name; ?>" value=""<?php if (!$selected_value): echo ' checked="checked"'; endif; ?> type="radio">
 												<label class="checkbox-radio-label" for="redirect_type_none"><?php echo sprintf( esc_html__('%s Refresh the calendar list after booking.','booked'), '<strong>' . esc_html__('No Redirect','booked') . '</strong> &mdash; ' ); ?></label></p>
 												
-												<div class="condition-block booking_type" id="condition-registered" style="<?php if ($booking_type == 'registered'): ?>display:block; <?php endif; ?>">
+												<div class="condition-block booking_type" data-condition-val="registered" style="<?php if ($booking_type == 'registered'): ?>display:block; <?php endif; ?>">
 													<p style="margin:0 0 10px;">
 														<input style="margin:-4px 5px 0 0;" data-condition="redirect_type" id="redirect_type_detect" name="<?php echo $option_name; ?>" value="booked-profile"<?php if ($selected_value == 'booked-profile'): echo ' checked="checked"'; endif; ?> type="radio">
 														<label class="checkbox-radio-label" for="redirect_type_detect"><?php echo sprintf( esc_html__('%s Auto-detect the page with the [booked-profile] shortcode.','booked'), '<strong>' . esc_html__('Auto-Detect Profile Page','booked') . '</strong> &mdash; ' ); ?><?php if (!$detected_page_error && $detected_page): ?>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;<strong><?php echo sprintf(esc_html__('Detected Page: %s','booked'),'<a href="'.get_permalink($detected_page).'">'.get_permalink($detected_page).'</a>'); ?></strong><?php endif; ?></label>
@@ -191,7 +191,7 @@
 												
 												<?php if ($detected_page_error): ?>
 												<div style="margin:0 0 10px;">
-													<div class="condition-block redirect_type" id="condition-booked-profile" style="<?php if ($booked_redirect_type == 'booked-profile'): ?>display:block; <?php endif; ?>line-height:30px; padding:0 0 0 30px; margin:-5px 0 10px;"><?php echo sprintf(esc_html__( '%s We were not able to auto-detect. You need to %s with the %s shortcode.','booked' ),'<strong style="color:#DB5933;">'.esc_html__('Important:','booked').'</strong>','<strong><a href="'.get_admin_url().'post-new.php?post_type=page">'.esc_html__('create a page','booked').'</a></strong>','<code>[booked-profile]</code>'); ?></div>
+													<div class="condition-block redirect_type" data-condition-val="booked-profile" style="<?php if ($booked_redirect_type == 'booked-profile'): ?>display:block; <?php endif; ?>line-height:30px; padding:0 0 0 30px; margin:-5px 0 10px;"><?php echo sprintf(esc_html__( '%s We were not able to auto-detect. You need to %s with the %s shortcode.','booked' ),'<strong style="color:#DB5933;">'.esc_html__('Important:','booked').'</strong>','<strong><a href="'.get_admin_url().'post-new.php?post_type=page">'.esc_html__('create a page','booked').'</a></strong>','<code>[booked-profile]</code>'); ?></div>
 												</div>
 												<?php endif; ?>
 												
@@ -210,7 +210,7 @@
 												));
 					
 												$selected_value = get_option($option_name); ?>
-												<div style="padding:15px 0 0 0;" class="condition-block redirect_type select-box<?php if ($booked_redirect_type == 'page'): ?> default<?php endif; ?>" id="condition-page">
+												<div style="padding:15px 0 0 0;" class="condition-block redirect_type select-box<?php if ($booked_redirect_type == 'page'): ?> default<?php endif; ?>" data-condition-val="page">
 													<select name="<?php echo $option_name; ?>">
 														<option value=""<?php echo (!$selected_value ? ' selected="selected"' : ''); ?>><?php echo esc_html__('Choose a page','booked').'...'; ?></option>
 														<?php if(!empty($pages)) :
@@ -227,10 +227,8 @@
 											</div><!-- /.section-body -->
 										</div><!-- /.section-row -->
 										
-										<?php //if (!is_plugin_active('booked-woocommerce-payments/booked-woocommerce-payments.php')): ?>
-											<div class="condition-block booking_type<?php if ($booking_type == 'registered'): ?> default<?php endif; ?>" id="condition-registered">
-										<?php //endif; ?>
-					
+										<div class="condition-block booking_type<?php if ($booking_type == 'registered'): ?> default<?php endif; ?>" data-condition-val="registered">
+
 											<div class="section-row">
 												<div class="section-head">
 													<?php $section_title = esc_html__('Login Redirect', 'booked'); ?>
@@ -278,9 +276,7 @@
 												</div><!-- /.section-body -->
 											</div><!-- /.section-row -->
 					
-										<?php //if (!is_plugin_active('booked-woocommerce-payments/booked-woocommerce-payments.php')): ?>
-											</div>
-										<?php //endif; ?>
+										</div>
 					
 										<div class="section-row">
 											<div class="section-head">
@@ -289,16 +285,16 @@
 												<p><?php esc_html_e('Choose the intervals you need for your appointment time slots. This will only affect the way default time slots are entered.','booked'); ?></p>
 					
 												<?php $option_name = 'booked_timeslot_intervals';
-												$selected_value = get_option($option_name);
+												$selected_value = get_option( $option_name, 5 );
 					
-												$interval_options = array(
-													'120' 				=> esc_html__('Every 2 hours','booked'),
-													'60' 				=> esc_html__('Every 1 hour','booked'),
-													'30' 				=> esc_html__('Every 30 minutes','booked'),
-													'15' 				=> esc_html__('Every 15 minutes','booked'),
-													'10' 				=> esc_html__('Every 10 minutes','booked'),
-													'5' 				=> esc_html__('Every 5 minutes','booked')
-												); ?>
+												$interval_options = apply_filters( 'booked_timeslot_interval_sizes', array(
+													'120'	=> esc_html__('Every 2 hours','booked'),
+													'60' 	=> esc_html__('Every 1 hour','booked'),
+													'30' 	=> esc_html__('Every 30 minutes','booked'),
+													'15' 	=> esc_html__('Every 15 minutes','booked'),
+													'10' 	=> esc_html__('Every 10 minutes','booked'),
+													'5' 	=> esc_html__('Every 5 minutes','booked'),
+												) ); ?>
 					
 												<div class="select-box">
 													<select name="<?php echo $option_name; ?>">
@@ -635,15 +631,29 @@
 												<p style="padding:13px 19px 12px; border-left:3px solid #aaa; background:#f5f5f5; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,0.10); margin:0; font-size:15px; line-height:1.6;"><?php esc_html_e('If you DO NOT want to send emails for any of the actions listed below, just remove the email subject or content text (or both) and the email will not be sent for that notification.','booked'); ?></p>
 											</div>
 										</div>
+
+										<?php $email_template_tabs = apply_filters( 'booked_admin_email_template_tabs', array(
+											'customer-emails' => esc_html__('Customer Emails','booked'),
+											'admin-emails' => esc_html__('Admin/Agent Emails','booked'),
+											'email-settings' => esc_html__('Settings','booked')
+										));
+
+										$tab_counter = 0; ?>
 										
+										<?php do_action( 'booked_admin_before_email_tabs' ); ?>
+
 										<ul class="booked-admin-subtabs bookedClearFix">
-											<li class="active"><a href="#customer-emails"><?php esc_html_e('Customer Emails','booked'); ?></a></li>
-											<li><a href="#admin-emails"><?php esc_html_e('Admin/Agent Emails','booked'); ?></a></li>
-											<li><a href="#email-settings"><?php esc_html_e('Settings','booked'); ?></a></li>
+											<?php foreach( $email_template_tabs as $tab_name => $tab_text ): $tab_counter++; ?>
+												<li<?php if ( $tab_counter == 1): ?> class="active"<?php endif; ?>><a href="#<?php echo $tab_name; ?>"><?php echo $tab_text; ?></a></li>
+											<?php endforeach; ?>
 										</ul>
+
+										<?php do_action( 'booked_admin_after_email_tabs' ); ?>
+
+										<?php do_action( 'booked_admin_before_email_tab_content' ); ?>
 										
 										<div id="booked-subtab-email-settings" class="subtab-content">
-											
+
 											<div class="section-row">
 												<div class="section-head"><?php
 						
@@ -655,9 +665,11 @@
 													<p><?php esc_html_e('Choose an image for your custom emails. Keep it 600px or less for best results.','booked'); ?></p>
 						
 													<input id="<?php echo $option_name; ?>" name="<?php echo $option_name; ?>" value="<?php echo $booked_email_logo; ?>" type="hidden" />
-													<input id="booked_email_logo_button" class="button" name="booked_email_logo_button" type="button" value="<?php esc_html_e('Upload Logo','booked'); ?>" />
-						
-													<img src="<?php echo $booked_email_logo; ?>" id="booked_email_logo-img">
+													<input id="booked_email_logo_button" class="button button-primary" name="booked_email_logo_button" type="button" value="<?php esc_html_e('Upload Logo','booked'); ?>" />
+													
+													<input id="booked_email_logo_button_remove"<?php echo ( !$booked_email_logo ? ' style="display:none;"' : '' ); ?> class="button" name="booked_email_logo_button_remove" type="button" value="<?php esc_html_e('Remove','booked'); ?>" />
+													<img src="<?php echo $booked_email_logo; ?>"<?php echo ( !$booked_email_logo ? ' style="display:none;"' : '' ); ?> id="booked_email_logo-img">
+
 												</div>
 											</div>
 											
@@ -673,7 +685,7 @@
 													$allowed_users = array();
 													foreach ( $all_users as $user ):
 													    $wp_user = new WP_User($user->ID);
-													    if ( !in_array( 'subscriber', $wp_user->roles ) ):
+													    if ( in_array( 'administrator', $wp_user->roles ) || in_array( 'booked_booking_agent', $wp_user->roles ) ):
 													        array_push($allowed_users, $user);
 													    endif;
 													endforeach;
@@ -695,6 +707,39 @@
 													</div><!-- /.select-box -->
 												</div><!-- /.section-body -->
 											</div><!-- /.section-row -->
+
+											<?php $selected_value = get_option('booked_email_force_sender',false); ?>
+											<?php $selected_email = get_option('booked_email_force_sender_from',false); ?>
+											<?php $selected_booked_mailer = get_option('booked_emailer_disabled',false); ?>
+
+											<div class="section-row">
+												<div class="section-head">
+												
+													<h3><?php echo esc_html__('Having Email Issues?', 'booked'); ?></h3>
+													<p style="margin-bottom:2.5em;"><?php echo sprintf( esc_html__('Try using an SMTP plugin like %s or %s','booked'), '<a href="https://wordpress.org/plugins/wp-mail-smtp/" target="_blank">WP Mail SMTP</a>', '<a href="https://wordpress.org/plugins/easy-wp-smtp/" target="_blank">Easy WP SMTP</a>' ); ?></p>
+
+													<h3><?php echo esc_html__('Emails ONLY NOT sending to Admins/Agents?', 'booked'); ?></h3>
+													<p><?php esc_html_e('Some SMTP clients reject emails being sent "from" your customers. Google is one of them, but they simply change the name of the sender to prevent the rejection. Others do not. You can check the following option to "Force the sender name/email", but you will not be able to reply directly to the notification emails coming from customers.','booked'); ?></p>
+												
+													<p style="margin:1.2em 0 15px;">
+														<input data-condition="force_sender" style="margin:-4px 5px 0 0;" id="booked_email_force_sender" name="booked_email_force_sender" value="true"<?php if ($selected_value): echo ' checked="checked"'; endif; ?> type="checkbox">
+														<label class="checkbox-radio-label" for="booked_email_force_sender"><strong><?php esc_html_e("Force sender email", "booked"); ?></strong></label>
+													</p>
+
+													<p class="condition-block force_sender"<?php echo ( $selected_value ? ' style="display:block;"' : '' ); ?>>
+														<input style="margin:0" name="booked_email_force_sender_from" value="<?php echo ( $selected_email ? $selected_email : get_option('admin_email') ); ?>" type="text" class="field">
+													</p>
+
+													<h3 style="margin-top:2em;"><?php echo esc_html__('Still not working?', 'booked'); ?></h3>
+													<p><?php esc_html_e('If you are still having issues, check the box below to disable the Booked mailer and let WordPress handle the emails completely.','booked'); ?></p>
+												
+													<p style="margin:1.2em 0 0;">
+														<input style="margin:-4px 5px 0 0;" id="booked_emailer_disabled" name="booked_emailer_disabled" value="true"<?php if ($selected_booked_mailer): echo ' checked="checked"'; endif; ?> type="checkbox">
+														<label class="checkbox-radio-label" for="booked_emailer_disabled"><strong><?php esc_html_e("Disable Booked mailer, let WordPress handle it.", "booked"); ?></strong></label>
+													</p>
+
+												</div>
+											</div>
 											
 										</div>
 										<div id="booked-subtab-customer-emails" class="subtab-content">
@@ -770,13 +815,10 @@ Your friends at '.get_bloginfo('name');
 													<h3><?php echo esc_attr($section_title); ?></h3>
 													<p><?php esc_html_e('This is the email content for appoinment reminders. Some tokens you can use:','booked'); ?></p>
 													<ul class="cp-list">
-														<li><strong>%title%</strong> &mdash; <?php esc_html_e("To display the event's title.","booked"); ?></li>
-														<li><strong>%name%</strong> &mdash; <?php esc_html_e("To display the person's name.","booked"); ?></li>
-														<li><strong>%email%</strong> &mdash; <?php esc_html_e("To display the person's email address.","booked"); ?></li>
-														<li><strong>%calendar%</strong> &mdash; <?php esc_html_e("To display the calendar name (if one is used) for this appointment.","booked"); ?></li>
-														<li><strong>%date%</strong> &mdash; <?php esc_html_e("To display the appointment date.","booked"); ?></li>
-														<li><strong>%time%</strong> &mdash; <?php esc_html_e("To display the appointment time.","booked"); ?></li>
-														<li><strong>%customfields%</strong> &mdash; <?php esc_html_e("To display all custom field values associated with this appointment.","booked"); ?></li>
+														<?php $booked_mailer_tokens = booked_mailer_tokens();
+														foreach( $booked_mailer_tokens as $token => $desc ):
+															echo '<li><strong>%' . $token . '%</strong> &mdash; ' . $desc . '</li>';
+														endforeach; ?>
 													</ul><br>
 						
 													<?php
@@ -849,13 +891,10 @@ Your friends at '.get_bloginfo('name');
 													<h3><?php echo esc_attr($section_title); ?></h3>
 													<p><?php esc_html_e('The email content that is sent to the user upon appointment creation. Some tokens you can use:','booked'); ?></p>
 													<ul class="cp-list">
-														<li><strong>%title%</strong> &mdash; <?php esc_html_e("To display the event's title.","booked"); ?></li>
-														<li><strong>%name%</strong> &mdash; <?php esc_html_e("To display the person's name.","booked"); ?></li>
-														<li><strong>%email%</strong> &mdash; <?php esc_html_e("To display the person's email address.","booked"); ?></li>
-														<li><strong>%calendar%</strong> &mdash; <?php esc_html_e("To display the calendar name (if one is used) for this appointment.","booked"); ?></li>
-														<li><strong>%date%</strong> &mdash; <?php esc_html_e("To display the appointment date.","booked"); ?></li>
-														<li><strong>%time%</strong> &mdash; <?php esc_html_e("To display the appointment time.","booked"); ?></li>
-														<li><strong>%customfields%</strong> &mdash; <?php esc_html_e("To display all custom field values associated with this appointment.","booked"); ?></li>
+														<?php $booked_mailer_tokens = booked_mailer_tokens();
+														foreach( $booked_mailer_tokens as $token => $desc ):
+															echo '<li><strong>%' . $token . '%</strong> &mdash; ' . $desc . '</li>';
+														endforeach; ?>
 													</ul><br>
 						
 													<?php
@@ -889,13 +928,10 @@ Your friends at '.get_bloginfo('name');
 													<h3><?php echo esc_attr($section_title); ?></h3>
 													<p><?php esc_html_e('The email content that is sent to the user upon appointment approval. Some tokens you can use:','booked'); ?></p>
 													<ul class="cp-list">
-														<li><strong>%title%</strong> &mdash; <?php esc_html_e("To display the event's title.","booked"); ?></li>
-														<li><strong>%name%</strong> &mdash; <?php esc_html_e("To display the person's name.","booked"); ?></li>
-														<li><strong>%email%</strong> &mdash; <?php esc_html_e("To display the person's email address.","booked"); ?></li>
-														<li><strong>%calendar%</strong> &mdash; <?php esc_html_e("To display the calendar name (if one is used) for this appointment.","booked"); ?></li>
-														<li><strong>%date%</strong> &mdash; <?php esc_html_e("To display the appointment date.","booked"); ?></li>
-														<li><strong>%time%</strong> &mdash; <?php esc_html_e("To display the appointment time.","booked"); ?></li>
-														<li><strong>%customfields%</strong> &mdash; <?php esc_html_e("To display all custom field values associated with this appointment.","booked"); ?></li>
+														<?php $booked_mailer_tokens = booked_mailer_tokens();
+														foreach( $booked_mailer_tokens as $token => $desc ):
+															echo '<li><strong>%' . $token . '%</strong> &mdash; ' . $desc . '</li>';
+														endforeach; ?>
 													</ul><br>
 						
 													<?php
@@ -929,13 +965,10 @@ Your friends at '.get_bloginfo('name');
 													<h3><?php echo esc_attr($section_title); ?></h3>
 													<p><?php esc_html_e('The email content that is sent to the user upon appointment cancellation. Some tokens you can use:','booked'); ?></p>
 													<ul class="cp-list">
-														<li><strong>%title%</strong> &mdash; <?php esc_html_e("To display the event's title.","booked"); ?></li>
-														<li><strong>%name%</strong> &mdash; <?php esc_html_e("To display the person's name.","booked"); ?></li>
-														<li><strong>%email%</strong> &mdash; <?php esc_html_e("To display the person's email address.","booked"); ?></li>
-														<li><strong>%calendar%</strong> &mdash; <?php esc_html_e("To display the calendar name (if one is used) for this appointment.","booked"); ?></li>
-														<li><strong>%date%</strong> &mdash; <?php esc_html_e("To display the appointment date.","booked"); ?></li>
-														<li><strong>%time%</strong> &mdash; <?php esc_html_e("To display the appointment time.","booked"); ?></li>
-														<li><strong>%customfields%</strong> &mdash; <?php esc_html_e("To display all custom field values associated with this appointment.","booked"); ?></li>
+														<?php $booked_mailer_tokens = booked_mailer_tokens();
+														foreach( $booked_mailer_tokens as $token => $desc ):
+															echo '<li><strong>%' . $token . '%</strong> &mdash; ' . $desc . '</li>';
+														endforeach; ?>
 													</ul><br>
 						
 													<?php
@@ -1023,13 +1056,10 @@ $default_content = 'You have an appointment coming up soon! Here\'s the appointm
 													<h3><?php echo esc_attr($section_title); ?></h3>
 													<p><?php esc_html_e('This is the email content for appoinment reminders. Some tokens you can use:','booked'); ?></p>
 													<ul class="cp-list">
-														<li><strong>%title%</strong> &mdash; <?php esc_html_e("To display the event's title.","booked"); ?></li>
-														<li><strong>%name%</strong> &mdash; <?php esc_html_e("To display the person's name.","booked"); ?></li>
-														<li><strong>%email%</strong> &mdash; <?php esc_html_e("To display the person's email address.","booked"); ?></li>
-														<li><strong>%calendar%</strong> &mdash; <?php esc_html_e("To display the calendar name (if one is used) for this appointment.","booked"); ?></li>
-														<li><strong>%date%</strong> &mdash; <?php esc_html_e("To display the appointment date.","booked"); ?></li>
-														<li><strong>%time%</strong> &mdash; <?php esc_html_e("To display the appointment time.","booked"); ?></li>
-														<li><strong>%customfields%</strong> &mdash; <?php esc_html_e("To display all custom field values associated with this appointment.","booked"); ?></li>
+														<?php $booked_mailer_tokens = booked_mailer_tokens();
+														foreach( $booked_mailer_tokens as $token => $desc ):
+															echo '<li><strong>%' . $token . '%</strong> &mdash; ' . $desc . '</li>';
+														endforeach; ?>
 													</ul><br>
 						
 													<?php
@@ -1064,13 +1094,10 @@ Log into your website here: '.get_admin_url().' to approve this appointment.
 													<h3><?php echo esc_attr($section_title); ?></h3>
 													<p><?php esc_html_e('The email content that is sent (to the selected admin users above) upon appointment request. Some tokens you can use:','booked'); ?></p>
 													<ul class="cp-list">
-														<li><strong>%title%</strong> &mdash; <?php esc_html_e("To display the event's title.","booked"); ?></li>
-														<li><strong>%name%</strong> &mdash; <?php esc_html_e("To display the person's name.","booked"); ?></li>
-														<li><strong>%email%</strong> &mdash; <?php esc_html_e("To display the person's email address.","booked"); ?></li>
-														<li><strong>%calendar%</strong> &mdash; <?php esc_html_e("To display the calendar name (if one is used) for this appointment.","booked"); ?></li>
-														<li><strong>%date%</strong> &mdash; <?php esc_html_e("To display the appointment date.","booked"); ?></li>
-														<li><strong>%time%</strong> &mdash; <?php esc_html_e("To display the appointment time.","booked"); ?></li>
-														<li><strong>%customfields%</strong> &mdash; <?php esc_html_e("To display all custom field values associated with this appointment.","booked"); ?></li>
+														<?php $booked_mailer_tokens = booked_mailer_tokens();
+														foreach( $booked_mailer_tokens as $token => $desc ):
+															echo '<li><strong>%' . $token . '%</strong> &mdash; ' . $desc . '</li>';
+														endforeach; ?>
 													</ul><br>
 						
 													<?php
@@ -1103,13 +1130,10 @@ Time: %time%
 													<h3><?php echo esc_attr($section_title); ?></h3>
 													<p><?php esc_html_e('The email content that is sent (to the selected admin users above) upon cancellation. Some tokens you can use:','booked'); ?></p>
 													<ul class="cp-list">
-														<li><strong>%title%</strong> &mdash; <?php esc_html_e("To display the event's title.","booked"); ?></li>
-														<li><strong>%name%</strong> &mdash; <?php esc_html_e("To display the person's name.","booked"); ?></li>
-														<li><strong>%email%</strong> &mdash; <?php esc_html_e("To display the person's email address.","booked"); ?></li>
-														<li><strong>%calendar%</strong> &mdash; <?php esc_html_e("To display the calendar name (if one is used) for this appointment.","booked"); ?></li>
-														<li><strong>%date%</strong> &mdash; <?php esc_html_e("To display the appointment date.","booked"); ?></li>
-														<li><strong>%time%</strong> &mdash; <?php esc_html_e("To display the appointment time.","booked"); ?></li>
-														<li><strong>%customfields%</strong> &mdash; <?php esc_html_e("To display all custom field values associated with this appointment.","booked"); ?></li>
+														<?php $booked_mailer_tokens = booked_mailer_tokens();
+														foreach( $booked_mailer_tokens as $token => $desc ):
+															echo '<li><strong>%' . $token . '%</strong> &mdash; ' . $desc . '</li>';
+														endforeach; ?>
 													</ul><br>
 						
 													<?php
@@ -1125,6 +1149,8 @@ Time: %time%
 											</div><!-- /.section-row -->
 											
 										</div>
+
+										<?php do_action( 'booked_admin_after_email_tab_content' ); ?>
 					
 										<div class="section-row submit-section" style="padding:0;">
 											<?php @submit_button(); ?>
@@ -1284,7 +1310,7 @@ Time: %time%
 															<input id="vacationDayCheckbox" name="vacationDayCheckbox" type="checkbox" value="1"<?php if ($this_timeslot['vacationDayCheckbox']): echo ' checked="checked"'; endif; ?>>
 															<label for="vacationDayCheckbox"><?php esc_html_e('Disable appointments','booked'); ?></label>
 					
-															<a href="#" class="deleteCustomTimeslot"><i class="fa fa-close"></i></a>
+															<a href="#" class="deleteCustomTimeslot"><i class="booked-icon booked-icon-close"></i></a>
 					
 															<?php
 					
@@ -1312,7 +1338,7 @@ Time: %time%
 																	$time_format = get_option('time_format');
 					
 																	echo '<span class="timeslot" data-timeslot="'.$timeslot.'">';
-																		echo '<span class="slotsBlock"><span class="changeCount minus" data-count="-1"><i class="fa fa-minus-circle"></i></span><span class="count"><em>'.$count.'</em> ' . _n('Space Available','Spaces Available',$count,'booked') . '</span><span class="changeCount add" data-count="1"><i class="fa fa-plus-circle"></i></span></span>';
+																		echo '<span class="slotsBlock"><span class="changeCount minus" data-count="-1"><i class="booked-icon booked-icon-minus-circle"></i></span><span class="count"><em>'.$count.'</em> ' . _n('Space Available','Spaces Available',$count,'booked') . '</span><span class="changeCount add" data-count="1"><i class="booked-icon booked-icon-plus-circle"></i></span></span>';
 					
 																		do_action( 'booked_single_custom_timeslot_start', $this_timeslot, $timeslot, $this_timeslot['booked_custom_calendar_id'] );
 
@@ -1324,14 +1350,14 @@ Time: %time%
 																		}
 					
 																		if ($time[0] == '0000' && $time[1] == '2400'):
-																			echo '<span class="start"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;' . strtoupper(esc_html__('All day','booked')) . '</span>';
+																			echo '<span class="start"><i class="booked-icon booked-icon-clock"></i>&nbsp;&nbsp;' . strtoupper(esc_html__('All day','booked')) . '</span>';
 																		else :
-																			echo '<span class="start"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;' . date_i18n($time_format,strtotime('2014-01-01 '.$time[0])) . '</span> &ndash; <span class="end">' . date_i18n($time_format,strtotime('2014-01-01 '.$time[1])) . '</span>';
+																			echo '<span class="start"><i class="booked-icon booked-icon-clock"></i>&nbsp;&nbsp;' . date_i18n($time_format,strtotime('2014-01-01 '.$time[0])) . '</span> &ndash; <span class="end">' . date_i18n($time_format,strtotime('2014-01-01 '.$time[1])) . '</span>';
 																		endif;
 																		
 																		do_action( 'booked_single_custom_timeslot_end', $this_timeslot, $timeslot, $this_timeslot['booked_custom_calendar_id'] );
 					
-																		echo '<span class="delete"><i class="fa fa-remove"></i></span>';
+																		echo '<span class="delete"><i class="booked-icon booked-icon-close"></i></span>';
 																	echo '</span>';
 					
 																endforeach;
@@ -1355,9 +1381,9 @@ Time: %time%
 										</div>
 					
 										<div class="section-row submit-section bookedClearFix" style="padding:0;">
-											<button class="button addCustomTimeslot"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Add Date(s)','booked'); ?></button>
+											<button class="button addCustomTimeslot"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Add Date(s)','booked'); ?></button>
 											<input id="booked-saveCustomTimeslots" type="button" disabled="true" class="button saveCustomTimeslots" value="<?php esc_html_e('Save Custom Time Slots','booked'); ?>">
-											<div class="cts-updater savingState"><i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;<?php esc_html_e('Saving','booked'); ?>...</div>
+											<div class="cts-updater savingState"><i class="booked-icon booked-icon-spinner-clock booked-icon-spin"></i>&nbsp;&nbsp;<?php esc_html_e('Saving','booked'); ?>...</div>
 										</div><!-- /.section-row -->
 					
 									</form>
@@ -1393,7 +1419,7 @@ Time: %time%
 										<input id="vacationDayCheckbox" name="vacationDayCheckbox" type="checkbox" value="1">
 										<label for="vacationDayCheckbox"><?php esc_html_e('Disable appointments','booked'); ?></label>
 					
-										<a href="#" class="deleteCustomTimeslot"><i class="fa fa-close"></i></a>
+										<a href="#" class="deleteCustomTimeslot"><i class="booked-icon booked-icon-close"></i></a>
 					
 										<div class="customTimeslotsList"></div>
 					
@@ -1461,62 +1487,62 @@ Time: %time%
 					
 											<ul id="booked-cf-sortable-templates">
 					
-												<li id="bookedCFTemplate-single-line-text-label" class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+												<li id="bookedCFTemplate-single-line-text-label" class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 													<small><?php esc_html_e('Single Line Text','booked'); ?></small>
 													<p><input class="cf-required-checkbox" type="checkbox" name="required" id="required"> <label for="required"><?php esc_html_e('Required Field','booked'); ?></label></p>
 													<input type="text" name="single-line-text-label" value="" placeholder="<?php esc_html_e('Enter a label for this field...','booked'); ?>" />
-													<span class="cf-delete"><i class="fa fa-close"></i></span>
+													<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 												</li>
-												<li id="bookedCFTemplate-paragraph-text-label" class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+												<li id="bookedCFTemplate-paragraph-text-label" class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 													<small><?php esc_html_e('Paragraph Text','booked'); ?></small>
 													<p><input class="cf-required-checkbox" type="checkbox" name="required" id="required"> <label for="required"><?php esc_html_e('Required Field','booked'); ?></label></p>
 													<input type="text" name="paragraph-text-label" value="" placeholder="<?php esc_html_e('Enter a label for this field...','booked'); ?>" />
-													<span class="cf-delete"><i class="fa fa-close"></i></span>
+													<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 												</li>
-												<li id="bookedCFTemplate-checkboxes-label" class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+												<li id="bookedCFTemplate-checkboxes-label" class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 													<small><?php esc_html_e('Checkboxes','booked'); ?></small>
 													<p><input class="cf-required-checkbox" type="checkbox" name="required" id="required"> <label for="required"><?php esc_html_e('Required Field','booked'); ?></label></p>
 													<input type="text" name="checkboxes-label" value="" placeholder="<?php esc_html_e('Enter a label for this checkbox group...','booked'); ?>" />
 													<ul id="booked-cf-checkboxes"></ul>
-													<button class="cfButton button" data-type="single-checkbox"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Checkbox','booked'); ?></button>
-													<span class="cf-delete"><i class="fa fa-close"></i></span>
+													<button class="cfButton button" data-type="single-checkbox"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Checkbox','booked'); ?></button>
+													<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 												</li>
-												<li id="bookedCFTemplate-radio-buttons-label" class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+												<li id="bookedCFTemplate-radio-buttons-label" class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 													<small><?php esc_html_e('Radio Buttons','booked'); ?></small>
 													<p><input class="cf-required-checkbox" type="checkbox" name="required" id="required"> <label for="required"><?php esc_html_e('Required Field','booked'); ?></label></p>
 													<input type="text" name="radio-buttons-label" value="" placeholder="<?php esc_html_e('Enter a label for this radio button group...','booked'); ?>" />
 													<ul id="booked-cf-radio-buttons"></ul>
-													<button class="cfButton button" data-type="single-radio-button"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Radio Button','booked'); ?></button>
-													<span class="cf-delete"><i class="fa fa-close"></i></span>
+													<button class="cfButton button" data-type="single-radio-button"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Radio Button','booked'); ?></button>
+													<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 												</li>
-												<li id="bookedCFTemplate-drop-down-label" class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+												<li id="bookedCFTemplate-drop-down-label" class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 													<small><?php esc_html_e('Drop Down','booked'); ?></small>
 													<p><input class="cf-required-checkbox" type="checkbox" name="required" id="required"> <label for="required"><?php esc_html_e('Required Field','booked'); ?></label></p>
 													<input type="text" name="drop-down-label" value="" placeholder="<?php esc_html_e('Enter a label for this drop-down group...','booked'); ?>" />
 													<ul id="booked-cf-drop-down"></ul>
-													<button class="cfButton button" data-type="single-drop-down"><i class="fa fa-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Option','booked'); ?></button>
-													<span class="cf-delete"><i class="fa fa-close"></i></span>
+													<button class="cfButton button" data-type="single-drop-down"><i class="booked-icon booked-icon-plus"></i>&nbsp;&nbsp;<?php esc_html_e('Option','booked'); ?></button>
+													<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 												</li>
-												<li id="bookedCFTemplate-plain-text-content" class="ui-state-default"><i class="main-handle fa fa-bars"></i>
+												<li id="bookedCFTemplate-plain-text-content" class="ui-state-default"><i class="main-handle booked-icon booked-icon-bars"></i>
 													<small><?php esc_html_e('Text Content','booked'); ?></small>
 													<textarea name="plain-text-content"></textarea>
 													<small class="help-text"><?php esc_html_e('HTML allowed','booked'); ?></small>
-													<span class="cf-delete"><i class="fa fa-close"></i></span>
+													<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 												</li>
 					
-												<li id="bookedCFTemplate-single-checkbox" class="ui-state-default "><i class="sub-handle fa fa-bars"></i>
+												<li id="bookedCFTemplate-single-checkbox" class="ui-state-default "><i class="sub-handle booked-icon booked-icon-bars"></i>
 													<?php do_action('booked_before_custom_checkbox'); ?>
 													<input type="text" name="single-checkbox" value="" placeholder="<?php esc_html_e('Enter a label for this checkbox...','booked'); ?>" />
-													<span class="cf-delete"><i class="fa fa-close"></i></span>
+													<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 													<?php do_action('booked_after_custom_checkbox'); ?>
 												</li>
-												<li id="bookedCFTemplate-single-radio-button" class="ui-state-default "><i class="sub-handle fa fa-bars"></i>
+												<li id="bookedCFTemplate-single-radio-button" class="ui-state-default "><i class="sub-handle booked-icon booked-icon-bars"></i>
 													<input type="text" name="single-radio-button" value="" placeholder="<?php esc_html_e('Enter a label for this radio button...','booked'); ?>" />
-													<span class="cf-delete"><i class="fa fa-close"></i></span>
+													<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 												</li>
-												<li id="bookedCFTemplate-single-drop-down" class="ui-state-default "><i class="sub-handle fa fa-bars"></i>
+												<li id="bookedCFTemplate-single-drop-down" class="ui-state-default "><i class="sub-handle booked-icon booked-icon-bars"></i>
 													<input type="text" name="single-drop-down" value="" placeholder="<?php esc_html_e('Enter a label for this option...','booked'); ?>" />
-													<span class="cf-delete"><i class="fa fa-close"></i></span>
+													<span class="cf-delete"><i class="booked-icon booked-icon-close"></i></span>
 												</li>
 					
 												<?php do_action('booked_custom_fields_add_template') ?>
@@ -1529,7 +1555,7 @@ Time: %time%
 					
 									<div class="section-row submit-section bookedClearFix" style="padding:0;">
 										<input id="booked-cf-saveButton" type="button" class="button button-primary" value="<?php esc_html_e('Save Custom Fields','booked'); ?>">
-										<div class="cf-updater savingState"><i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;<?php esc_html_e('Saving','booked'); ?>...</div>
+										<div class="cf-updater savingState"><i class="booked-icon booked-icon-spinner-clock booked-icon-spin"></i>&nbsp;&nbsp;<?php esc_html_e('Saving','booked'); ?>...</div>
 									</div><!-- /.section-row -->
 					
 								</div><!-- /templates -->
@@ -1653,7 +1679,7 @@ Time: %time%
 										
 										<div class="section-row submit-section" style="padding:0;">
 											<p class="submit">
-												<button class="button-primary"><i class="fa fa-external-link-square"></i>&nbsp;&nbsp;<?php esc_html_e('Export Appointments to CSV','booked'); ?></button>
+												<button class="button-primary"><i class="booked-icon booked-icon-sign-out"></i>&nbsp;&nbsp;<?php esc_html_e('Export Appointments to CSV','booked'); ?></button>
 											</p>
 										</div>
 										

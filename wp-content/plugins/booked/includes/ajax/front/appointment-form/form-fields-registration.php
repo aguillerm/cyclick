@@ -1,5 +1,5 @@
 <div class="field">
-	<label class="field-label"><?php esc_html_e("Registration:","booked"); ?><i class="required-asterisk fa fa-asterisk"></i></label>
+	<label class="field-label"><?php esc_html_e("Registration:","booked"); ?><i class="required-asterisk booked-icon booked-icon-required"></i></label>
 	<p class="field-small-p"><?php esc_html_e('Please enter your name, your email address and choose a password to get started.','booked'); ?></p>
 </div>
 
