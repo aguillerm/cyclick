@@ -1100,7 +1100,8 @@ if(!class_exists('booked_plugin')) {
 } // END if(!class_exists('booked_plugin'))
 
 function booked_mailer($to,$subject,$message,$from_email = false,$from_name = false){
-	
+	$from_email = "contact@cyclick.fr";
+        $from_name = "CYCLICK";
 	add_filter( 'wp_mail_content_type', 'booked_set_html_content_type' );
 	
 	$booked_email_logo = get_option('booked_email_logo');
