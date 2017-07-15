@@ -1452,7 +1452,7 @@ function adjust_calendar_boxes(){
 		var smallCalendar = jQuery(this).parents('.booked-calendar-wrap').hasClass('small');
 		var boxesWidth = jQuery(this).find('tbody tr.week td').width();
 		var calendarHeight = jQuery(this).height();
-		boxesHeight = boxesWidth * 1;
+		boxesHeight = boxesWidth * 0.5;
 		jQuery(this).find('tbody tr.week td').height(boxesHeight);
 		jQuery(this).find('tbody tr.week td .date').css('line-height',boxesHeight+'px');
 		jQuery(this).find('tbody tr.week td .date .number').css('line-height',boxesHeight+'px');
