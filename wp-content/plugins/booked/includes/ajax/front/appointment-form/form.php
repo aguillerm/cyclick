@@ -155,7 +155,7 @@ if ( $is_user_logged_in && $appointment_limit ) {
 		}
 		?>
 
-		<?php if ( ! $is_user_logged_in && ! $error_message && class_exists('ReallySimpleCaptcha') ) : ?>
+		<?php if ( ! $is_user_logged_in && ! $error_message && 0 ) : ?>
 			<?php
 			$rsc_url = WP_PLUGIN_URL . '/really-simple-captcha/';
 			$captcha = new ReallySimpleCaptcha();
