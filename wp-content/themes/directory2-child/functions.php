@@ -91,6 +91,41 @@ function wpb_sender_name( $original_email_from ) {
 	return 'CYCLICK';
 }
 
+//SUpression dashboard widget for non admin user
+function pinkstone_remove_jetpack() {
+	if( class_exists( 'Jetpack' ) && !current_user_can( 'manage_options' ) ) {
+		remove_menu_page( 'jetpack' );
+	}
+}
+
+function remove_dashboard_widgets() {
+	global $wp_meta_boxes;
+
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_drafts']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
+        unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity']);
+
+}
+
+if (!current_user_can('manage_options')) {
+	add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
+}
+add_action( 'admin_init', 'pinkstone_remove_jetpack' );
+
+//Changement du statut de la commande en complete de facon automatique
+add_action( 'woocommerce_thankyou', 'abw_woocommerce_auto_complete_order' );
+function abw_woocommerce_auto_complete_order( $order_id ) {
+    if ( !$order_id ) return;
+    $order = new WC_Order( $order_id );
+    $order->update_status( 'completed' );
+}
+
 // Hooking up our functions to WordPress filters 
 add_filter( 'wp_mail_from', 'wpb_sender_email' );
 add_filter( 'wp_mail_from_name', 'wpb_sender_name' );
