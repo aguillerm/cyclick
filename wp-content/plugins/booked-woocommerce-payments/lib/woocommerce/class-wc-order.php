@@ -124,7 +124,10 @@ class Booked_WC_Order_Hooks {
 				return;
 			}
 
+			//On recuperer le $calendar_id pour l'envoi de mail au bon prestataire
 			$completed[] = $appt_id;
+			$appointment = Booked_WC_Appointment::get($appt_id);
+			$calendar_id = $appointment->calendar->calendar_obj->term_id;
 			
 			// Add Booked WC confirmation email actions
 			add_action( 'booked_wc_confirmation_email', 'booked_mailer', 10, 3 );
