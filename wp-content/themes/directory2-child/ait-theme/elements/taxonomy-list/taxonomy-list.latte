@@ -85,7 +85,10 @@
 					<div n:class="item-box, $enableCarousel ? carousel-item">
 				{/if}
                                 {var $enable = ""}
-				{if $title != 'Ostéopathes' && $title != 'Informaticiens' && $title != 'Bricoleurs' && $title != 'Coachs sportifs'}
+				{if $title != 'Ostéopathes' && $title != 'Informaticiens' 
+                                 && $title != 'Bricoleurs' && $title != 'Coachs sportifs'
+                                 && $title != 'Aide à domicile' && $title != 'Réflexo-thérapeutes'
+                                 && $title != 'Nettoyeurs'}
 					{var $link = "/rejoignez-nous"}
                                         {var $enable = "grey"}
 				{/if}
