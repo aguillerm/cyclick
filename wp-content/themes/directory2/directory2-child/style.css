@@ -1,0 +1,16 @@
+/*
+Theme Name: Directory Plus Child Theme
+Template: directory2
+Version: 1.0
+Author:
+Author URI:
+Description:
+Tags:
+License: GNU General Public License
+License URI: http://www.gnu.org/licenses/gpl.html
+*/
+.go-calend
+{
+    position: inherit!important;
+    border: 1px solid black!important;
+}

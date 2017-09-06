@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - BackWPup &#8211; WordPress Backup Plugin - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-06-29 09:59:34+0000\n"
+"PO-Revision-Date: 2017-07-17 06:58:38+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -97,7 +97,7 @@ msgstr "Obtenez votre réduction de 30% de l’Independance Day pour BackWPup Pr
 
 #: inc/class-page-settings.php:307
 msgid "There is a PHP bug (<a href=\"https://bugs.php.net/43817\">bug #43817</a>), which is triggered on some versions of Windows and IIS. Checking this box will enable a workaround for that bug. Only enable if you are getting errors about &ldquo;Permission denied&rdquo; in your logs."
-msgstr "Il y a un bug PHP (<a href=\"https://bugs.php.net/43817\">bug #43817</a>), qui est présent sur certaines versions de Windows et de IIS. Cocher cette case permet d'activer un contournement pour ce bug. Activer le seulement si vous avez des erreurs de type \"permission refusée (Permission denied) dans les fichiers de traces."
+msgstr "Il y a un bug PHP (<a href=\"https://bugs.php.net/43817\">bug #43817</a>), qui est présent sur certaines versions de Windows et de IIS. Cocher cette case permet d’activer un contournement pour ce bug. Activez-le seulement si vous avez des erreurs de « Droit refusé » dans les journaux."
 
 #: inc/class-page-settings.php:302 inc/class-page-settings.php:305
 msgid "Enable compatibility with IIS on Windows."
@@ -113,7 +113,7 @@ msgstr "<em>Note</em>: Afin de faire fonctionner le suivi des fichiers de sauveg
 
 #: inc/class-page-backwpup.php:366
 msgid "Could not open log folder: %s"
-msgstr "Impossible d'accéder au répertoire des journaux: %s"
+msgstr "Impossible d’accéder au dossier des journaux : %s"
 
 #: inc/class-page-backwpup.php:77 inc/class-page-backwpup.php:86
 msgid "With a single backup archive you are able to restore an installation. Use a tool like phpMyAdmin to restore your database backup files."
@@ -121,7 +121,7 @@ msgstr "Avec un seul fichier de sauvegarde vous pouvez restaurer votre installat
 
 #: inc/class-page-about.php:371 inc/class-page-about.php:384
 msgid "Use your backup archives to save your entire WordPress installation including <code>/wp-content/</code>. Push them to an external storage service if you don’t want to save the backups on the same server. With a single backup archive you are able to restore an installation. Use a tool like phpMyAdmin to restore your database backup files."
-msgstr "Utiliser votre sauvegarde pour garder l'ensemble de votre installation WordPress y compris <code>/wp-content/</code>.  Envoyer la vers un stockage externe si vous ne souhaitez pas avoir tout au même endroit. Avec une seule sauvegarde vous pouvez restaurer toute votre installation. Utiliser un outil comme phpMyAdmin pour restaurer la sauvegarde de votre base de données."
+msgstr "Utilisez votre sauvegarde pour enregistrer l’ensemble de votre installation WordPress y compris <code>/wp-content/</code>.  Envoyez-la vers un stockage externe si vous ne souhaitez pas avoir tout au même endroit. Avec une seule sauvegarde, vous pouvez restaurer toute votre installation. Utilisez un outil comme phpMyAdmin pour restaurer la sauvegarde de votre base de données."
 
 #: inc/class-destination-email.php:41
 msgid "To email address (separate with commas for multiple addresses)"

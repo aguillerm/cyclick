@@ -25,6 +25,8 @@ function booked_mailer_tokens(){
 		'time' => esc_html__( "Display the appointment time.","booked" ),
 		'customfields' => esc_html__( "Display the appointment's custom field data.","booked" ),
 		'id' => esc_html__( "Display the appointment's unique identification number.","booked" ),
+		'phone' => esc_html__( "Display the phone of the customer.","booked" ),
+                'adress' => esc_html__( "Display the adress of the customer.","booked" ),
 	));
 }
 
@@ -72,10 +74,23 @@ function booked_get_appointment_tokens( $appt_id ){
 		$last_name = get_post_meta( $appt_id, '_appointment_guest_surname', true );
 		$customer_name = ( $last_name ? $first_name . ' ' . $last_name : $first_name );
 		$customer_email = get_post_meta( $appt_id, '_appointment_guest_email', true );
+		$_appt = get_post( $appt_id );
+		$appt_author = $_appt->post_author;
+		$_user = get_userdata($appt_author);
+		$all_meta_for_user  = get_user_meta($_user->ID);
+                $customer_phone = $all_meta_for_user['billing_phone'][0];
+                $customer_adress = $all_meta_for_user['billing_address_1'][0] . " " .
+                        $all_meta_for_user['billing_postcode'][0] . " " .
+                        $all_meta_for_user['billing_city'][0];
 	else:
 		$_appt = get_post( $appt_id );
 		$appt_author = $_appt->post_author;
 		$_user = get_userdata( $appt_author );
+                $all_meta_for_user  = get_user_meta($_user->ID);
+                $customer_phone = $all_meta_for_user['billing_phone'][0];
+                $customer_adress = $all_meta_for_user['billing_address_1'][0] . " " .
+                        $all_meta_for_user['billing_postcode'][0] . " " .
+                        $all_meta_for_user['billing_city'][0];
 		$customer_name = booked_get_name( $appt_author );
 		$customer_email = $_user->user_email;
 	endif;
@@ -132,7 +147,9 @@ function booked_get_appointment_tokens( $appt_id ){
 		'calendar' => $calendar_name,
 		'email' => $customer_email,
 		'title' => $title,
-		'id' => $appt_id
+		'id' => $appt_id,
+		'phone' => $customer_phone,
+                'adress' => $customer_adress
 	));
 
 }

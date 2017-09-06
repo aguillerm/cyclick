@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1\n"
 "Project-Id-Version: Booked Appointments\n"
 "POT-Creation-Date: 2017-06-28 15:28-0400\n"
-"PO-Revision-Date: 2017-07-12 10:25+0000\n"
+"PO-Revision-Date: 2017-08-07 12:51+0000\n"
 "Last-Translator: cyclick <contact@cyclick.fr>\n"
 "Language-Team: French (France)\n"
 "MIME-Version: 1.0\n"
@@ -85,11 +85,6 @@ msgstr[1] ""
 msgid "Return to Add-On Installer"
 msgstr ""
 
-#: class-tgm-plugin-activation.php:393 class-tgm-plugin-activation.php:920
-#: class-tgm-plugin-activation.php:2626 class-tgm-plugin-activation.php:3673
-msgid "Return to the Dashboard"
-msgstr "Retour au Dashboard"
-
 #: class-tgm-plugin-activation.php:395
 msgid "The following add-on was activated successfully:"
 msgstr ""
@@ -114,27 +109,15 @@ msgstr ""
 msgid "All add-ons installed and activated successfully. %1$s"
 msgstr ""
 
-#: class-tgm-plugin-activation.php:402
-msgid "Dismiss this notice"
-msgstr "Rejeter cette notification"
-
 #: class-tgm-plugin-activation.php:403
 msgid ""
 "There are one or more required or recommended add-ons to install, update or "
 "activate."
 msgstr ""
 
-#: class-tgm-plugin-activation.php:404
-msgid "Please contact the administrator of this site for help."
-msgstr "Veuillez contacter l'administrateur de ce site pour obtenir de l'aide."
-
 #: class-tgm-plugin-activation.php:607
 msgid "This plugin needs to be updated to be compatible with your theme."
 msgstr ""
-
-#: class-tgm-plugin-activation.php:608
-msgid "Update Required"
-msgstr "Mise à jour requise."
 
 #: class-tgm-plugin-activation.php:725
 msgid "Set the parent_slug config variable instead."
@@ -145,14 +128,6 @@ msgid ""
 "The remote plugin package does not contain a folder with the desired slug "
 "and renaming did not work."
 msgstr ""
-
-#: class-tgm-plugin-activation.php:1027 class-tgm-plugin-activation.php:1030
-msgid ""
-"Please contact the plugin provider and ask them to package their plugin "
-"according to the WordPress guidelines."
-msgstr ""
-"Veuillez contacter le fournisseur de plugins et leur demander d'emballer "
-"leur plugin selon les directives de WordPress."
 
 #: class-tgm-plugin-activation.php:1030
 msgid ""
@@ -182,10 +157,6 @@ msgstr ""
 #: class-tgm-plugin-activation.php:2391
 msgid "Pre-Packaged"
 msgstr ""
-
-#: class-tgm-plugin-activation.php:2408
-msgid "Not Installed"
-msgstr "Pas installé"
 
 #: class-tgm-plugin-activation.php:2412
 msgid "Installed But Not Activated"
@@ -434,10 +405,6 @@ msgstr ""
 msgid "%s to %s"
 msgstr ""
 
-#: includes/admin-functions.php:82
-msgid "New"
-msgstr "Nouveau"
-
 #: includes/admin-functions.php:83
 msgid "Fixed"
 msgstr ""
@@ -470,17 +437,9 @@ msgstr ""
 msgid "# of Each ..."
 msgstr ""
 
-#: includes/admin-functions.php:160
-msgid "night"
-msgstr "nuit"
-
 #: includes/admin-functions.php:183
 msgid "Sunday"
 msgstr ""
-
-#: includes/admin-functions.php:184
-msgid "Monday"
-msgstr "Lundi"
 
 #: includes/admin-functions.php:185
 msgid "Tuesday"
@@ -501,10 +460,6 @@ msgstr ""
 #: includes/admin-functions.php:189
 msgid "Saturday"
 msgstr ""
-
-#: includes/admin-functions.php:222 includes/ajax/init_admin.php:839
-msgid "No time slots."
-msgstr "Pas de créneaux."
 
 #: includes/admin-functions.php:276 templates/settings.php:292
 msgid "Every 1 hour"
@@ -692,11 +647,6 @@ msgstr ""
 msgid "Radio Button"
 msgstr ""
 
-#: includes/admin-functions.php:1151 includes/admin-functions.php:1290
-#: templates/settings.php:1523
-msgid "Option"
-msgstr "Option"
-
 #: includes/admin-functions.php:1184 includes/admin-functions.php:1302
 #: templates/settings.php:1491
 msgid "Single Line Text"
@@ -714,11 +664,6 @@ msgstr ""
 #: templates/settings.php:1493 templates/settings.php:1499
 msgid "Enter a label for this field..."
 msgstr ""
-
-#: includes/admin-functions.php:1195 includes/admin-functions.php:1303
-#: templates/settings.php:1497
-msgid "Paragraph Text"
-msgstr "Texte du paragraphe"
 
 #: includes/admin-functions.php:1206 includes/admin-functions.php:1304
 #: templates/settings.php:1503
@@ -759,15 +704,11 @@ msgstr ""
 #: includes/ajax/admin/add-appointment.php:139
 #: includes/ajax/admin/edit-appointment.php:18
 msgid "That email does not appear to be valid."
-msgstr ""
+msgstr "Cette adresse mail est invalide."
 
 #: includes/ajax/admin/appointment-form.php:40
 msgid "Current Customer"
 msgstr ""
-
-#: includes/ajax/admin/appointment-form.php:43
-msgid "New Customer"
-msgstr "Nouveau client"
 
 #: includes/ajax/admin/appointment-form.php:48
 msgid "Guest"
@@ -791,15 +732,6 @@ msgstr ""
 msgid "Last Name"
 msgstr ""
 
-#: includes/ajax/admin/appointment-form.php:76
-#: includes/ajax/admin/appointment-form.php:97
-#: includes/ajax/admin/user-info.php:92
-#: includes/ajax/front/appointment-form/form-fields-guest.php:24
-#: includes/ajax/front/appointment-form/form-fields-guest.php:27
-#: includes/ajax/front/appointment-form/form-fields-registration.php:18
-msgid "Name"
-msgstr "Nom"
-
 #: includes/ajax/admin/appointment-form.php:81
 #: includes/ajax/admin/appointment-form.php:102
 #: includes/ajax/admin/user-info.php:98
@@ -810,7 +742,7 @@ msgstr "Nom"
 #: includes/ajax/front/appointment-form/form-fields-registration.php:23
 #: includes/general-functions.php:357 includes/shortcodes.php:418
 msgid "Email Address"
-msgstr ""
+msgstr "Adresse mail"
 
 #: includes/ajax/admin/user-info.php:5 post-types/booked_appointments.php:37
 msgid "Edit Appointment"
@@ -845,29 +777,9 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: includes/ajax/front/appointment-form/form-fields-guest.php:12
-msgid "Please enter your first name, last name and email address:"
-msgstr "Veuillez entrer votre prénom, votre nom et votre adresse email : "
-
-#: includes/ajax/front/appointment-form/form-fields-guest.php:12
-msgid "Please enter your name and email address:"
-msgstr "Veuillez entrer votre nom et votre adresse email:"
-
-#: includes/ajax/front/appointment-form/form-fields-guest.php:12
-msgid "Please enter your first and last name:"
-msgstr "Veuillez entrer votre nom et prénom :"
-
-#: includes/ajax/front/appointment-form/form-fields-guest.php:12
-msgid "Please enter your name:"
-msgstr "Veuillez entrer votre nom:"
-
 #: includes/ajax/front/appointment-form/form-fields-registration.php:2
 msgid "Registration:"
 msgstr ""
-
-#: includes/ajax/front/appointment-form/form.php:41
-msgid "New customer"
-msgstr "Nouveau Client"
 
 #: includes/ajax/front/appointment-form/form.php:49
 msgid "Current customer"
@@ -895,18 +807,13 @@ msgid ""
 "book at a time. Each user may only book %d appointments at a time."
 msgstr ""
 
-#: includes/ajax/front/appointment-form/form.php:170
-#: includes/general-functions.php:368
-msgid "Please enter the following text:"
-msgstr "Veuillez entrer le texte suivant :"
-
 #: includes/ajax/front/appointment-form/form.php:188
 msgid "Okay"
 msgstr ""
 
 #: includes/ajax/front/book-appointment.php:181
 msgid "The email address you have entered doesn't appear to be valid."
-msgstr ""
+msgstr "L'adresse mail est invalide"
 
 #: includes/ajax/front/book-appointment.php:185
 msgid "Your name is required to book an appointment."
@@ -935,10 +842,6 @@ msgid_plural "%d Available"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/functions.php:604
-msgid "None Available"
-msgstr "Pas disponible"
-
 #: includes/functions.php:815 includes/functions.php:1167
 msgid "Unavailable"
 msgstr ""
@@ -947,10 +850,6 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: includes/functions.php:1049
-msgid "Next"
-msgstr "Suivant"
-
 #: includes/functions.php:1277
 #, php-format
 msgid "Username: %s"
@@ -958,7 +857,7 @@ msgstr ""
 
 #: includes/functions.php:1278
 msgid "If this was a mistake, just ignore this email and nothing will happen."
-msgstr ""
+msgstr "Si c'est une erreur, ignorez juste ce mail et rien ne se produira."
 
 #: includes/functions.php:1517
 msgid "Choose..."
@@ -966,11 +865,13 @@ msgstr ""
 
 #: includes/functions.php:1695
 msgid "The Email you entered is not valid.  please try again."
-msgstr ""
+msgstr "L’adresse mail est invalide. Veuillez réessayer."
 
 #: includes/functions.php:1697
 msgid "This email is already used by another user.  try a different one."
 msgstr ""
+"Cette adresse mail est déjà utilisé par un autre utilisateur. Veuillez en "
+"utiliser une autre."
 
 #: includes/functions.php:1719
 msgid "Error uploading avatar."
@@ -1008,7 +909,7 @@ msgstr ""
 
 #: includes/functions.php:1809
 msgid "E-mail *"
-msgstr ""
+msgstr "E-mail *"
 
 #: includes/general-functions.php:232
 msgid "The text you've entered does not match the image."
@@ -1024,11 +925,11 @@ msgstr ""
 
 #: includes/general-functions.php:252
 msgid "That email address is not valid."
-msgstr ""
+msgstr "L'adresse mail est invalide."
 
 #: includes/general-functions.php:256
 msgid "That email is already in use."
-msgstr ""
+msgstr "L'adresse mail est déjà utilisé."
 
 #: includes/general-functions.php:307 includes/shortcodes.php:401
 msgid "Success!"
@@ -1037,6 +938,8 @@ msgstr ""
 #: includes/general-functions.php:307
 msgid "Registration complete, please check your email for login information."
 msgstr ""
+"Inscription complète, vérifiez votre adresse mail pour obtenir les "
+"informations de connexion."
 
 #: includes/general-functions.php:387 includes/shortcodes.php:392
 msgid "Register"
@@ -1095,10 +998,6 @@ msgid "Today"
 msgstr ""
 
 #: includes/shortcodes.php:302
-msgid "pending"
-msgstr "en attente"
-
-#: includes/shortcodes.php:302
 msgid "approved"
 msgstr ""
 
@@ -1124,7 +1023,7 @@ msgstr ""
 
 #: includes/shortcodes.php:452
 msgid "What is your email address?"
-msgstr ""
+msgstr "Quelle est votre adresse mail ?"
 
 #: includes/widgets.php:16
 msgid "Booked Calendar"
@@ -1137,10 +1036,6 @@ msgstr ""
 #: includes/widgets.php:48
 msgid "Calendar to Display"
 msgstr ""
-
-#: includes/widgets.php:55
-msgid "Month"
-msgstr "Mois"
 
 #: includes/widgets.php:58
 msgid "Current month"
@@ -1179,10 +1074,6 @@ msgstr ""
 msgid "Update Custom Calendar"
 msgstr ""
 
-#: post-types/booked_appointments.php:70
-msgid "New Custom Calendar Name"
-msgstr "Nouveau nom de calendrier personnalisé"
-
 #: post-types/booked_appointments.php:71
 msgid "Separate custom calendars with commas"
 msgstr ""
@@ -1190,10 +1081,6 @@ msgstr ""
 #: post-types/booked_appointments.php:73
 msgid "Choose from the most used custom calendars"
 msgstr ""
-
-#: post-types/booked_appointments.php:74
-msgid "No custom calendars found."
-msgstr "Aucun calendrier personnalisé trouvé."
 
 #: templates/admin-calendar.php:63 templates/pending-list.php:31
 #: templates/settings.php:37
@@ -1227,10 +1114,6 @@ msgstr ""
 #, php-format
 msgid "Assigned to %s"
 msgstr ""
-
-#: templates/profile.php:16
-msgid "No profile here!"
-msgstr "Pas de page profil ici !"
 
 #: templates/profile.php:17
 msgid "Sorry, this user profile does not exist."
@@ -1327,10 +1210,6 @@ msgstr ""
 msgid "%s Refresh the calendar list after booking."
 msgstr ""
 
-#: templates/settings.php:183
-msgid "No Redirect"
-msgstr "Pas de redirection"
-
 #: templates/settings.php:188
 #, php-format
 msgid "%s Auto-detect the page with the [booked-profile] shortcode."
@@ -1413,10 +1292,6 @@ msgid ""
 "slots will be pushed up to a new date and time depending on which buffer "
 "amount you choose below."
 msgstr ""
-
-#: templates/settings.php:319 templates/settings.php:396
-msgid "No buffer"
-msgstr "Aucun buffer"
 
 #: templates/settings.php:321 templates/settings.php:401
 msgid "2 hours"
@@ -1534,10 +1409,6 @@ msgid ""
 "appointment limit."
 msgstr ""
 
-#: templates/settings.php:442
-msgid "No limit"
-msgstr "Pas de limite"
-
 #: templates/settings.php:443
 msgid "1 appointment"
 msgstr ""
@@ -1594,10 +1465,6 @@ msgstr ""
 msgid "50 appointments"
 msgstr ""
 
-#: templates/settings.php:471
-msgid "New Appointment Default"
-msgstr "Nouveau rendez-vous par défaut"
-
 #: templates/settings.php:473
 msgid ""
 "Would you like your appointment requests to go into a pending list or should "
@@ -1649,10 +1516,6 @@ msgstr ""
 #: templates/settings.php:546
 msgid "Public Appointments (show names under booked appointments)"
 msgstr ""
-
-#: templates/settings.php:554
-msgid "Other Options"
-msgstr "Autres options"
 
 #: templates/settings.php:568
 msgid ""
@@ -2046,6 +1909,147 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "https://boxystudio.com"
 msgstr ""
+
+#: class-tgm-plugin-activation.php:393 class-tgm-plugin-activation.php:920
+#: class-tgm-plugin-activation.php:2626 class-tgm-plugin-activation.php:3673
+msgid "Return to the Dashboard"
+msgstr "Retour au Dashboard"
+
+#: class-tgm-plugin-activation.php:402
+msgid "Dismiss this notice"
+msgstr "Rejeter cette notification"
+
+#: class-tgm-plugin-activation.php:404
+msgid "Please contact the administrator of this site for help."
+msgstr "Veuillez contacter l'administrateur de ce site pour obtenir de l'aide."
+
+#: class-tgm-plugin-activation.php:608
+msgid "Update Required"
+msgstr "Mise à jour requise."
+
+#: class-tgm-plugin-activation.php:1027 class-tgm-plugin-activation.php:1030
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+"Veuillez contacter le fournisseur de plugins et leur demander d'emballer "
+"leur plugin selon les directives de WordPress."
+
+#: class-tgm-plugin-activation.php:2408
+msgid "Not Installed"
+msgstr "Pas installé"
+
+#: includes/admin-functions.php:82
+msgid "New"
+msgstr "Nouveau"
+
+#: includes/admin-functions.php:160
+msgid "night"
+msgstr "nuit"
+
+#: includes/admin-functions.php:184
+msgid "Monday"
+msgstr "Lundi"
+
+#: includes/admin-functions.php:222 includes/ajax/init_admin.php:839
+msgid "No time slots."
+msgstr "Pas de créneaux."
+
+#: includes/admin-functions.php:1151 includes/admin-functions.php:1290
+#: templates/settings.php:1523
+msgid "Option"
+msgstr "Option"
+
+#: includes/admin-functions.php:1195 includes/admin-functions.php:1303
+#: templates/settings.php:1497
+msgid "Paragraph Text"
+msgstr "Texte du paragraphe"
+
+#: includes/ajax/admin/appointment-form.php:43
+msgid "New Customer"
+msgstr "Nouveau client"
+
+#: includes/ajax/admin/appointment-form.php:76
+#: includes/ajax/admin/appointment-form.php:97
+#: includes/ajax/admin/user-info.php:92
+#: includes/ajax/front/appointment-form/form-fields-guest.php:24
+#: includes/ajax/front/appointment-form/form-fields-guest.php:27
+#: includes/ajax/front/appointment-form/form-fields-registration.php:18
+msgid "Name"
+msgstr "Nom"
+
+#: includes/ajax/front/appointment-form/form-fields-guest.php:12
+msgid "Please enter your first name, last name and email address:"
+msgstr "Veuillez entrer votre prénom, votre nom et votre adresse email : "
+
+#: includes/ajax/front/appointment-form/form-fields-guest.php:12
+msgid "Please enter your name and email address:"
+msgstr "Veuillez entrer votre nom et votre adresse email:"
+
+#: includes/ajax/front/appointment-form/form-fields-guest.php:12
+msgid "Please enter your first and last name:"
+msgstr "Veuillez entrer votre nom et prénom :"
+
+#: includes/ajax/front/appointment-form/form-fields-guest.php:12
+msgid "Please enter your name:"
+msgstr "Veuillez entrer votre nom:"
+
+#: includes/ajax/front/appointment-form/form.php:41
+msgid "New customer"
+msgstr "Nouveau Client"
+
+#: includes/ajax/front/appointment-form/form.php:170
+#: includes/general-functions.php:368
+msgid "Please enter the following text:"
+msgstr "Veuillez entrer le texte suivant :"
+
+#: includes/functions.php:604
+msgid "None Available"
+msgstr "Pas disponible"
+
+#: includes/functions.php:1049
+msgid "Next"
+msgstr "Suivant"
+
+#: includes/shortcodes.php:302
+msgid "pending"
+msgstr "en attente"
+
+#: includes/widgets.php:55
+msgid "Month"
+msgstr "Mois"
+
+#: post-types/booked_appointments.php:70
+msgid "New Custom Calendar Name"
+msgstr "Nouveau nom de calendrier personnalisé"
+
+#: post-types/booked_appointments.php:74
+msgid "No custom calendars found."
+msgstr "Aucun calendrier personnalisé trouvé."
+
+#: templates/profile.php:16
+msgid "No profile here!"
+msgstr "Pas de page profil ici !"
+
+#: templates/settings.php:183
+msgid "No Redirect"
+msgstr "Pas de redirection"
+
+#: templates/settings.php:319 templates/settings.php:396
+msgid "No buffer"
+msgstr "Aucun buffer"
+
+#: templates/settings.php:442
+msgid "No limit"
+msgstr "Pas de limite"
+
+#: templates/settings.php:471
+msgid "New Appointment Default"
+msgstr "Nouveau rendez-vous par défaut"
+
+#: templates/settings.php:554
+msgid "Other Options"
+msgstr "Autres options"
 
 #: includes/admin-functions.php:527 includes/admin-functions.php:825
 #: includes/admin-functions.php:1080
@@ -2778,8 +2782,8 @@ msgstr "Vos informations : "
 #, php-format
 msgid "You are about to request an appointment for %s."
 msgid_plural "You are about to request appointments for %s."
-msgstr[0] "Vous allez prendre un rendez-vous pour %s"
-msgstr[1] "Vous allez prendre un rendez-vous pour %s"
+msgstr[0] "Vous allez prendre un rendez-vous pour %s."
+msgstr[1] "Vous allez prendre un rendez-vous pour %s."
 
 #: includes/ajax/front/appointment-form/form.php:141
 msgid ""

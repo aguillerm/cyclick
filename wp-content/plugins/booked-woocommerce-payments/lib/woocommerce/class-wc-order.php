@@ -113,6 +113,8 @@ class Booked_WC_Order_Hooks {
 		$order = Booked_WC_Order::get($order_id);
 
 		$appointments = $order->appointments;
+
+
 		if ( !$appointments ) {
 			return;
 		}

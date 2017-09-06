@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-04-19 18:42+0000\n"
+"PO-Revision-Date: 2017-08-07 13:04+0000\n"
 "Language-Team: French (France)\n"
 "Last-Translator: cyclick <contact@cyclick.fr>\n"
 "Language: fr-FR\n"
@@ -1385,11 +1385,6 @@ msgctxt "name of element"
 msgid "Themes"
 msgstr ""
 
-#: header.php:183 /parts/header-share.php:80 /parts/page-share.php:97
-#: parts/page-share.php:105 /portal/parts/single-item-social.php:18
-msgid "Share"
-msgstr "Partager"
-
 #: parts/entry-author.php:8
 msgid "Author: %s"
 msgstr ""
@@ -2323,11 +2318,6 @@ msgctxt "day date format"
 msgid "d"
 msgstr ""
 
-#: parts/page-share.php:117
-msgid ""
-"<span class=\"title\">Share</span> <span class=\"subtitle\">this page</span>"
-msgstr "Partager"
-
 #: parts/page-title.php:119
 msgid "Expired: "
 msgstr ""
@@ -2352,7 +2342,7 @@ msgstr ""
 
 #: portal/parts/single-item-address.php:9
 msgid "Our Address"
-msgstr ""
+msgstr "Adresse"
 
 #: portal/parts/single-item-features.php:30
 msgid "Our Useful Features & Services"
@@ -2416,10 +2406,6 @@ msgstr ""
 #: parts/page-share.php:109
 msgid "Follow &"
 msgstr ""
-
-#: parts/page-share.php:110
-msgid "share us"
-msgstr "Partagez nous"
 
 #: portal/parts/search-filters.php:24
 msgid "Upcoming Events"
@@ -2565,6 +2551,20 @@ msgstr ""
 #: portal/parts/user-panel.php:30
 msgid "My Menu"
 msgstr ""
+
+#: header.php:183 /parts/header-share.php:80 /parts/page-share.php:97
+#: parts/page-share.php:105 /portal/parts/single-item-social.php:18
+msgid "Share"
+msgstr "Partager"
+
+#: parts/page-share.php:117
+msgid ""
+"<span class=\"title\">Share</span> <span class=\"subtitle\">this page</span>"
+msgstr "Partager"
+
+#: parts/page-share.php:110
+msgid "share us"
+msgstr "Partagez nous"
 
 #: ait-theme/@framework/libs/wplatte/Breadcrumbs.php:50
 msgid "You are here:"

@@ -1,0 +1,383 @@
+/*
+Your custom style
+
+Add your custom styles in this file so it is easier to update the theme.
+*/
+
+div.top-bar
+{
+	display: none;
+}
+
+/* AJOUT AU PANIER DE WOOCOMMERCE DEACTIVE */
+a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart
+{
+	display: none;
+}
+
+.woocommerce ul.products li a.product_type_variable
+{
+    display: none;
+}
+
+/*TAILLE DES INFOS LIGHBOX*/
+div.wpb_wl_summary
+{
+	width: 70%
+}
+
+div.wpb_wl_images
+{
+	width: 30%
+}
+
+div.wpb_wl_quick_view_content
+{
+	padding: 40px 40px 40px;
+}
+
+/* TITRE DES SECTIONS */
+h2.elm-maintitle
+{
+	line-height: 24px;
+	max-width: 10%;
+	letter-spacing:6px;
+}
+
+/* FOOTER */
+div.footer-widgets-wrap 
+{
+	padding-top:10px;
+	padding-bottom:0px;
+}
+
+div.site-footer
+{
+	display: none;
+}
+
+/* SEARCH FORM */
+.lang-fr_FR .elm-search-form .searchsubmit2 
+{
+	color: #9CCEAE;
+	background-color: white;
+	border-radius: 20px;	
+
+}
+
+input.searchsubmit2:hover
+{
+	color : white;
+}
+
+/* ITEM REVIEWS EVALEUR*/
+.single-ait-item .elm-easy-slider-main .elm-easy-slider .review-stars-container
+{
+	background: #9CCEAE;
+}
+
+.single-ait-item .elm-easy-slider-main .elm-easy-slider .review-stars-container .content.rating-text-shown > a
+{
+	color: white;
+	letter-spacing: 2px;
+}
+
+.single-ait-item .elm-easy-slider-main .elm-easy-slider .review-stars-container .content.rating-text-shown > a:hover
+{
+	color: #f4c056;
+}
+
+.clearer 
+{ 
+	clear: both;
+}
+
+/* TABLEAU TABLEPRESS */
+.tablepress table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+}
+.tablepress {
+    background: #fff;
+    overflow: hidden;
+    border: 1px solid #006699;
+    -webkit-border-radius: 17px;
+    -moz-border-radius: 17px;
+    border-radius: 17px;
+}
+.tablepress table td,
+.tablepress table th {
+    padding: 6px 12px;
+}
+.tablepress table tbody td {
+    color: #00557F;
+    border-left: 1px solid #E1EEF4;
+    font-size: 16px;
+    font-weight: normal;
+}
+.tablepress table tbody .odd td {
+    background: #E1EEf4;
+    color: #00557F;
+}
+.tablepress table tbody td:first-child {
+    border-left: none;
+}
+.tablepress table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.lang-fr_FR h1 {
+font-weight:500;
+}
+
+.lang-fr_FR h2 {
+font-weight:700;
+}
+
+/* H3*/
+.elm-taxonomy-list-main .elm-taxonomy-list-wrapper .elm-taxonomy-list .layout-box .item-title h3 {
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: 2px;
+}
+
+/* DIV DE LEAVE REVIEW */
+
+.reviews-container h2 {
+	background-color:#aadbe8;
+}
+
+.reviews-container .reviews-form-container {
+	background-color: #aadbe8;
+}
+.reviews-container .review-actions button {
+    background: #f4c056;
+    /*margin: 15px 0 20px 50px;*/
+}
+
+.reviews-ajax-container
+{
+	background: #aadbe8;
+}
+
+.reviews-ajax-container .reviews-ajax-button
+{
+	background: #f4c056;
+}
+
+.reviews-ajax-container .ajax-info-count
+{
+	color: #f4c056;
+}
+
+.reviews-container .review-name:before
+{
+	color: #aadbe8;
+}
+
+/*/ ETOILE */
+.reviews-container h2:before
+{
+    color : #f4c056;;
+}
+/* LIGHBOX */
+.wpb_wl_preview_area .wpb_wl_preview 
+{
+	background: #006699!important;
+}
+
+/* MON COMPTE */
+/* Couleur des titres et des liens */
+a.booked-logout-button , #booked-profile-page h3 strong {
+    color : white!important;
+}
+/*
+.nav-menu-main > ul > li.current_page_item > a:after {
+    background: none!important;
+}*/
+
+/* ONGLET STICKY HEADER */
+
+.lang-fr_FR .nav-menu-main > ul > li > a {
+    font-size:80%;
+    letter-spacing:2px;
+}
+
+.nav-menu-main > ul > li > a {
+    padding-bottom:20px;
+}
+
+/* SOUS MENU ET ONGLETS DES PAGES PROFILS */
+.sous-menu
+{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+
+}
+
+#onglets li
+{
+    float : left;
+    height : 27px; /* � modifier suivant la taille de la police pour centrer le texte dans l'onglet */
+    background-color: #5784b0;
+    font-size:80%;
+    letter-spacing:1px;
+    margin : 2px 10px 0 2px !important;  /* Pour les navigateurs autre que IE */
+    margin : 1px 2px 0 2px;  /* Pour IE  */
+    border : 1px solid rgba(0,0,0,0,0.1);
+    border-radius: 10px 10px 0px 0px;
+    overflow: hidden;
+}
+
+#onglets a
+{
+    display : block;
+    color : #fff;
+    text-decoration : none;
+    padding : 4px;
+}
+
+#onglets a:hover
+{
+    background : #fff;
+    color: #666
+}
+
+
+/*BOOKED NOM DU CALENDIRE */
+body .booked-modal .bm-window p.booked-calendar-name {
+    display: none;
+}
+
+/* MARGE EN DSSOUS DU MAP CONTAINER */
+.elm-content-main .map-container {
+    margin-bottom: 40px;
+}
+
+/*TAILLE DU CALENDRIER*/
+body table.booked-calendar {
+    width:85%;
+    margin:auto;
+}
+
+/*CURSEUR SUR BOUTON RESERVATION */
+button.new-appt {
+	cursor: pointer;
+}
+
+/****************CHECKOUT***************/
+.woocommerce form .form-row {
+    width: 100% !important;
+}
+.woocommerce-checkout #payment div.payment_box input.input-text, .woocommerce-checkout #payment div.payment_box textarea {
+    width: 100% !important;
+    padding: 8px;
+}
+.woocommerce #payment .form-row select, .woocommerce-page #payment .form-row select {
+    width: 100%;
+    height: 30px;
+}
+.woocommerce .col2-set .col-1, .woocommerce-page .col2-set .col-1,.woocommerce .col2-set .col-2, .woocommerce-page .col2-set .col-2 {
+    float: left;
+    width: 100%;
+}
+.custom-checkout h3 {
+    background-color: #165f1c;  /****CHANGE TO COLOR YOU WANT TO USE FOR TITLE BACKGROUND ****/
+    width: 45%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 50px;
+    color: #FFF;
+    float: right;
+}
+.woocommerce form .form-row input.input-text, .woocommerce form .form-row textarea {
+    padding: .6180469716em;
+    background-color: #f2f2f2;
+    color: #43454b;
+    outline: 0;
+    border: 0;
+    -webkit-appearance: none;
+    border-radius: 2px;
+    box-sizing: border-box;
+    font-weight: 400;
+   border:solid 2px #e4e4e4;
+}
+
+#wc_checkout_add_ons {
+    width: 45%;
+    float: right;
+    text-align: center;
+}
+
+@media screen and (min-width: 980px) {
+.woocommerce-shipping-fields h3, .woocommerce-billing-fields h3 {width:100%;}
+.woocommerce .col2-set, .woocommerce-page .col2-set {
+ width: 45%;
+ float: left;
+}
+.woocommerce-checkout-review-order{
+ width: 45%;
+ float: right;
+}
+}
+@media screen and (max-width: 979px) {
+.custom-checkout h3 {
+ width: 100%;
+}
+}
+
+
+/*On n'affiche pas la banniere sur certain medias*/
+@media screen and (max-width: 640px) {
+.header-container {
+	background-color: white;
+}
+}
+/* On n'affiche pas les infos relatives � gmaps*/
+.gmnoprint a, .gmnoprint span {
+    display:none !important;;
+}
+.gmnoprint div {
+    background:none !important;
+}
+
+/* Lien pour la page fondateur :*/
+div#fondateur p
+{
+    color : white!important;
+}
+
+/* Couleur texte page fondateur */
+h3#title-marker
+{
+    white-space: normal;
+}
+
+h3#title-marker:hover
+{
+    position: static;
+}
+
+/*Unir la couleur de fond du search form*/
+.main-search-form .inputs-container div.search-shadow
+{
+    background: rgba(0,0,0,0) !important;
+}
+
+#elm-text-_e191dd864-main {
+    background-size: cover;
+}
+
+.elm-members-main .layout-box .item-title {
+    letter-spacing: 2px;
+}
+
+.grey
+{
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+}
